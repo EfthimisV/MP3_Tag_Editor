@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP3 Tag Editor", "MP3 Tag Editor\MP3 Tag Editor.csproj", "{76C97524-F565-4DA4-BC0B-9047B6DBEEE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76C97524-F565-4DA4-BC0B-9047B6DBEEE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C97524-F565-4DA4-BC0B-9047B6DBEEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C97524-F565-4DA4-BC0B-9047B6DBEEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C97524-F565-4DA4-BC0B-9047B6DBEEE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CE6EA59-9503-4811-89FB-B67122D94ECB}
+	EndGlobalSection
+EndGlobal

@@ -32,9 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.CurrentCategory = new System.Windows.Forms.Label();
-            this.CurrentCategoryInfo = new System.Windows.Forms.Label();
             this.mylibrary = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.FileNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +45,9 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.separator = new System.Windows.Forms.PictureBox();
+            this.infopanel = new System.Windows.Forms.Panel();
+            this.CurrentCategoryInfo = new System.Windows.Forms.Label();
+            this.CurrentCategory = new System.Windows.Forms.Label();
             this.hamburgerMenu1 = new MP3_Tag_Editor.HamburgerMenu();
             this.searchButton1 = new MP3_Tag_Editor.SearchButton();
             this.searchBar1 = new MP3_Tag_Editor.SearchBar();
@@ -54,37 +56,14 @@
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
             this.customButton1 = new MP3_Tag_Editor.CustomButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.mylibrary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
+            this.infopanel.SuspendLayout();
             this.hamburgerMenu1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // CurrentCategory
-            // 
-            this.CurrentCategory.AutoSize = true;
-            this.CurrentCategory.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.CurrentCategory.ForeColor = System.Drawing.SystemColors.Control;
-            this.CurrentCategory.Location = new System.Drawing.Point(313, 57);
-            this.CurrentCategory.Name = "CurrentCategory";
-            this.CurrentCategory.Size = new System.Drawing.Size(326, 44);
-            this.CurrentCategory.TabIndex = 2;
-            this.CurrentCategory.Text = "Η Βιβλιοθήκη μου";
-            // 
-            // CurrentCategoryInfo
-            // 
-            this.CurrentCategoryInfo.AutoSize = true;
-            this.CurrentCategoryInfo.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.CurrentCategoryInfo.ForeColor = System.Drawing.SystemColors.Control;
-            this.CurrentCategoryInfo.Location = new System.Drawing.Point(317, 106);
-            this.CurrentCategoryInfo.Name = "CurrentCategoryInfo";
-            this.CurrentCategoryInfo.Size = new System.Drawing.Size(670, 44);
-            this.CurrentCategoryInfo.TabIndex = 3;
-            this.CurrentCategoryInfo.Text = "Εδώ εμφανίζονται όλα τα κομμάτια που έχετε προσθέσει στην βιβλιοθήκη\r\nμουσικής σα" +
-    "ς!";
             // 
             // mylibrary
             // 
@@ -97,6 +76,17 @@
             this.mylibrary.Name = "mylibrary";
             this.mylibrary.Size = new System.Drawing.Size(670, 475);
             this.mylibrary.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(86, 212);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(490, 21);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Προσθέστε βιβλιοθήκες για την εμφάνιση των τραγουδιών σας!";
             // 
             // dataGridView1
             // 
@@ -213,7 +203,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(183, 24);
             this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
             // label1
             // 
@@ -229,11 +219,43 @@
             // separator
             // 
             this.separator.BackColor = System.Drawing.SystemColors.Control;
-            this.separator.Location = new System.Drawing.Point(321, 161);
+            this.separator.Location = new System.Drawing.Point(324, 161);
             this.separator.Name = "separator";
             this.separator.Size = new System.Drawing.Size(670, 1);
             this.separator.TabIndex = 4;
             this.separator.TabStop = false;
+            // 
+            // infopanel
+            // 
+            this.infopanel.Controls.Add(this.CurrentCategoryInfo);
+            this.infopanel.Controls.Add(this.CurrentCategory);
+            this.infopanel.Location = new System.Drawing.Point(321, 36);
+            this.infopanel.Name = "infopanel";
+            this.infopanel.Size = new System.Drawing.Size(670, 119);
+            this.infopanel.TabIndex = 6;
+            // 
+            // CurrentCategoryInfo
+            // 
+            this.CurrentCategoryInfo.AutoSize = true;
+            this.CurrentCategoryInfo.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.CurrentCategoryInfo.ForeColor = System.Drawing.SystemColors.Control;
+            this.CurrentCategoryInfo.Location = new System.Drawing.Point(0, 62);
+            this.CurrentCategoryInfo.Name = "CurrentCategoryInfo";
+            this.CurrentCategoryInfo.Size = new System.Drawing.Size(670, 44);
+            this.CurrentCategoryInfo.TabIndex = 5;
+            this.CurrentCategoryInfo.Text = "Εδώ εμφανίζονται όλα τα κομμάτια που έχετε προσθέσει στην βιβλιοθήκη\r\nμουσικής σα" +
+    "ς!";
+            // 
+            // CurrentCategory
+            // 
+            this.CurrentCategory.AutoSize = true;
+            this.CurrentCategory.Font = new System.Drawing.Font("Century Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.CurrentCategory.ForeColor = System.Drawing.SystemColors.Control;
+            this.CurrentCategory.Location = new System.Drawing.Point(-4, 13);
+            this.CurrentCategory.Name = "CurrentCategory";
+            this.CurrentCategory.Size = new System.Drawing.Size(326, 44);
+            this.CurrentCategory.TabIndex = 4;
+            this.CurrentCategory.Text = "Η Βιβλιοθήκη μου";
             // 
             // hamburgerMenu1
             // 
@@ -335,26 +357,14 @@
             this.customButton1.TabStop = false;
             this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(86, 212);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(490, 21);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Προσθέστε βιβλιοθήκες για την εμφάνιση των τραγουδιών σας!";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(1024, 680);
+            this.Controls.Add(this.infopanel);
             this.Controls.Add(this.separator);
-            this.Controls.Add(this.CurrentCategoryInfo);
-            this.Controls.Add(this.CurrentCategory);
             this.Controls.Add(this.hamburgerMenu1);
             this.Controls.Add(this.statusBar1);
             this.Controls.Add(this.mylibrary);
@@ -368,11 +378,12 @@
             this.mylibrary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
+            this.infopanel.ResumeLayout(false);
+            this.infopanel.PerformLayout();
             this.hamburgerMenu1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -385,8 +396,6 @@
         private HamburgerItem hamburgerItem3;
         private SearchBar searchBar1;
         private SearchButton searchButton1;
-        private System.Windows.Forms.Label CurrentCategory;
-        private System.Windows.Forms.Label CurrentCategoryInfo;
         private System.Windows.Forms.PictureBox separator;
         private System.Windows.Forms.Panel mylibrary;
         private System.Windows.Forms.Label label1;
@@ -401,6 +410,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private CustomButton customButton1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel infopanel;
+        private System.Windows.Forms.Label CurrentCategoryInfo;
+        private System.Windows.Forms.Label CurrentCategory;
     }
 }
 

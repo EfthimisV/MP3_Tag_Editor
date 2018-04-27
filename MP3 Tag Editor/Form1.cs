@@ -22,6 +22,13 @@ namespace MP3_Tag_Editor
         private void Form1_Load(object sender, EventArgs e)
         {
             ActiveControl = hamburgerMenu1;
+            foreach(Control control in Controls)
+            {
+                control.Click += (sender1, e1) =>
+                {
+                    ActiveControl = null;
+                };
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -33,7 +40,8 @@ namespace MP3_Tag_Editor
         {
             CurrentCategory.Text = "Η Βιβλιοθήκη μου";
             CurrentCategoryInfo.Text = "Εδώ εμφανίζονται όλα τα κομμάτια που έχετε προσθέσει στην βιβλιοθήκη\nμουσικής σας!";
-            separator.Location = new Point(321, 176);
+            separator.Location = new Point(324, 161);
+            infopanel.Size = new Size(670, 119);
             mylibrary.Visible = true;
            
         }
@@ -42,7 +50,8 @@ namespace MP3_Tag_Editor
         {
             CurrentCategory.Text = "Πρόσφατα τραγούδια";
             CurrentCategoryInfo.Text = "Τα τραγούδια που πρόσφατα έχετε επεξεργαστεί και αναπαράγει";
-            separator.Location = new Point(321, 146);
+            separator.Location = new Point(324, 134);
+            infopanel.Size = new Size(670, 92);
             mylibrary.Visible = false;
         }
 
@@ -50,39 +59,12 @@ namespace MP3_Tag_Editor
         {
             CurrentCategory.Text = "Λίστες αναπαραγωγής";
             CurrentCategoryInfo.Text = "Δημιουργία λίστας αναπαραγωγής από κομμάτια της βιβλιοθήκης σας";
-            separator.Location = new Point(321, 146);
+            separator.Location = new Point(324, 134);
+            infopanel.Size = new Size(670, 92);
             mylibrary.Visible = false;
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FolderBrowserDialog LibraryBrowser = new FolderBrowserDialog();
-            
-            if (comboBox1.Text == "--Επιλέξτε κατάλογο--")
-            {
-                DialogResult result = LibraryBrowser.ShowDialog();
-                
-                if (result == DialogResult.OK)
-                {
-                    dataGridView1.Rows.Clear(); //Καθαρισμός του datagridview1 για την φόρτωση των στοιχείων
-                    var pathfilenames = Directory.EnumerateFiles(LibraryBrowser.SelectedPath, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".mp3"));//Φόρτωση των αρχείων που βρίσκονται στην βιβλιοθήκη
-                    comboBox1.Items.Add(Path.GetFileName(LibraryBrowser.SelectedPath.ToString())); //Προσθήκη της βιβλιοθήκης στο combobox1
-                    comboBox1.Text = Path.GetFileName(LibraryBrowser.SelectedPath.ToString()); //Το text property του combobox παίρνει την τιμή του ονόματος της βιβλιοθήκης
-                    int rowcounter = 0; //Μετρητής για το foreach statement
-                    foreach (string filename in pathfilenames)
-                    {
-                        TagLib.File song = TagLib.File.Create(filename); //Δημιουργία αντικειμένου taglib.file
-                        dataGridView1.Rows.Add(filename, song.Tag.Title, song.Tag.Track, song.Tag.Performers[0], song.Tag.Album, song.Tag.FirstGenre, song.Tag.Year);//Προσθήκη σειράς στο datagridview1 με τις πληροφορίες του τραγουδιού
-                        dataGridView1.Rows[rowcounter].Resizable = DataGridViewTriState.False; //Η εκάστοτε γραμμή δεν μπορεί να αλλάξει μέγεθος από τον χρήστη 
-                        rowcounter++;
-                    }
-                    dataGridView1.Rows[0].Selected = (dataGridView1.RowCount != 0);//Αν έχουν φορτωθεί στοιχεία, τότε η πρώτη γραμμή του datagridview1 επιλέγεται
-                    dataGridView1.Visible = (dataGridView1.RowCount != 0); //Το datagridvie1 φαίνεται μόνο αν έχουν φορτωθεί στοιχεία
-                    label2.Visible = (dataGridView1.RowCount == 0); // Η ετικέτα φαίνεται μόνο αν δεν έχουν φορτωθεί στοιχεία
-                }
-            }
-        }
-
+        protected List<string> libraries = new List<string>();
+        
         private void customButton1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0) //Αν έχουν φορτωθεί στοιχεία
@@ -136,6 +118,60 @@ namespace MP3_Tag_Editor
                 form1.subtitle = Song.Tag.Subtitle;
                 form1.publisher = Song.Tag.Publisher;
                 form1.lyricist = Song.Tag.Lyricist;
+            }
+        }
+       
+        private void additems(string path)
+        {
+            dataGridView1.Rows.Clear();
+            var pathfilenames = Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories).Where(s => s.EndsWith(".mp3"));//Φόρτωση των αρχείων που βρίσκονται στην βιβλιοθήκη
+            int rowcounter = 0; //Μετρητής για το foreach statement
+            foreach (string filename in pathfilenames)
+            {
+                TagLib.File song = TagLib.File.Create(filename); //Δημιουργία αντικειμένου taglib.file
+                dataGridView1.Rows.Add(filename, song.Tag.Title, song.Tag.Track, song.Tag.Performers[0], song.Tag.Album, song.Tag.FirstGenre, song.Tag.Year);//Προσθήκη σειράς στο datagridview1 με τις πληροφορίες του τραγουδιού
+                dataGridView1.Rows[rowcounter].Resizable = DataGridViewTriState.False; //Η εκάστοτε γραμμή δεν μπορεί να αλλάξει μέγεθος από τον χρήστη 
+                rowcounter++;
+            }
+            dataGridView1.Rows[0].Selected = (dataGridView1.RowCount != 0);//Αν έχουν φορτωθεί στοιχεία, τότε η πρώτη γραμμή του datagridview1 επιλέγεται
+            dataGridView1.Visible = (dataGridView1.RowCount != 0); //Το datagridvie1 φαίνεται μόνο αν έχουν φορτωθεί στοιχεία
+            label2.Visible = (dataGridView1.RowCount == 0); // Η ετικέτα φαίνεται μόνο αν δεν έχουν φορτωθεί στοιχεία
+        }
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            FolderBrowserDialog LibraryBrowser = new FolderBrowserDialog();
+
+            if (comboBox1.Text == "--Επιλέξτε κατάλογο--")
+            {
+                DialogResult result = LibraryBrowser.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    comboBox1.Items.Add(Path.GetFileName(LibraryBrowser.SelectedPath.ToString())); //Προσθήκη της βιβλιοθήκης στο combobox1
+                    comboBox1.Text = Path.GetFileName(LibraryBrowser.SelectedPath.ToString()); //Το text property του combobox παίρνει την τιμή του ονόματος της βιβλιοθήκης
+                    libraries.Add(LibraryBrowser.SelectedPath); //Προσθήκη της διαδρομής στην λίστα με τις διαδρομές των βιβλιοθηκών
+                    additems(LibraryBrowser.SelectedPath);
+                }
+            }
+            else
+            {
+                var key = comboBox1.Text;
+                var index = 0;
+                var position = 0;
+                bool found = false;
+                while (index < libraries.Count && !found)
+                {
+                    if (libraries[index] == key)
+                    {
+                        found = true;
+                        position = index;
+                    }
+                    else
+                    {
+                        index++;
+                    }
+                }
+                additems(libraries[position]);
             }
         }
     }

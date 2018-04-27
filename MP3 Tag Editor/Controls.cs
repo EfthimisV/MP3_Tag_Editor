@@ -497,7 +497,12 @@ namespace MP3_Tag_Editor
             Controls.Add(SearchBox);
            
         }
-
+        protected override void OnLeave(EventArgs e)
+        {
+            base.OnLeave(e);
+            SearchBox.Text = SearchBox.Text == "" ? SearchBox.Text = "Αναζήτηση" : SearchBox.Text;
+        }
+       
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);

@@ -10,9 +10,242 @@ using System.ComponentModel;
 namespace MP3_Tag_Editor
 {
    
+    public class HamburgerButton : PictureBox
+    { 
+        public ToolTip toolTip = new ToolTip();
+
+        public Form InstanceForm
+        {
+            get
+            {
+                return FindForm();
+            }
+        }
+
+        public HamburgerButton()
+        {
+            Size = new Size(24, 24);
+            SizeMode = PictureBoxSizeMode.StretchImage;
+            Image = Properties.Resources.HamburgerButtonStandard;
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            Image = Properties.Resources.HamburgerButtonPress;
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            Image = Properties.Resources.HamburgerButtonOn;
+            if (Parent.Size == new Size(283, 654))
+            {
+                toolTip.SetToolTip(this, "Ελαχιστοποίηση παραθύρου πλοήγησης");
+            }
+            else
+            {
+                toolTip.SetToolTip(this, "Μεγιστοποίηση παραθύρου πλοήγησης");
+            }
+
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            Image = Properties.Resources.HamburgerButtonStandard;
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            Image = Properties.Resources.HamburgerButtonOn;
+        }
+
+        protected override void OnMouseClick(MouseEventArgs e)
+        {
+            base.OnMouseClick(e);
+
+            SearchBar sb = new SearchBar();
+            foreach (var sb1 in Parent.Controls)
+            {
+                if(sb1 is SearchBar)
+                {
+                    sb = (SearchBar) sb1;
+                }
+            }
+            sb.Visible = !(Parent.Size == new Size(283, 654));
+            Parent.Size = Parent.Size == new Size(283, 654) ? Parent.Size = new Size(40, 654): Parent.Size = new Size(283, 654);
+        }
+    }
+    public class HamburgerMenu : Panel
+    {
+        public HamburgerButton hamburgerButton = new HamburgerButton();
+ 
+        public HamburgerMenu()
+        {
+            BackColor = Color.FromArgb(6, 19, 40);
+            Size = new Size(283, 654);
+            hamburgerButton.Location = new Point(11, 16);
+            Controls.Add(hamburgerButton);
+        }
+    }
+    public class HamburgerItem : Panel
+    {
+        public ToolTip toolTip = new ToolTip();
+        public Label ItemText = new Label();
+        public PictureBox ItemImage = new PictureBox();
+        public PictureBox CurrentItem = new PictureBox();
+
+        [Description("The text displayed on this HamburgerItem."), Category("Data")]
+        public string HamburgerItemText
+        {
+            get
+            {
+                return ItemText.Text;
+            }
+            set
+            {
+                ItemText.Text = value;
+            }
+        }
+        [Description("The text displayed on this HamburgerItem."), Category("Data")]
+        public Image HamburgerItemImage
+        {
+            get
+            {
+                return ItemImage.Image;
+            }
+            set
+            {
+                ItemImage.Image = value;
+            }
+        }
+        [Description("The text displayed when mouse enters the HamburgerItem."), Category("Data")]
+        public string HamburgerToolTip { get; set; }
+        [Description("Side color displayed for the selected HamburgerItem."), Category("Data")]
+        public Color IsFirstItem
+        {
+            get
+            {
+                return CurrentItem.BackColor;
+            }
+            set
+            {
+                CurrentItem.BackColor = value;
+            }
+        }
+        
+        public HamburgerItem()
+        {
+            ItemText.Click += (sender, e) =>
+            {
+                OnClick(e);
+            };
+            ItemText.MouseEnter += (sender, e) =>
+            { 
+                BackColor = Color.FromArgb(30, 66, 123);
+                toolTip.SetToolTip(ItemText, HamburgerToolTip);
+            };
+            ItemText.MouseUp += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(30, 66, 123);
+            };
+            ItemText.MouseDown += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(4, 10, 21);
+            };
+            ItemText.MouseLeave += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(6, 19, 40);
+            };
+            ItemImage.Click += (sender, e) =>
+            {
+                OnClick(e);
+            };
+            ItemImage.MouseEnter += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(30, 66, 123);
+                toolTip.SetToolTip(ItemImage, HamburgerToolTip);
+            };
+            ItemImage.MouseUp += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(30, 66, 123);
+            };
+            ItemImage.MouseDown += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(4, 10, 21);
+            };
+            ItemImage.MouseLeave += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(6, 19, 40);
+            };
+            Cursor = Cursors.Hand;
+            CurrentItem.BackColor = Color.White;
+            CurrentItem.Size = new Size(5, 35);
+            CurrentItem.Location = new Point(0, 0);
+            ItemText.AutoSize = true;
+            ItemText.Font = new Font("Century Gothic", 10);
+            ItemText.ForeColor = Color.White;
+            ItemText.Location = new Point(35, 8);
+            ItemText.BackColor = Color.Transparent;
+            ItemImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            ItemImage.Location = new Point(2, -2);
+            ItemImage.Size = new Size(40, 40);
+            Size = new Size(283,35);
+            BackColor = Color.FromArgb(6, 19, 40);
+            Controls.Add(CurrentItem);
+            Controls.Add(ItemText);
+            Controls.Add(ItemImage);
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            BackColor = Color.FromArgb(30, 66, 123);
+            toolTip.SetToolTip(this, HamburgerToolTip);
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            BackColor = Color.FromArgb(6, 19, 40);
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            BackColor = Color.FromArgb(4, 10, 21);
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            BackColor = Color.FromArgb(30, 66, 123);
+        }
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+            
+            List<Control> Items = new List<Control>();
+            foreach (Control Item in Parent.Controls)
+            {
+                if (Item is HamburgerItem)
+                {
+                    Items.Add(Item);
+                }
+            }
+            foreach (HamburgerItem Item in Items)
+            {
+                Item.IsFirstItem = Color.FromArgb(6, 19, 40);
+            }
+            CurrentItem.BackColor = Color.White;
+        }
+    }
     public class ExitButton : PictureBox
     {
-        /// <summary> Δημιουργία του κομπιού για το κλείσιμο του παραθύρου </summary>
+        /// <summary> Δημιουργία του κομπιού για το κλείσιμο του παραθύρου 
+        /// </summary>
         public ToolTip toolTip = new ToolTip();
         public Form InstanceForm
         {
@@ -57,6 +290,7 @@ namespace MP3_Tag_Editor
     public class MinimizeButton : PictureBox
     {
         public ToolTip toolTip = new ToolTip();
+
         public Form InstanceForm
         {
             get
@@ -64,33 +298,39 @@ namespace MP3_Tag_Editor
                 return FindForm();
             }
         }
+
         public MinimizeButton()
         {
             Size = new Size(23, 25);
             SizeMode = PictureBoxSizeMode.StretchImage;
             Image = Properties.Resources.MinimizeButtonStandard;
         }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
             Image = Properties.Resources.MinimizeButtonPress;
         }
+
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
             Image = Properties.Resources.MinimizeButtonOn;
             toolTip.SetToolTip(this, "Ελαχιστοποίηση");
         }
+
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
             Image = Properties.Resources.MinimizeButtonStandard;
         }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
             Image = Properties.Resources.MinimizeButtonOn;
         }
+
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
@@ -138,7 +378,30 @@ namespace MP3_Tag_Editor
                 return FindForm();
             }
         }
-        
+        [Category("Appearance"), Description("Specify location for minimize button.")]
+        public int LocationMin
+        {
+            get
+            {
+                return MinButton.Location.X;
+            }
+            set
+            {
+                MinButton.Location = new Point(value,0);
+            }
+        }
+        [Category("Appearance"), Description("Specify location for exit button.")]
+        public int LocationExit
+        {
+            get
+            {
+                return CloseButton.Location.X;
+            }
+            set
+            {
+                CloseButton.Location = new Point(value, 0);
+            }
+        }
         public StatusBar()
         {
             Dock = DockStyle.Top;
@@ -181,11 +444,209 @@ namespace MP3_Tag_Editor
             drag = false;
         }
     }
-    public class HamburgerMenu : Panel
+    public class SearchBar : Panel
     {
-        public HamburgerMenu()
+        public TextBox SearchBox = new TextBox();
+       
+        public bool SearchBoxVisible
         {
-            Dock = DockStyle.Left;
+            get
+            {
+                return SearchBox.Visible;
+            }
+            set
+            {
+                SearchBox.Visible = value;
+            }
+        }
+        public string SearchQuery
+        {
+            get
+            {
+                return SearchBox.Text;
+            }
+        }
+
+        public SearchBar()
+        {
+            Size = new Size(258, 36);
+            BackColor = Color.FromArgb(3, 12, 28);
+            SearchBox.Click += (sender, e) =>
+            {
+                if (SearchBox.Text == "Αναζήτηση")
+                {
+                    SearchBox.Text = "";
+                }
+            };
+            SearchBox.MouseEnter += (sender, e) =>
+            {
+                OnMouseEnter(e);
+            };
+            SearchBox.MouseLeave += (sender, e) =>
+            {
+                OnMouseLeave(e);
+            };
+            SearchBox.BackColor = Color.FromArgb(3, 12, 28);
+            SearchBox.Size = new Size(222, 35);
+            SearchBox.Location = new Point(7, 9);
+            SearchBox.AutoSize = false;
+            SearchBox.BorderStyle = BorderStyle.None;
+            SearchBox.Font = new Font("Century Gothic", 10);
+            SearchBox.ForeColor = Color.White;
+            SearchBox.Text = "Αναζήτηση";
+            Controls.Add(SearchBox);
+           
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            
+            if (Parent.Size == new Size(283, 654))
+            {
+                BackColor = Color.FromArgb(5, 20, 45);
+                Control FoundTheOne = new SearchButton();
+                foreach (Control Items in Parent.Controls)
+                {
+                    if (Items is SearchButton)
+                    {
+                        FoundTheOne = Items;
+                    }
+                }
+                foreach (Control Item in Controls)
+                {
+                    Item.BackColor = Color.FromArgb(5, 20, 45);
+                }
+                FoundTheOne.BackColor = Color.FromArgb(5, 20, 45);
+                
+            }
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            
+            if (Parent.Size == new Size(283, 654))
+            {
+                BackColor = Color.FromArgb(3, 12, 28);
+                Control FoundTheOne = new SearchButton();
+                foreach (Control Items in Parent.Controls)
+                {
+                    if (Items is SearchButton)
+                    {
+                        FoundTheOne = Items;
+                    }
+                }
+                foreach (Control Item in Controls)
+                {
+                    Item.BackColor = Color.FromArgb(3, 12, 28);
+                }
+                FoundTheOne.BackColor = Color.FromArgb(3, 12, 28);
+                
+            }
+        }
+    }
+    public class SearchButton : PictureBox
+    {
+        public SearchButton()
+        {
+            Size = new Size(22, 25);
+            Image = Properties.Resources.Search;
+            SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            Image = Properties.Resources._1;
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            Image = Properties.Resources.Search;
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            Image = Properties.Resources._1;
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            Image = Properties.Resources._2;
+        }
+        
+    }
+    public class CustomButton : PictureBox
+    {
+        public Label ButtonText = new Label();
+        public CustomButton()
+        {
+            ButtonText.MouseEnter += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(30, 66, 123);
+            };
+            ButtonText.MouseLeave += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(6, 19, 40);
+            };
+            ButtonText.MouseUp += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(30, 66, 123);
+            };
+            ButtonText.MouseDown += (sender, e) =>
+            {
+                BackColor = Color.FromArgb(4, 10, 21);
+            };
+            ButtonText.Click += (sender, e) =>
+            {
+                OnClick(e);
+            };
+            Size = new Size(100, 20);
+            BackColor = Color.FromArgb(6,19,40);
+            BorderStyle = BorderStyle.FixedSingle;
+            ButtonText.AutoSize = true;
+            ButtonText.Location = new Point(3, 1);
+            ButtonText.ForeColor = Color.White;
+            ButtonText.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
+            ButtonText.Font = new Font("Century Gothic", 8);
+            Controls.Add(ButtonText);
+        }
+        [Category("Appearance"), Description("Sets the text displayed on this button.")]
+        public string CustomButtonText
+        {
+            get
+            {
+                return ButtonText.Text;
+            }
+            set
+            {
+                ButtonText.Text = value;
+            }
+        }
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            BackColor = Color.FromArgb(30, 66, 123);
+            
+        }
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            BackColor = Color.FromArgb(6, 19, 40);
+        }
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            BackColor = Color.FromArgb(4, 10, 21);
+        }
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            BackColor = Color.FromArgb(30, 66, 123);
         }
     }
 }

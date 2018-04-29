@@ -34,6 +34,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mylibrary = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.customButton1 = new MP3_Tag_Editor.CustomButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.FileNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,14 +56,13 @@
             this.hamburgerItem2 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
-            this.customButton1 = new MP3_Tag_Editor.CustomButton();
             this.mylibrary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             this.infopanel.SuspendLayout();
             this.hamburgerMenu1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // mylibrary
@@ -87,6 +87,18 @@
             this.label2.Size = new System.Drawing.Size(490, 21);
             this.label2.TabIndex = 6;
             this.label2.Text = "Προσθέστε βιβλιοθήκες για την εμφάνιση των τραγουδιών σας!";
+            // 
+            // customButton1
+            // 
+            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(19)))), ((int)(((byte)(40)))));
+            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton1.CustomButtonText = "Επεξεργασία επιλεγμένων";
+            this.customButton1.Location = new System.Drawing.Point(345, 11);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(152, 20);
+            this.customButton1.TabIndex = 3;
+            this.customButton1.TabStop = false;
+            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
             // 
             // dataGridView1
             // 
@@ -345,18 +357,6 @@
             this.statusBar1.Size = new System.Drawing.Size(1024, 25);
             this.statusBar1.TabIndex = 0;
             // 
-            // customButton1
-            // 
-            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(19)))), ((int)(((byte)(40)))));
-            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton1.CustomButtonText = "Επεξεργασία επιλεγμένων";
-            this.customButton1.Location = new System.Drawing.Point(345, 11);
-            this.customButton1.Name = "customButton1";
-            this.customButton1.Size = new System.Drawing.Size(152, 20);
-            this.customButton1.TabIndex = 3;
-            this.customButton1.TabStop = false;
-            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,13 +376,13 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.mylibrary.ResumeLayout(false);
             this.mylibrary.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             this.infopanel.ResumeLayout(false);
             this.infopanel.PerformLayout();
             this.hamburgerMenu1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             this.ResumeLayout(false);
 
         }

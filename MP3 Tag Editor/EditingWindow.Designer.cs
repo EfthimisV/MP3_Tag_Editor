@@ -31,8 +31,6 @@
             this.CurrentCategoryInfo = new System.Windows.Forms.Label();
             this.CurrentCategory = new System.Windows.Forms.Label();
             this.generalinfo = new System.Windows.Forms.Panel();
-            this.customButton3 = new MP3_Tag_Editor.CustomButton();
-            this.customButton1 = new MP3_Tag_Editor.CustomButton();
             this.albumart = new System.Windows.Forms.PictureBox();
             this.commenttextbox = new System.Windows.Forms.TextBox();
             this.genretextbox = new System.Windows.Forms.TextBox();
@@ -50,7 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.complexedit = new System.Windows.Forms.Panel();
-            this.customButton2 = new MP3_Tag_Editor.CustomButton();
             this.artisturltextbox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.lyricisttextbox = new System.Windows.Forms.TextBox();
@@ -78,17 +75,21 @@
             this.lyricstextbox = new System.Windows.Forms.TextBox();
             this.Στίχοι = new System.Windows.Forms.Label();
             this.hamburgerMenu1 = new MP3_Tag_Editor.HamburgerMenu();
+            this.button1 = new System.Windows.Forms.Button();
             this.hamburgerItem3 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem2 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
+            this.customButton3 = new MP3_Tag_Editor.CustomButton();
+            this.customButton1 = new MP3_Tag_Editor.CustomButton();
+            this.customButton2 = new MP3_Tag_Editor.CustomButton();
             this.generalinfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumart)).BeginInit();
             this.complexedit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
             this.hamburgerMenu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
             this.SuspendLayout();
             // 
             // CurrentCategoryInfo
@@ -138,30 +139,6 @@
             this.generalinfo.Name = "generalinfo";
             this.generalinfo.Size = new System.Drawing.Size(613, 419);
             this.generalinfo.TabIndex = 18;
-            // 
-            // customButton3
-            // 
-            this.customButton3.BackColor = System.Drawing.Color.Transparent;
-            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton3.CustomButtonText = "Αλλαγή εικόνας";
-            this.customButton3.Location = new System.Drawing.Point(361, 259);
-            this.customButton3.Name = "customButton3";
-            this.customButton3.Size = new System.Drawing.Size(100, 20);
-            this.customButton3.TabIndex = 37;
-            this.customButton3.TabStop = false;
-            this.customButton3.Click += new System.EventHandler(this.customButton3_Click);
-            // 
-            // customButton1
-            // 
-            this.customButton1.BackColor = System.Drawing.Color.Transparent;
-            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton1.CustomButtonText = "Αποθήκευση αλλαγών";
-            this.customButton1.Location = new System.Drawing.Point(13, 337);
-            this.customButton1.Name = "customButton1";
-            this.customButton1.Size = new System.Drawing.Size(137, 20);
-            this.customButton1.TabIndex = 36;
-            this.customButton1.TabStop = false;
-            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
             // 
             // albumart
             // 
@@ -365,18 +342,6 @@
             this.complexedit.Name = "complexedit";
             this.complexedit.Size = new System.Drawing.Size(613, 419);
             this.complexedit.TabIndex = 37;
-            // 
-            // customButton2
-            // 
-            this.customButton2.BackColor = System.Drawing.Color.Transparent;
-            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton2.CustomButtonText = "Αποθήκευση αλλαγών";
-            this.customButton2.Location = new System.Drawing.Point(405, 386);
-            this.customButton2.Name = "customButton2";
-            this.customButton2.Size = new System.Drawing.Size(137, 20);
-            this.customButton2.TabIndex = 54;
-            this.customButton2.TabStop = false;
-            this.customButton2.Click += new System.EventHandler(this.customButton2_Click);
             // 
             // artisturltextbox
             // 
@@ -656,6 +621,7 @@
             // hamburgerMenu1
             // 
             this.hamburgerMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(19)))), ((int)(((byte)(40)))));
+            this.hamburgerMenu1.Controls.Add(this.button1);
             this.hamburgerMenu1.Controls.Add(this.hamburgerItem3);
             this.hamburgerMenu1.Controls.Add(this.hamburgerItem2);
             this.hamburgerMenu1.Controls.Add(this.hamburgerItem1);
@@ -663,6 +629,16 @@
             this.hamburgerMenu1.Name = "hamburgerMenu1";
             this.hamburgerMenu1.Size = new System.Drawing.Size(283, 654);
             this.hamburgerMenu1.TabIndex = 15;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(144, 293);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // hamburgerItem3
             // 
@@ -718,6 +694,42 @@
             this.statusBar1.Size = new System.Drawing.Size(929, 25);
             this.statusBar1.TabIndex = 0;
             // 
+            // customButton3
+            // 
+            this.customButton3.BackColor = System.Drawing.Color.Transparent;
+            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton3.CustomButtonText = "Αλλαγή εικόνας";
+            this.customButton3.Location = new System.Drawing.Point(361, 259);
+            this.customButton3.Name = "customButton3";
+            this.customButton3.Size = new System.Drawing.Size(100, 20);
+            this.customButton3.TabIndex = 37;
+            this.customButton3.TabStop = false;
+            this.customButton3.Click += new System.EventHandler(this.customButton3_Click);
+            // 
+            // customButton1
+            // 
+            this.customButton1.BackColor = System.Drawing.Color.Transparent;
+            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton1.CustomButtonText = "Αποθήκευση αλλαγών";
+            this.customButton1.Location = new System.Drawing.Point(13, 337);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(137, 20);
+            this.customButton1.TabIndex = 36;
+            this.customButton1.TabStop = false;
+            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
+            // 
+            // customButton2
+            // 
+            this.customButton2.BackColor = System.Drawing.Color.Transparent;
+            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton2.CustomButtonText = "Αποθήκευση αλλαγών";
+            this.customButton2.Location = new System.Drawing.Point(405, 386);
+            this.customButton2.Name = "customButton2";
+            this.customButton2.Size = new System.Drawing.Size(137, 20);
+            this.customButton2.TabIndex = 54;
+            this.customButton2.TabStop = false;
+            this.customButton2.Click += new System.EventHandler(this.customButton2_Click);
+            // 
             // EditingWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -737,13 +749,13 @@
             this.Load += new System.EventHandler(this.EditingWindow_Load);
             this.generalinfo.ResumeLayout(false);
             this.generalinfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumart)).EndInit();
             this.complexedit.ResumeLayout(false);
             this.complexedit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
             this.hamburgerMenu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -805,5 +817,6 @@
         private System.Windows.Forms.Label label20;
         private CustomButton customButton2;
         private CustomButton customButton3;
+        private System.Windows.Forms.Button button1;
     }
 }

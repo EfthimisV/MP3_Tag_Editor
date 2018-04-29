@@ -9,11 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TagLib;
+using Newtonsoft.Json;
+using System.Net;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace MP3_Tag_Editor
 {
+
     public partial class EditingWindow : Form
     {
+
+        public string SetQueryLink(string consumer_key, string consumer_secret_key, string artist_album)
+        {
+            artist_album = artist_album.Replace(" ", "%20");
+            var discogs_link = "https://api.discogs.com/database/search?page=1&per_page=1&key=" + consumer_key + "&secret=" + consumer_secret_key + "&q=" + artist_album;
+            return discogs_link;
+        }
+
         public EditingWindow()
         {
             InitializeComponent();
@@ -325,7 +338,7 @@ namespace MP3_Tag_Editor
                 };
             }
         }
-        
+
         private void customButton1_Click(object sender, EventArgs e)
         {
             TagLib.File Song = TagLib.File.Create(filepath);
@@ -335,11 +348,11 @@ namespace MP3_Tag_Editor
             Song.Tag.Track = Convert.ToUInt32(tracktextbox.Text);
             Song.Tag.Comment = commenttextbox.Text;
             var genres = genretextbox.Text.Split(',').ToArray();
-            for (int i =0; i< genres.Length; i++)
+            for (int i = 0; i < genres.Length; i++)
             {
                 genres[i] = genres[i].TrimEnd();
                 genres[i] += ' ';
-                
+
             }
             var genres1 = genres;
             Song.Tag.Genres = genres;
@@ -401,6 +414,13 @@ namespace MP3_Tag_Editor
                 albumartpath = Path.GetFullPath(albumart1.FileName);
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WebClient wc = new WebClient();
+            wc.Headers.Add("User-Agent: MP3_Tag_Editor/0.5 +http://github.com/EfthimisV/MP3_Tag_Editor");
+            var json = wc.DownloadString("https://api.discogs.com/database/search?page1&per_page=1&key=SaVhpakXCQDKXQPjpWuH&secret=apFJViSZMNibBlIIlMixPvRsJBcshqkZ&q=alter%20bridge%20one");
         }
     }
 }

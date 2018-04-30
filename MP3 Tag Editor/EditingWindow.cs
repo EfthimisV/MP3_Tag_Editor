@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 namespace MP3_Tag_Editor
 {
@@ -20,16 +21,20 @@ namespace MP3_Tag_Editor
     public partial class EditingWindow : Form
     {
 
+
+
+        public EditingWindow()
+        {
+            InitializeComponent();
+        }
+        /// <summary>
+        ///    Prepares the link for searching in the discogs database.
+        /// </summary>
         public string SetQueryLink(string consumer_key, string consumer_secret_key, string artist_album)
         {
             artist_album = artist_album.Replace(" ", "%20");
             var discogs_link = "https://api.discogs.com/database/search?page=1&per_page=1&key=" + consumer_key + "&secret=" + consumer_secret_key + "&q=" + artist_album;
             return discogs_link;
-        }
-
-        public EditingWindow()
-        {
-            InitializeComponent();
         }
         /// <summary>
         ///    Gets and sets the text displayed on the titletextbox.
@@ -416,11 +421,77 @@ namespace MP3_Tag_Editor
 
         }
 
+        public class DiscogsResponse
+        {
+            public Pagination pagination { get; set; }
+            public Result[] results { get; set; }
+        }
+
+        public class Pagination
+        {
+            public int per_page { get; set; }
+            public int pages { get; set; }
+            public int page { get; set; }
+            public Urls urls { get; set; }
+            public int items { get; set; }
+        }
+
+        public class Urls
+        {
+            public string last { get; set; }
+            public string next { get; set; }
+        }
+
+        public class Result
+        {
+            /// <summary>
+            ///    Gets the music style for the searched album from Discogs.
+            /// </summary>
+            public string[] style { get; set; }
+            /// <summary>
+            ///    Gets the thumbnail picture for the album that the song belongs to from Discogs.
+            /// </summary>
+            public string thumb { get; set; }
+            /// <summary>
+            ///    Gets the type the media that the song was distributed to from Discogs.
+            /// </summary>
+            public string[] format { get; set; }
+            /// <summary>
+            ///    Gets the song's country of origin from Discogs.
+            /// </summary>
+            public string country { get; set; }
+            public string[] barcode { get; set; }
+            public string uri { get; set; }
+            public Community community { get; set; }
+            public string[] label { get; set; }
+            public string[] genre { get; set; }
+            public string catno { get; set; }
+            public string year { get; set; }
+            /// <summary>
+            ///    Gets the URL for the cover image of the album that the song belongs to from Discogs.
+            /// </summary>
+            public string cover_image { get; set; }
+            public string title { get; set; }
+            public string resource_url { get; set; }
+            public string type { get; set; }
+            public int id { get; set; }
+        }
+
+        public class Community
+        {
+            public int want { get; set; }
+            public int have { get; set; }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             WebClient wc = new WebClient();
             wc.Headers.Add("User-Agent: MP3_Tag_Editor/0.5 +http://github.com/EfthimisV/MP3_Tag_Editor");
-            var json = wc.DownloadString("https://api.discogs.com/database/search?page1&per_page=1&key=SaVhpakXCQDKXQPjpWuH&secret=apFJViSZMNibBlIIlMixPvRsJBcshqkZ&q=alter%20bridge%20one");
+            var json = wc.DownloadString(SetQueryLink("SaVhpakXCQDKXQPjpWuH", "apFJViSZMNibBlIIlMixPvRsJBcshqkZ", artisttextbox.Text + " " +albumtextbox.Text));
+            DiscogsResponse rootobject = JsonConvert.DeserializeObject<DiscogsResponse>(json);
+            Result result1 = rootobject.results[0];
+            string cover_image_url = result1.cover_image;
+            Process.Start("chrome.exe", cover_image_url);
         }
     }
 }

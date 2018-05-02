@@ -593,27 +593,32 @@ namespace MP3_Tag_Editor
             ButtonText.MouseEnter += (sender, e) =>
             {
                 BackColor = Color.FromArgb(30, 66, 123);
+                ButtonText.BackColor = Color.FromArgb(30, 66, 123);
             };
             ButtonText.MouseLeave += (sender, e) =>
             {
-                BackColor = Color.FromArgb(6, 19, 40);
+                BackColor = Color.Transparent;
+                ButtonText.BackColor = Color.Transparent;
             };
             ButtonText.MouseUp += (sender, e) =>
             {
                 BackColor = Color.FromArgb(30, 66, 123);
+                ButtonText.BackColor = Color.FromArgb(30, 66, 123);
             };
             ButtonText.MouseDown += (sender, e) =>
             {
                 BackColor = Color.FromArgb(4, 10, 21);
+                ButtonText.BackColor = Color.FromArgb(4, 10, 21);
             };
             ButtonText.Click += (sender, e) =>
             {
                 OnClick(e);
             };
             Size = new Size(100, 20);
-            BackColor = Color.FromArgb(6,19,40);
+            BackColor = Color.Transparent;
             BorderStyle = BorderStyle.FixedSingle;
             ButtonText.AutoSize = true;
+            ButtonText.BackColor = Color.Transparent;
             ButtonText.Location = new Point(3, 1);
             ButtonText.ForeColor = Color.White;
             ButtonText.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
@@ -636,22 +641,24 @@ namespace MP3_Tag_Editor
         {
             base.OnMouseEnter(e);
             BackColor = Color.FromArgb(30, 66, 123);
-            
+            ButtonText.BackColor = Color.FromArgb(30, 66, 123);
         }
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
-            BackColor = Color.FromArgb(6, 19, 40);
+            BackColor = Color.Transparent;
+            ButtonText.BackColor = Color.Transparent;
         }
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
             BackColor = Color.FromArgb(4, 10, 21);
+            ButtonText.BackColor = Color.FromArgb(4, 10, 21);
         }
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            BackColor = Color.FromArgb(30, 66, 123);
+            ButtonText.BackColor = Color.FromArgb(30, 66, 123);
         }
     }
 }

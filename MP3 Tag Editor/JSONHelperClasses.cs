@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace MP3_Tag_Editor
 {
+    /// <summary>
+    /// Class to help deserialize Discogs JSON strings.
+    /// </summary>
+    /// <remarks>
+    /// Add more details here.
+    /// </remarks>
     public class DiscogsResponse
     {
         public Pagination pagination { get; set; }

@@ -90,7 +90,7 @@
             // 
             // customButton1
             // 
-            this.customButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(19)))), ((int)(((byte)(40)))));
+            this.customButton1.BackColor = System.Drawing.Color.Transparent;
             this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.customButton1.CustomButtonText = "Επεξεργασία επιλεγμένων";
             this.customButton1.Location = new System.Drawing.Point(345, 11);

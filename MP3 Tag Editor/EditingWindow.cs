@@ -20,9 +20,6 @@ namespace MP3_Tag_Editor
 
     public partial class EditingWindow : Form
     {
-
-
-
         public EditingWindow()
         {
             InitializeComponent();
@@ -33,7 +30,7 @@ namespace MP3_Tag_Editor
         public string SetQueryLink(string consumer_key, string consumer_secret_key, string artist_album)
         {
             artist_album = artist_album.Replace(" ", "+");
-            var discogs_link = "https://api.discogs.com/database/search?page=1&per_page=2&key=" + consumer_key + "&secret=" + consumer_secret_key + "&q=" + artist_album;
+            var discogs_link = "https://api.discogs.com/database/search?page=1&per_page=8&key=" + consumer_key + "&secret=" + consumer_secret_key + "&q=" + artist_album;
             return discogs_link;
         }
         /// <summary>
@@ -332,6 +329,18 @@ namespace MP3_Tag_Editor
         }
         public string filepath { get; set; }
         public string albumartpath { get; set; }
+        public string downloaderalbumartpath
+        {
+            get
+            {
+                return albumart.ImageLocation;
+            }
+            set
+            {
+                albumart.ImageLocation = value;
+            }
+        }
+        
 
         private void EditingWindow_Load(object sender, EventArgs e)
         {
@@ -369,6 +378,15 @@ namespace MP3_Tag_Editor
                 pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
                 pic.Type = TagLib.PictureType.FrontCover;
                 pic.Data = TagLib.ByteVector.FromPath(albumartpath);
+                Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
+            }
+            if (downloaderalbumartpath != null)
+            {
+                TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                pic.TextEncoding = TagLib.StringType.Latin1;
+                pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                pic.Type = TagLib.PictureType.FrontCover;
+                pic.Data = TagLib.ByteVector.FromPath(downloaderalbumartpath);
                 Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
             }
             Song.Save();
@@ -411,6 +429,17 @@ namespace MP3_Tag_Editor
 
         private void customButton3_Click(object sender, EventArgs e)
         {
+            dropdownpanel.Visible = !dropdownpanel.Visible; //Η επιλογή dropdown φαίνεται ή όχι μόνο αν φαίνεται ή όχι
+            ActiveControl = dropdownpanel; //Γίνεται activecontrol το dropdown panel για να μη φάινεται όταν χάνει focus
+        }
+
+        private void dropdownpanel_Leave(object sender, EventArgs e)
+        {
+            dropdownpanel.Visible = false;
+        }
+
+        private void customButton5_Click(object sender, EventArgs e)
+        {
             OpenFileDialog albumart1 = new OpenFileDialog();
             DialogResult result = albumart1.ShowDialog();
             if (result == DialogResult.OK)
@@ -418,19 +447,44 @@ namespace MP3_Tag_Editor
                 albumart.Image = new Bitmap(albumart1.FileName);
                 albumartpath = Path.GetFullPath(albumart1.FileName);
             }
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void customButton4_Click(object sender, EventArgs e)
         {
-            WebClient wc = new WebClient();
-            wc.Headers.Add("User-Agent: MP3_Tag_Editor/0.5 +http://github.com/EfthimisV/MP3_Tag_Editor");
-            var link = SetQueryLink("SaVhpakXCQDKXQPjpWuH", "apFJViSZMNibBlIIlMixPvRsJBcshqkZ", artisttextbox.Text + " " + albumtextbox.Text);
-            var json = wc.DownloadString(SetQueryLink("SaVhpakXCQDKXQPjpWuH", "apFJViSZMNibBlIIlMixPvRsJBcshqkZ", artisttextbox.Text + " " +albumtextbox.Text));
-            DiscogsResponse rootobject = JsonConvert.DeserializeObject<DiscogsResponse>(json);
-            Result result1 = rootobject.results[0];
-            string cover_image_url = result1.cover_image;
-            Process.Start("chrome.exe", cover_image_url);
+            DiscogsSearchResults discogsSearchResults = new DiscogsSearchResults();//Προετοιμασία του παραθύρου εμφάνισης αποτελεσμάτων στο Discogs
+            WebClient jsondownloader = new WebClient(); //Προετοιμασία του πελάτη για την λήψη του JSON String
+            jsondownloader.Headers.Add("User-Agent: MP3_Tag_Editor/0.5 +http://github.com/EfthimisV/MP3_Tag_Editor");//Προσθήκη των κατάλληλων headers για την αποφυγή exceptions
+            var json = jsondownloader.DownloadString(SetQueryLink("SaVhpakXCQDKXQPjpWuH", "apFJViSZMNibBlIIlMixPvRsJBcshqkZ", artisttextbox.Text + " " + albumtextbox.Text));//Λήψη του JSON String 
+            DiscogsResponse discogsResponse = JsonConvert.DeserializeObject<DiscogsResponse>(json); //Ανάλυσή του μέσω των βοηθητικών κλάσεων
+            int resultslength = discogsResponse.results.Length;//Αριθμός των αποτελεσμάτων που έχουν επιστραφεί (μέγιστος αριθμός 8)
+            List<string> cover_image_urls = new List<string>(); //Λίστα για την αποθήκευση των links για τα cover images
+            for (int i=0; i<resultslength; i++)
+            {
+                if (!discogsResponse.results[i].cover_image.Contains("spacer.gif")) //Αν περιέχει το spacer.gif σημαίνει ότι δεν μπορεί να ληφθεί
+                {
+                    cover_image_urls.Add(discogsResponse.results[i].cover_image); //Προσθέτω στην λίστα με τα urls το αντίστοιχο από τα αποτελέσματα
+                }
+            }
+            WebClient covert_art_downloader = new WebClient(); //Προετοιμασία του πελάτη για την λήψη των cover images
+            for (int i =0; i <cover_image_urls.Count; i++)
+            {
+                covert_art_downloader.Headers.Add("User-Agent: MP3_Tag_Editor/0.5 +http://github.com/EfthimisV/MP3_Tag_Editor"); //Προσθήκη των κατάλληλων headers για την λήψη τους
+                covert_art_downloader.DownloadFile(cover_image_urls[i], @"C:\Users\Efthimis\Pictures\temp"+ Convert.ToInt32(i+1).ToString() +".jpg");//Λήψη των αρχείων
+                discogsSearchResults.Images = @"C:\Users\Efthimis\Pictures\temp" + Convert.ToInt32(i + 1).ToString() + ".jpg";//Εμφάνισή τους στα κατάλληλα albumarttextboxes του DiscogsSearchResults
+            }
+            discogsSearchResults.Show();//Εμφάνιση του DiscogsSearchResults
+        }
+
+        private void discardbutton_Click(object sender, EventArgs e)
+        {
+            using (TagLib.File song = TagLib.File.Create(filepath))
+            {
+                if (song.Tag.Pictures.Length >= 1)
+                {
+                    var bin = song.Tag.Pictures[0].Data.Data;
+                    albumart.Image= Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
+                }
+            }
         }
     }
 }

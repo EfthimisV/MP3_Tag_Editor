@@ -360,7 +360,6 @@ namespace MP3_Tag_Editor
                 _FilePaths = value;
             }
         }
-
         private void EditingWindow_Load(object sender, EventArgs e)
         {
             foreach (Control control in Controls) //Προσθέτω στον event handler κάθε κοντρόλ την απομάκρυνση του focus όταν γίνεται κλικ οπουδήποτε στο παράθυρο
@@ -374,41 +373,83 @@ namespace MP3_Tag_Editor
 
         private void customButton1_Click(object sender, EventArgs e)
         {
-            TagLib.File Song = TagLib.File.Create(filepath);
-            Song.Tag.Title = titletextbox.Text;
-            Song.Tag.Album = albumtextbox.Text;
-            Song.Tag.Year = Convert.ToUInt32(yeartextbox.Text);
-            Song.Tag.Track = Convert.ToUInt32(tracktextbox.Text);
-            Song.Tag.Comment = commenttextbox.Text;
-            var genres = genretextbox.Text.Split(',').ToArray();
-            for (int i = 0; i < genres.Length; i++)
+            if (_FilePaths == null || _FilePaths.Length == 0)
             {
-                genres[i] = genres[i].TrimEnd();
-                genres[i] += ' ';
-
+                TagLib.File Song = TagLib.File.Create(filepath);
+                Song.Tag.Title = titletextbox.Text;
+                Song.Tag.Album = albumtextbox.Text;
+                Song.Tag.Year = Convert.ToUInt32(yeartextbox.Text);
+                Song.Tag.Track = Convert.ToUInt32(tracktextbox.Text);
+                Song.Tag.Comment = commenttextbox.Text;
+                var genres = genretextbox.Text.Split(',').ToArray();
+                for (int i = 0; i < genres.Length; i++)
+                {
+                    genres[i] = genres[i].TrimEnd();
+                    genres[i] += ' ';
+                }
+                Song.Tag.Genres = genres;
+                Song.Tag.Performers = new string[] { artisttextbox.Text };
+                if (albumartpath != null)
+                {
+                    TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                    pic.TextEncoding = TagLib.StringType.Latin1;
+                    pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                    pic.Type = TagLib.PictureType.FrontCover;
+                    pic.Data = TagLib.ByteVector.FromPath(albumartpath);
+                    Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                }
+                if (downloaderalbumartpath != null)
+                {
+                    TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                    pic.TextEncoding = TagLib.StringType.Latin1;
+                    pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                    pic.Type = TagLib.PictureType.FrontCover;
+                    pic.Data = TagLib.ByteVector.FromPath(downloaderalbumartpath);
+                    Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                }
+                Song.Save();
             }
-            var genres1 = genres;
-            Song.Tag.Genres = genres;
-            Song.Tag.Performers = new string[] { artisttextbox.Text };
-            if (albumartpath != null)
+            else
             {
-                TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
-                pic.TextEncoding = TagLib.StringType.Latin1;
-                pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
-                pic.Type = TagLib.PictureType.FrontCover;
-                pic.Data = TagLib.ByteVector.FromPath(albumartpath);
-                Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                foreach (string path in _FilePaths)
+                {
+                    TagLib.File song = TagLib.File.Create(path);
+                    if (titletextbox.Text != "<Διατήρηση τιμής>")
+                    {
+                        song.Tag.Title = titletextbox.Text;
+                    }
+                    if (artisttextbox.Text != "<Διατήρηση τιμής>")
+                    {
+                        song.Tag.Performers = new string[] { artisttextbox.Text };
+                    }
+                    if (albumtextbox.Text != "<Διατήρηση τιμής>")
+                    {
+                        song.Tag.Album = albumtextbox.Text;
+                    }
+                    if (yeartextbox.Text != "<Διατήρηση τιμής>")
+                    {
+                        song.Tag.Year = Convert.ToUInt32(yeartextbox.Text);
+                    }
+                    if (tracktextbox.Text != "<Διατήρηση τιμής>")
+                    {
+                        song.Tag.Track = Convert.ToUInt32(tracktextbox.Text);
+                    }
+                    if (genretextbox.Text != "<Διατήρηση τιμής>")
+                    {
+                        var genres = genretextbox.Text.Split(',').ToArray();
+                        for (int i = 0; i < genres.Length; i++)
+                        {
+                            genres[i] = genres[i].TrimEnd();
+                            genres[i] += ' ';
+                        }
+                        song.Tag.Genres = genres;
+                    }
+                    if (commenttextbox.Text != "<Διατήρηση τιμής>")
+                    {
+                        song.Tag.Comment = commenttextbox.Text;
+                    }
+                }
             }
-            if (downloaderalbumartpath != null)
-            {
-                TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
-                pic.TextEncoding = TagLib.StringType.Latin1;
-                pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
-                pic.Type = TagLib.PictureType.FrontCover;
-                pic.Data = TagLib.ByteVector.FromPath(downloaderalbumartpath);
-                Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
-            }
-            Song.Save();
         }
 
         private void hamburgerItem1_Click(object sender, EventArgs e)

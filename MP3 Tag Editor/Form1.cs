@@ -123,19 +123,21 @@ namespace MP3_Tag_Editor
                 }
                 else
                 {
-                    List<string> FilePaths = new List<string>();
+                    List<string> FilePaths = new List<string>(); //Δημιουργία λίστας για την αποθήκευση των διαδρομών των τραγουδιών
                     foreach (DataGridViewRow dtvrow in dataGridView1.SelectedRows)
                     {
-                        FilePaths.Add(dtvrow.Cells[0].Value.ToString());
+                        FilePaths.Add(dtvrow.Cells[0].Value.ToString());//Προσθήκη κάθε διαδρομής τραγουδιού που έχει επιλεχθεί σην λίστα 
                     }
-                    string[] SongPaths = FilePaths.ToArray();
-                    form1.FilePaths = SongPaths;
-                    List<TagLib.File> songs = new List<TagLib.File>();
+                    string[] SongPaths = FilePaths.ToArray(); //Δημιουργία string array για την αποθήκευση των διαδρομών
+                    form1.FilePaths = SongPaths; //Θέτω την ιδιότητα filepaths του EditingWindow με το SongPaths 
+                    form1.titletext = "<Διατήρηση τιμής>";
+                    form1.tracktext = "<Διατήρηση τιμής>";
+                    List<TagLib.File> songs = new List<TagLib.File>(); //Δημιουργία λίστας για την αποθήκευση των τραγουδιών που έχουν επιλεχθεί με τα tags τους 
                     foreach (string path in SongPaths)
                     {
-                        songs.Add(TagLib.File.Create(path));
+                        songs.Add(TagLib.File.Create(path)); //Προσθήκη των τραγουδιών στη λίστα
                     }
-                    var same_album = true;
+                    var same_album = true; 
                     for (int i = 1; i < songs.Count && same_album; i++)
                     {
                         if (songs[i - 1].Tag.Album != songs[i].Tag.Album)
@@ -145,31 +147,10 @@ namespace MP3_Tag_Editor
                     }
                     if (same_album)
                     {
-                        form1.titletext = "<Διατήρηση τιμής>";
                         form1.artisttext = songs[0].Tag.Performers[0];
                         form1.albumtext = songs[0].Tag.Album;
                         form1.yeartext = songs[0].Tag.Year.ToString();
-                        form1.tracktext = "<Διατήρηση τιμής>";
-                        var same_genre = true;
-                        for (int i = 1; i < songs.Count; i++)
-                        {
-                            if (songs[i - 1].Tag.Genres.Length != songs[i].Tag.Genres.Length)
-                            {
-                                same_genre = false;
-                            }
-                            else
-                            {
-                                for (int k = 0; k < songs[i - 1].Tag.Genres.Length; k++)
-                                {
-                                    if (songs[i - 1].Tag.Genres[k].TrimEnd() != songs[i].Tag.Genres[k].TrimEnd())
-                                    {
-                                        same_genre = false;
-                                    }
-
-                                }
-                            }
-                        }
-                        if (same_genre)
+                        if (SameGenre(songs))
                         {
                             string genretexts = null;
                             for (int i = 0; i < songs[0].Tag.Genres.Length; i++)
@@ -196,10 +177,139 @@ namespace MP3_Tag_Editor
                             form1.albumpicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
                         }
                     }
+                    else
+                    {
+                        form1.albumtext = "<Διατήρηση τιμής>";
+                        form1.yeartext = (SameYear(songs)) ? songs[0].Tag.Year.ToString() : "<Διατήρηση τιμής>";
+                        form1.commentext = (SameComment(songs)) ? songs[0].Tag.Comment : "΄<Διατήρηση τιμής>";
+                        if (SameGenre(songs))
+                        {
+                            string genretexts = null;
+                            for (int i = 0; i < songs[0].Tag.Genres.Length; i++)
+                            {
+                                if (i != songs[0].Tag.Genres.Length - 1)
+                                {
+                                    genretexts = genretexts + songs[0].Tag.Genres[i] + ",";
+                                }
+                                else
+                                {
+                                    genretexts = genretexts + songs[0].Tag.Genres[i];
+                                }
+                            }
+                            form1.genretext = genretexts;
+                        }
+                        else
+                        {
+                            form1.genretext = "<Διατήρηση τιμής>";
+                        }
+                        if (SameArtist(songs))
+                        {
+                            string artisttexts = null;
+                            for (int i = 0; i < songs[0].Tag.Performers.Length; i++)
+                            {
+                                if (i != songs[0].Tag.Performers.Length - 1)
+                                {
+                                    artisttexts = artisttexts + songs[0].Tag.Performers[i] + ",";
+                                }
+                                else
+                                {
+                                    artisttexts = artisttexts + songs[0].Tag.Performers[i];
+                                }
+                            }
+                            form1.artisttext = artisttexts;
+                        }
+                        else
+                        {
+                            form1.artisttext = "<Διατήρηση τιμής";
+                        }
+                    }
                 }
             }
         }
-       
+
+        /// <summary>
+        ///    Checks if the comments of the selected songs are the same.
+        /// </summary>
+        private bool SameComment(List<TagLib.File> songs)
+        {
+            var same_comment = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Comment != songs[i].Tag.Comment)
+                {
+                    same_comment = false;
+                }
+            }
+            return same_comment;
+        }
+        /// <summary>
+        ///    Checks if the release years of the selected songs are the same.
+        /// </summary>
+        private bool SameYear(List<TagLib.File> songs)
+        {
+            var same_year = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Year != songs[i].Tag.Year)
+                {
+                    same_year = false;
+                }
+            }
+            return same_year;
+        }
+        /// <summary>
+        ///    Checks if the artists of the selected songs are the same.
+        /// </summary>
+        private bool SameArtist(List<TagLib.File> songs)
+        {
+            var same_artist = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Performers.Length != songs[i].Tag.Performers.Length)
+                {
+                    same_artist = false;
+                }
+                else
+                {
+                    for (int k = 0; k < songs[i - 1].Tag.Performers.Length; k++)
+                    {
+                        if (songs[i - 1].Tag.Performers[k].Trim() != songs[i].Tag.Performers[k].Trim())
+                        {
+                            same_artist = false;
+                        }
+                    }
+                }
+            }
+            return same_artist;
+        }
+        /// <summary>
+        ///    Checks if the genres of the selected songs are the same.
+        /// </summary>
+        private bool SameGenre(List<TagLib.File> songs)
+        {
+            var same_genre = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Genres.Length != songs[i].Tag.Genres.Length)
+                {
+                    same_genre = false;
+                }
+                else
+                {
+                    for (int k = 0; k < songs[i - 1].Tag.Genres.Length; k++)
+                    {
+                        if (songs[i - 1].Tag.Genres[k].Trim() != songs[i].Tag.Genres[k].Trim())
+                        {
+                            same_genre = false;
+                        }
+                    }
+                }
+            }
+            return same_genre;
+        }
+        /// <summary>
+        ///    Adds the items to the selected DataGridView.
+        /// </summary>
         private void additems(string path)
         {
             dataGridView1.Rows.Clear();
@@ -216,6 +326,7 @@ namespace MP3_Tag_Editor
             dataGridView1.Visible = (dataGridView1.RowCount != 0); //Το datagridview1 φαίνεται μόνο αν έχουν φορτωθεί στοιχεία
             label2.Visible = (dataGridView1.RowCount == 0); // Η ετικέτα φαίνεται μόνο αν δεν έχουν φορτωθεί στοιχεία
         }
+
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             FolderBrowserDialog LibraryBrowser = new FolderBrowserDialog();

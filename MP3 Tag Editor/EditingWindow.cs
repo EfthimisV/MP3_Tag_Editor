@@ -327,8 +327,17 @@ namespace MP3_Tag_Editor
                 lyricisttextbox.Text = value;
             }
         }
+        /// <summary>
+        ///    Gets and sets the path of the song selected in the music library.
+        /// </summary>
         public string filepath { get; set; }
+        /// <summary>
+        ///    Gets and sets the path of the image selected from the OpenFileDialog.
+        /// </summary>
         public string albumartpath { get; set; }
+        /// <summary>
+        ///    Gets and sets the path of the cover art downloaded from Discogs.
+        /// </summary>
         public string downloaderalbumartpath
         {
             get
@@ -340,11 +349,21 @@ namespace MP3_Tag_Editor
                 albumart.ImageLocation = value;
             }
         }
-        
+        public string[] _FilePaths;
+        /// <summary>
+        ///    Gets the paths of mulitple songs selected from the music library.
+        /// </summary>
+        public string[] FilePaths
+        {
+            set
+            {
+                _FilePaths = value;
+            }
+        }
 
         private void EditingWindow_Load(object sender, EventArgs e)
         {
-            foreach (Control control in Controls)
+            foreach (Control control in Controls) //Προσθέτω στον event handler κάθε κοντρόλ την απομάκρυνση του focus όταν γίνεται κλικ οπουδήποτε στο παράθυρο
             {
                 control.Click += (sender1, e1) =>
                 {

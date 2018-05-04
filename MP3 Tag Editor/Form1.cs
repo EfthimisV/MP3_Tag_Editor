@@ -72,52 +72,131 @@ namespace MP3_Tag_Editor
                 var form1 = new EditingWindow(); //Δημιουργία αντικειμένου editingwindow
                 form1.Show(); //Εμφάνιση του αντικειμένου
                 form1.ActiveControl = null; //Το activecontrol είναι κενό ώστε να μην έχει focus κάποιο textbox
-                var Song = TagLib.File.Create(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString());// Δημιουργία taglib.file με βάση την διαδρομή που βρίσκεται στην πρώτη στήλη
-                //Εισαγωγή τιμών στο αντικείμενο editingwindow
-                form1.titletext = Song.Tag.Title; 
-                form1.artisttext = Song.Tag.Performers[0];
-                form1.albumtext = Song.Tag.Album;
-                form1.yeartext = Song.Tag.Year.ToString();
-                form1.tracktext = Song.Tag.Track.ToString();
-                string genretexts = null;
-                for (int i = 0; i < Song.Tag.Genres.Length; i++)
+                if (dataGridView1.SelectedRows.Count == 1)
                 {
-                    if (i != Song.Tag.Genres.Length - 1)
+                    var Song = TagLib.File.Create(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString());// Δημιουργία taglib.file με βάση την διαδρομή που βρίσκεται στην πρώτη στήλη
+                    //Εισαγωγή τιμών στο αντικείμενο editingwindow
+                    form1.titletext = Song.Tag.Title;
+                    form1.artisttext = Song.Tag.Performers[0];
+                    form1.albumtext = Song.Tag.Album;
+                    form1.yeartext = Song.Tag.Year.ToString();
+                    form1.tracktext = Song.Tag.Track.ToString();
+                    string genretexts = null;
+                    for (int i = 0; i < Song.Tag.Genres.Length; i++)
                     {
-                        genretexts = genretexts + Song.Tag.Genres[i] + ",";
+                        if (i != Song.Tag.Genres.Length - 1)
+                        {
+                            genretexts = genretexts + Song.Tag.Genres[i] + ",";
+                        }
+                        else
+                        {
+                            genretexts = genretexts + Song.Tag.Genres[i];
+                        }
                     }
-                    else
+                    form1.genretext = genretexts;
+                    form1.commentext = Song.Tag.Comment;
+                    form1.filepath = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                    if (Song.Tag.Pictures.Length >= 1)
                     {
-                        genretexts = genretexts + Song.Tag.Genres[i];
+                        var bin = Song.Tag.Pictures[0].Data.Data;
+                        form1.albumpicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
+                    }
+                    form1.LyricsText = Song.Tag.Lyrics;
+                    if (Song.Tag.AlbumArtists.Length != 0)
+                    {
+                        form1.albumartist = Song.Tag.AlbumArtists[0];
+                    }
+                    form1.beatsperminute = Song.Tag.BeatsPerMinute.ToString();
+                    if (Song.Tag.Composers.Length != 0)
+                    {
+                        form1.composers = Song.Tag.Composers[0];
+                    }
+                    form1.conductors = Song.Tag.Conductor;
+                    form1.artisturl = Song.Tag.ArtistURL;
+                    form1.copyrights = Song.Tag.Copyright;
+                    form1.description = Song.Tag.Description;
+                    form1.discnumber = Song.Tag.Disc.ToString();
+                    form1.grouping = Song.Tag.Grouping;
+                    form1.subtitle = Song.Tag.Subtitle;
+                    form1.publisher = Song.Tag.Publisher;
+                    form1.lyricist = Song.Tag.Lyricist;
+                }
+                else
+                {
+                    List<string> FilePaths = new List<string>();
+                    foreach (DataGridViewRow dtvrow in dataGridView1.SelectedRows)
+                    {
+                        FilePaths.Add(dtvrow.Cells[0].Value.ToString());
+                    }
+                    string[] SongPaths = FilePaths.ToArray();
+                    form1.FilePaths = SongPaths;
+                    List<TagLib.File> songs = new List<TagLib.File>();
+                    foreach (string path in SongPaths)
+                    {
+                        songs.Add(TagLib.File.Create(path));
+                    }
+                    var same_album = true;
+                    for (int i = 1; i < songs.Count && same_album; i++)
+                    {
+                        if (songs[i - 1].Tag.Album != songs[i].Tag.Album)
+                        {
+                            same_album = false;
+                        }
+                    }
+                    if (same_album)
+                    {
+                        form1.titletext = "<Διατήρηση τιμής>";
+                        form1.artisttext = songs[0].Tag.Performers[0];
+                        form1.albumtext = songs[0].Tag.Album;
+                        form1.yeartext = songs[0].Tag.Year.ToString();
+                        form1.tracktext = "<Διατήρηση τιμής>";
+                        var same_genre = true;
+                        for (int i = 1; i < songs.Count; i++)
+                        {
+                            if (songs[i - 1].Tag.Genres.Length != songs[i].Tag.Genres.Length)
+                            {
+                                same_genre = false;
+                            }
+                            else
+                            {
+                                for (int k = 0; k < songs[i - 1].Tag.Genres.Length; k++)
+                                {
+                                    if (songs[i - 1].Tag.Genres[k].TrimEnd() != songs[i].Tag.Genres[k].TrimEnd())
+                                    {
+                                        same_genre = false;
+                                    }
+
+                                }
+                            }
+                        }
+                        if (same_genre)
+                        {
+                            string genretexts = null;
+                            for (int i = 0; i < songs[0].Tag.Genres.Length; i++)
+                            {
+                                if (i != songs[0].Tag.Genres.Length - 1)
+                                {
+                                    genretexts = genretexts + songs[0].Tag.Genres[i] + ",";
+                                }
+                                else
+                                {
+                                    genretexts = genretexts + songs[0].Tag.Genres[i];
+                                }
+                            }
+                            form1.genretext = genretexts;
+                        }
+                        else
+                        {
+                            form1.genretext = "<Διατήρηση τιμής>";
+                        }
+                        form1.commentext = "<Διατήρηση τιμής>";
+                        if (songs[0].Tag.Pictures.Length >= 1)
+                        {
+                            var bin = songs[0].Tag.Pictures[0].Data.Data;
+                            form1.albumpicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
+                        }
                     }
                 }
-                form1.genretext = genretexts;
-                form1.commentext = Song.Tag.Comment;
-                form1.filepath = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
-                if (Song.Tag.Pictures.Length >= 1)
-                {
-                    var bin = Song.Tag.Pictures[0].Data.Data;
-                    form1.albumpicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
-                }
-                form1.LyricsText = Song.Tag.Lyrics;
-                if (Song.Tag.AlbumArtists.Length != 0)
-                {
-                    form1.albumartist = Song.Tag.AlbumArtists[0];
-                }
-                form1.beatsperminute = Song.Tag.BeatsPerMinute.ToString();
-                if (Song.Tag.Composers.Length != 0)
-                {
-                    form1.composers = Song.Tag.Composers[0];
-                }
-                form1.conductors = Song.Tag.Conductor;
-                form1.artisturl = Song.Tag.ArtistURL;
-                form1.copyrights = Song.Tag.Copyright;
-                form1.description = Song.Tag.Description;
-                form1.discnumber = Song.Tag.Disc.ToString();
-                form1.grouping = Song.Tag.Grouping;
-                form1.subtitle = Song.Tag.Subtitle;
-                form1.publisher = Song.Tag.Publisher;
-                form1.lyricist = Song.Tag.Lyricist;
             }
         }
        
@@ -134,7 +213,7 @@ namespace MP3_Tag_Editor
                 rowcounter++;
             }
             dataGridView1.Rows[0].Selected = (dataGridView1.RowCount != 0);//Αν έχουν φορτωθεί στοιχεία, τότε η πρώτη γραμμή του datagridview1 επιλέγεται
-            dataGridView1.Visible = (dataGridView1.RowCount != 0); //Το datagridvie1 φαίνεται μόνο αν έχουν φορτωθεί στοιχεία
+            dataGridView1.Visible = (dataGridView1.RowCount != 0); //Το datagridview1 φαίνεται μόνο αν έχουν φορτωθεί στοιχεία
             label2.Visible = (dataGridView1.RowCount == 0); // Η ετικέτα φαίνεται μόνο αν δεν έχουν φορτωθεί στοιχεία
         }
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)

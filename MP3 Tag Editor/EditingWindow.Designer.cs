@@ -80,23 +80,23 @@
             this.hamburgerItem2 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
+            this.discardbutton = new MP3_Tag_Editor.CustomButton();
             this.loadfrompcbutton = new MP3_Tag_Editor.CustomButton();
             this.searchdiscogsbutton = new MP3_Tag_Editor.CustomButton();
             this.changeartbutton = new MP3_Tag_Editor.CustomButton();
             this.savechangesbutton = new MP3_Tag_Editor.CustomButton();
             this.customButton2 = new MP3_Tag_Editor.CustomButton();
-            this.discardbutton = new MP3_Tag_Editor.CustomButton();
             this.generalinfo.SuspendLayout();
             this.dropdownpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumart)).BeginInit();
             this.complexedit.SuspendLayout();
             this.hamburgerMenu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadfrompcbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchdiscogsbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.changeartbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.savechangesbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).BeginInit();
             this.SuspendLayout();
             // 
             // CurrentCategoryInfo
@@ -368,7 +368,7 @@
             this.artisturltextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.artisturltextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.artisturltextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.artisturltextbox.Location = new System.Drawing.Point(12, 408);
+            this.artisturltextbox.Location = new System.Drawing.Point(12, 418);
             this.artisturltextbox.Name = "artisturltextbox";
             this.artisturltextbox.Size = new System.Drawing.Size(243, 21);
             this.artisturltextbox.TabIndex = 53;
@@ -378,7 +378,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label20.ForeColor = System.Drawing.SystemColors.Control;
-            this.label20.Location = new System.Drawing.Point(9, 382);
+            this.label20.Location = new System.Drawing.Point(9, 392);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(135, 17);
             this.label20.TabIndex = 52;
@@ -389,7 +389,7 @@
             this.lyricisttextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.lyricisttextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lyricisttextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.lyricisttextbox.Location = new System.Drawing.Point(299, 352);
+            this.lyricisttextbox.Location = new System.Drawing.Point(299, 362);
             this.lyricisttextbox.Name = "lyricisttextbox";
             this.lyricisttextbox.Size = new System.Drawing.Size(243, 21);
             this.lyricisttextbox.TabIndex = 51;
@@ -399,7 +399,7 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label19.ForeColor = System.Drawing.SystemColors.Control;
-            this.label19.Location = new System.Drawing.Point(296, 326);
+            this.label19.Location = new System.Drawing.Point(296, 336);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(73, 17);
             this.label19.TabIndex = 50;
@@ -410,7 +410,7 @@
             this.publishertextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.publishertextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.publishertextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.publishertextbox.Location = new System.Drawing.Point(299, 292);
+            this.publishertextbox.Location = new System.Drawing.Point(299, 302);
             this.publishertextbox.Name = "publishertextbox";
             this.publishertextbox.Size = new System.Drawing.Size(243, 21);
             this.publishertextbox.TabIndex = 49;
@@ -420,7 +420,7 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label18.ForeColor = System.Drawing.SystemColors.Control;
-            this.label18.Location = new System.Drawing.Point(296, 266);
+            this.label18.Location = new System.Drawing.Point(296, 276);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(79, 17);
             this.label18.TabIndex = 48;
@@ -431,7 +431,7 @@
             this.subtitletextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.subtitletextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.subtitletextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.subtitletextbox.Location = new System.Drawing.Point(299, 235);
+            this.subtitletextbox.Location = new System.Drawing.Point(299, 245);
             this.subtitletextbox.Name = "subtitletextbox";
             this.subtitletextbox.Size = new System.Drawing.Size(243, 21);
             this.subtitletextbox.TabIndex = 47;
@@ -441,7 +441,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label17.ForeColor = System.Drawing.SystemColors.Control;
-            this.label17.Location = new System.Drawing.Point(296, 209);
+            this.label17.Location = new System.Drawing.Point(296, 219);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 17);
             this.label17.TabIndex = 46;
@@ -452,7 +452,7 @@
             this.groupingtextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.groupingtextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.groupingtextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.groupingtextbox.Location = new System.Drawing.Point(299, 185);
+            this.groupingtextbox.Location = new System.Drawing.Point(299, 195);
             this.groupingtextbox.Name = "groupingtextbox";
             this.groupingtextbox.Size = new System.Drawing.Size(243, 21);
             this.groupingtextbox.TabIndex = 45;
@@ -462,7 +462,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label16.ForeColor = System.Drawing.SystemColors.Control;
-            this.label16.Location = new System.Drawing.Point(296, 159);
+            this.label16.Location = new System.Drawing.Point(296, 169);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 17);
             this.label16.TabIndex = 44;
@@ -473,7 +473,7 @@
             this.discnumbertextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.discnumbertextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.discnumbertextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.discnumbertextbox.Location = new System.Drawing.Point(299, 135);
+            this.discnumbertextbox.Location = new System.Drawing.Point(299, 145);
             this.discnumbertextbox.Name = "discnumbertextbox";
             this.discnumbertextbox.Size = new System.Drawing.Size(243, 21);
             this.discnumbertextbox.TabIndex = 43;
@@ -483,7 +483,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label15.ForeColor = System.Drawing.SystemColors.Control;
-            this.label15.Location = new System.Drawing.Point(296, 109);
+            this.label15.Location = new System.Drawing.Point(296, 119);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(101, 17);
             this.label15.TabIndex = 42;
@@ -494,7 +494,7 @@
             this.descriptiontextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.descriptiontextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.descriptiontextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.descriptiontextbox.Location = new System.Drawing.Point(299, 85);
+            this.descriptiontextbox.Location = new System.Drawing.Point(299, 95);
             this.descriptiontextbox.Name = "descriptiontextbox";
             this.descriptiontextbox.Size = new System.Drawing.Size(243, 21);
             this.descriptiontextbox.TabIndex = 41;
@@ -504,7 +504,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label14.ForeColor = System.Drawing.SystemColors.Control;
-            this.label14.Location = new System.Drawing.Point(296, 59);
+            this.label14.Location = new System.Drawing.Point(296, 69);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(71, 17);
             this.label14.TabIndex = 40;
@@ -515,7 +515,7 @@
             this.copyrightstextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.copyrightstextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.copyrightstextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.copyrightstextbox.Location = new System.Drawing.Point(299, 35);
+            this.copyrightstextbox.Location = new System.Drawing.Point(299, 45);
             this.copyrightstextbox.Name = "copyrightstextbox";
             this.copyrightstextbox.Size = new System.Drawing.Size(243, 21);
             this.copyrightstextbox.TabIndex = 39;
@@ -525,7 +525,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label13.ForeColor = System.Drawing.SystemColors.Control;
-            this.label13.Location = new System.Drawing.Point(296, 9);
+            this.label13.Location = new System.Drawing.Point(296, 19);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(141, 17);
             this.label13.TabIndex = 38;
@@ -536,7 +536,7 @@
             this.conductorstextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.conductorstextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.conductorstextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.conductorstextbox.Location = new System.Drawing.Point(12, 352);
+            this.conductorstextbox.Location = new System.Drawing.Point(12, 362);
             this.conductorstextbox.Name = "conductorstextbox";
             this.conductorstextbox.Size = new System.Drawing.Size(243, 21);
             this.conductorstextbox.TabIndex = 37;
@@ -546,7 +546,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label12.ForeColor = System.Drawing.SystemColors.Control;
-            this.label12.Location = new System.Drawing.Point(9, 326);
+            this.label12.Location = new System.Drawing.Point(9, 336);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(140, 17);
             this.label12.TabIndex = 36;
@@ -557,7 +557,7 @@
             this.composerstextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.composerstextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.composerstextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.composerstextbox.Location = new System.Drawing.Point(12, 302);
+            this.composerstextbox.Location = new System.Drawing.Point(12, 312);
             this.composerstextbox.Name = "composerstextbox";
             this.composerstextbox.Size = new System.Drawing.Size(243, 21);
             this.composerstextbox.TabIndex = 35;
@@ -567,7 +567,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label11.ForeColor = System.Drawing.SystemColors.Control;
-            this.label11.Location = new System.Drawing.Point(9, 276);
+            this.label11.Location = new System.Drawing.Point(9, 286);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 17);
             this.label11.TabIndex = 34;
@@ -578,7 +578,7 @@
             this.beatsperminutetextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.beatsperminutetextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.beatsperminutetextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.beatsperminutetextbox.Location = new System.Drawing.Point(12, 252);
+            this.beatsperminutetextbox.Location = new System.Drawing.Point(12, 262);
             this.beatsperminutetextbox.Name = "beatsperminutetextbox";
             this.beatsperminutetextbox.Size = new System.Drawing.Size(243, 21);
             this.beatsperminutetextbox.TabIndex = 33;
@@ -588,7 +588,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(9, 226);
+            this.label10.Location = new System.Drawing.Point(9, 236);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(97, 17);
             this.label10.TabIndex = 32;
@@ -599,7 +599,7 @@
             this.albumartisttextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.albumartisttextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.albumartisttextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.albumartisttextbox.Location = new System.Drawing.Point(12, 196);
+            this.albumartisttextbox.Location = new System.Drawing.Point(12, 206);
             this.albumartisttextbox.Name = "albumartisttextbox";
             this.albumartisttextbox.Size = new System.Drawing.Size(243, 21);
             this.albumartisttextbox.TabIndex = 31;
@@ -609,7 +609,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(9, 170);
+            this.label9.Location = new System.Drawing.Point(9, 180);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(130, 17);
             this.label9.TabIndex = 30;
@@ -620,7 +620,7 @@
             this.lyricstextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
             this.lyricstextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lyricstextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.lyricstextbox.Location = new System.Drawing.Point(12, 34);
+            this.lyricstextbox.Location = new System.Drawing.Point(12, 44);
             this.lyricstextbox.Multiline = true;
             this.lyricstextbox.Name = "lyricstextbox";
             this.lyricstextbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -632,7 +632,7 @@
             this.Στίχοι.AutoSize = true;
             this.Στίχοι.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.Στίχοι.ForeColor = System.Drawing.SystemColors.Control;
-            this.Στίχοι.Location = new System.Drawing.Point(9, 9);
+            this.Στίχοι.Location = new System.Drawing.Point(9, 19);
             this.Στίχοι.Name = "Στίχοι";
             this.Στίχοι.Size = new System.Drawing.Size(39, 17);
             this.Στίχοι.TabIndex = 28;
@@ -703,6 +703,18 @@
             this.statusBar1.Size = new System.Drawing.Size(929, 25);
             this.statusBar1.TabIndex = 0;
             // 
+            // discardbutton
+            // 
+            this.discardbutton.BackColor = System.Drawing.Color.Transparent;
+            this.discardbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.discardbutton.CustomButtonText = "Απόρριψη";
+            this.discardbutton.Location = new System.Drawing.Point(510, 259);
+            this.discardbutton.Name = "discardbutton";
+            this.discardbutton.Size = new System.Drawing.Size(66, 20);
+            this.discardbutton.TabIndex = 39;
+            this.discardbutton.TabStop = false;
+            this.discardbutton.Click += new System.EventHandler(this.discardbutton_Click);
+            // 
             // loadfrompcbutton
             // 
             this.loadfrompcbutton.BackColor = System.Drawing.Color.Transparent;
@@ -756,24 +768,12 @@
             this.customButton2.BackColor = System.Drawing.Color.Transparent;
             this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.customButton2.CustomButtonText = "Αποθήκευση αλλαγών";
-            this.customButton2.Location = new System.Drawing.Point(405, 386);
+            this.customButton2.Location = new System.Drawing.Point(405, 396);
             this.customButton2.Name = "customButton2";
             this.customButton2.Size = new System.Drawing.Size(137, 20);
             this.customButton2.TabIndex = 54;
             this.customButton2.TabStop = false;
             this.customButton2.Click += new System.EventHandler(this.customButton2_Click);
-            // 
-            // discardbutton
-            // 
-            this.discardbutton.BackColor = System.Drawing.Color.Transparent;
-            this.discardbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.discardbutton.CustomButtonText = "Απόρριψη";
-            this.discardbutton.Location = new System.Drawing.Point(510, 259);
-            this.discardbutton.Name = "discardbutton";
-            this.discardbutton.Size = new System.Drawing.Size(66, 20);
-            this.discardbutton.TabIndex = 39;
-            this.discardbutton.TabStop = false;
-            this.discardbutton.Click += new System.EventHandler(this.discardbutton_Click);
             // 
             // EditingWindow
             // 
@@ -799,12 +799,12 @@
             this.complexedit.ResumeLayout(false);
             this.complexedit.PerformLayout();
             this.hamburgerMenu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadfrompcbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchdiscogsbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.changeartbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.savechangesbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

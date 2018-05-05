@@ -360,6 +360,15 @@ namespace MP3_Tag_Editor
                 _FilePaths = value;
             }
         }
+        private string[] MultipleValuesProcessor(string[] values)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                values[i] = values[i].TrimEnd();
+                values[i] += ' ';
+            }
+            return values;
+        }
         private void EditingWindow_Load(object sender, EventArgs e)
         {
             foreach (Control control in Controls) //Προσθέτω στον event handler κάθε κοντρόλ την απομάκρυνση του focus όταν γίνεται κλικ οπουδήποτε στο παράθυρο
@@ -381,14 +390,8 @@ namespace MP3_Tag_Editor
                 Song.Tag.Year = Convert.ToUInt32(yeartextbox.Text);
                 Song.Tag.Track = Convert.ToUInt32(tracktextbox.Text);
                 Song.Tag.Comment = commenttextbox.Text;
-                var genres = genretextbox.Text.Split(',').ToArray();
-                for (int i = 0; i < genres.Length; i++)
-                {
-                    genres[i] = genres[i].TrimEnd();
-                    genres[i] += ' ';
-                }
-                Song.Tag.Genres = genres;
-                Song.Tag.Performers = new string[] { artisttextbox.Text };
+                Song.Tag.Genres = MultipleValuesProcessor(genretextbox.Text.Split(',').ToArray());
+                Song.Tag.Performers = MultipleValuesProcessor(artisttextbox.Text.Split(',').ToArray());
                 if (albumartpath != null)
                 {
                     TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
@@ -411,16 +414,16 @@ namespace MP3_Tag_Editor
             }
             else
             {
-                foreach (string path in _FilePaths)
+                for (int i =0; i< _FilePaths.Length; i++)
                 {
-                    TagLib.File song = TagLib.File.Create(path);
+                    TagLib.File song = TagLib.File.Create(_FilePaths[i]);
                     if (titletextbox.Text != "<Διατήρηση τιμής>")
                     {
                         song.Tag.Title = titletextbox.Text;
                     }
                     if (artisttextbox.Text != "<Διατήρηση τιμής>")
                     {
-                        song.Tag.Performers = new string[] { artisttextbox.Text };
+                        song.Tag.Performers = MultipleValuesProcessor(artisttextbox.Text.Split(',').ToArray());
                     }
                     if (albumtextbox.Text != "<Διατήρηση τιμής>")
                     {
@@ -436,18 +439,13 @@ namespace MP3_Tag_Editor
                     }
                     if (genretextbox.Text != "<Διατήρηση τιμής>")
                     {
-                        var genres = genretextbox.Text.Split(',').ToArray();
-                        for (int i = 0; i < genres.Length; i++)
-                        {
-                            genres[i] = genres[i].TrimEnd();
-                            genres[i] += ' ';
-                        }
-                        song.Tag.Genres = genres;
+                        song.Tag.Genres = MultipleValuesProcessor(genretextbox.Text.Split(',').ToArray());
                     }
                     if (commenttextbox.Text != "<Διατήρηση τιμής>")
                     {
                         song.Tag.Comment = commenttextbox.Text;
                     }
+                    song.Save();
                 }
             }
         }
@@ -470,21 +468,28 @@ namespace MP3_Tag_Editor
 
         private void customButton2_Click(object sender, EventArgs e)
         {
-            TagLib.File Song = TagLib.File.Create(filepath);
-            Song.Tag.Lyrics = lyricstextbox.Text;
-            Song.Tag.AlbumArtists = new string[] { albumartisttextbox.Text };
-            Song.Tag.BeatsPerMinute = Convert.ToUInt32(beatsperminutetextbox.Text);
-            Song.Tag.Composers = new string[] { composerstextbox.Text };
-            Song.Tag.Conductor = conductorstextbox.Text;
-            Song.Tag.ArtistURL = artisturltextbox.Text;
-            Song.Tag.Copyright = copyrightstextbox.Text;
-            Song.Tag.Description = descriptiontextbox.Text;
-            Song.Tag.Disc = Convert.ToUInt32(discnumbertextbox.Text);
-            Song.Tag.Grouping = groupingtextbox.Text;
-            Song.Tag.Subtitle = subtitletextbox.Text;
-            Song.Tag.Publisher = publishertextbox.Text;
-            Song.Tag.Lyricist = lyricisttextbox.Text;
-            Song.Save();
+            if (_FilePaths == null || _FilePaths.Length == 0)
+            {
+                TagLib.File Song = TagLib.File.Create(filepath);
+                Song.Tag.Lyrics = lyricstextbox.Text;
+                Song.Tag.AlbumArtists = MultipleValuesProcessor(albumartisttextbox.Text.Split(',').ToArray());
+                Song.Tag.BeatsPerMinute = Convert.ToUInt32(beatsperminutetextbox.Text);
+                Song.Tag.Composers = MultipleValuesProcessor(composerstextbox.Text.Split(',').ToArray());
+                Song.Tag.Conductor = conductorstextbox.Text;
+                Song.Tag.ArtistURL = artisturltextbox.Text;
+                Song.Tag.Copyright = copyrightstextbox.Text;
+                Song.Tag.Description = descriptiontextbox.Text;
+                Song.Tag.Disc = Convert.ToUInt32(discnumbertextbox.Text);
+                Song.Tag.Grouping = groupingtextbox.Text;
+                Song.Tag.Subtitle = subtitletextbox.Text;
+                Song.Tag.Publisher = publishertextbox.Text;
+                Song.Tag.Lyricist = lyricisttextbox.Text;
+                Song.Save();
+            }
+            else
+            {
+
+            }
         }
 
         private void customButton3_Click(object sender, EventArgs e)

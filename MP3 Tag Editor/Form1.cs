@@ -132,6 +132,10 @@ namespace MP3_Tag_Editor
                     form1.FilePaths = SongPaths; //Θέτω την ιδιότητα filepaths του EditingWindow με το SongPaths 
                     form1.titletext = "<Διατήρηση τιμής>";
                     form1.tracktext = "<Διατήρηση τιμής>";
+                    form1.LyricsText = "<Διατήρηση τιμής>";
+                    form1.beatsperminute = "<Διατήρηση τιμής>";
+                    form1.discnumber = "<Διατήρηση τιμής>";
+                    form1.commentext = "<Διατήρηση τιμής>";
                     List<TagLib.File> songs = new List<TagLib.File>(); //Δημιουργία λίστας για την αποθήκευση των τραγουδιών που έχουν επιλεχθεί με τα tags τους 
                     foreach (string path in SongPaths)
                     {
@@ -170,7 +174,110 @@ namespace MP3_Tag_Editor
                         {
                             form1.genretext = "<Διατήρηση τιμής>";
                         }
-                        form1.commentext = "<Διατήρηση τιμής>";
+                        if (SameAlbumArtist(songs))
+                        {
+                            string albumartists = null;
+                            for (int i = 0; i < songs[0].Tag.AlbumArtists.Length; i++)
+                            {
+                                if (i != songs[0].Tag.AlbumArtists.Length - 1)
+                                {
+                                    albumartists = albumartists + songs[0].Tag.AlbumArtists[i] + ",";
+                                }
+                                else
+                                {
+                                    albumartists = albumartists + songs[0].Tag.AlbumArtists[i];
+                                }
+                            }
+                            form1.genretext = albumartists;
+                        }
+                        else
+                        {
+                            form1.albumartist = "<Διατήρηση τιμής>";
+                        }
+                        if (SameComposers(songs))
+                        {
+                            string composers = null;
+                            for (int i = 0; i < songs[0].Tag.Composers.Length; i++)
+                            {
+                                if (i != songs[0].Tag.Composers.Length - 1)
+                                {
+                                    composers = composers + songs[0].Tag.Composers[i] + ",";
+                                }
+                                else
+                                {
+                                    composers = composers + songs[0].Tag.Composers[i];
+                                }
+                            }
+                            form1.genretext = composers;
+                        }
+                        else
+                        {
+                            form1.genretext = "<Διατήρηση τιμής>";
+                        }
+                        if (SameConductor(songs))
+                        {
+                            form1.conductors = songs[0].Tag.Conductor;
+                        }
+                        else
+                        {
+                            form1.conductors = "<Διατήρηση τιμής>";
+                        }
+                        if (SameArtistURL(songs))
+                        {
+                            form1.artisturl = songs[0].Tag.ArtistURL;
+                        }
+                        else
+                        {
+                            form1.artisturl = "<Διατήρηση τιμής>";
+                        }
+                        if (SameCopyrights(songs))
+                        {
+                            form1.copyrights = songs[0].Tag.Copyright;
+                        }
+                        else
+                        {
+                            form1.copyrights = "<Διατήρηση τιμής>";
+                        }
+                        if (SameDescription(songs))
+                        {
+                            form1.description = songs[0].Tag.Description;
+                        }
+                        else
+                        {
+                            form1.description = "<Διατήρηση τιμής>";
+                        }
+                        if (SameGrouping(songs))
+                        {
+                            form1.grouping = songs[0].Tag.Grouping;
+                        }
+                        else
+                        {
+                            form1.grouping = "<Διατήρηση τιμής>";
+                        }
+                        if (SameSubtitle(songs))
+                        {
+                            form1.subtitle = songs[0].Tag.Subtitle;
+                        }
+                        else
+                        {
+                            form1.subtitle = "<Διατήρηση τιμής>";
+                        }
+                        if (SamePublisher(songs))
+                        {
+                            form1.publisher = songs[0].Tag.Publisher;
+                        }
+                        else
+                        {
+                            form1.publisher = "<Διατήρηση τιμής>";
+                        }
+                        if (SameLyricist(songs))
+                        {
+                            form1.lyricist = songs[0].Tag.Lyricist;
+                        }
+                        else
+                        {
+                            form1.lyricist = "<Διατήρηση τιμής>";
+                        }
                         if (songs[0].Tag.Pictures.Length >= 1)
                         {
                             var bin = songs[0].Tag.Pictures[0].Data.Data;
@@ -222,11 +329,272 @@ namespace MP3_Tag_Editor
                         {
                             form1.artisttext = "<Διατήρηση τιμής";
                         }
+                        if (SameAlbumArtist(songs))
+                        {
+                            form1.albumartist = songs[0].Tag.AlbumArtists[0];
+                        }
+                        else
+                        {
+                            form1.albumartist = "<Διατήρηση τιμής>";
+                        }
+                        if (SameComposers(songs))
+                        {
+                            string composers = null;
+                            for (int i = 0; i < songs[0].Tag.Composers.Length; i++)
+                            {
+                                if (i != songs[0].Tag.Composers.Length - 1)
+                                {
+                                    composers = composers + songs[0].Tag.Composers[i] + ",";
+                                }
+                                else
+                                {
+                                    composers = composers + songs[0].Tag.Composers[i];
+                                }
+                            }
+                            form1.genretext = composers;
+                        }
+                        else
+                        {
+                            form1.genretext = "<Διατήρηση τιμής>";
+                        }
+                        if (SameConductor(songs))
+                        {
+                            form1.conductors = songs[0].Tag.Conductor;
+                        }
+                        else
+                        {
+                            form1.conductors = "<Διατήρηση τιμής>";
+                        }
+                        if (SameArtistURL(songs))
+                        {
+                            form1.artisturl = songs[0].Tag.ArtistURL;
+                        }
+                        else
+                        {
+                            form1.artisturl = "<Διατήρηση τιμής>";
+                        }
+                        if (SameCopyrights(songs))
+                        {
+                            form1.copyrights = songs[0].Tag.Copyright;
+                        }
+                        else
+                        {
+                            form1.copyrights = "<Διατήρηση τιμής>";
+                        }
+                        if (SameDescription(songs))
+                        {
+                            form1.description = songs[0].Tag.Description;
+                        }
+                        else
+                        {
+                            form1.description = "<Διατήρηση τιμής>";
+                        }
+                        if (SameGrouping(songs))
+                        {
+                            form1.grouping = songs[0].Tag.Grouping;
+                        }
+                        else
+                        {
+                            form1.grouping = "<Διατήρηση τιμής>";
+                        }
+                        if (SameSubtitle(songs))
+                        {
+                            form1.subtitle = songs[0].Tag.Subtitle;
+                        }
+                        else
+                        {
+                            form1.subtitle = "<Διατήρηση τιμής>";
+                        }
+                        if (SamePublisher(songs))
+                        {
+                            form1.publisher = songs[0].Tag.Publisher;
+                        }
+                        else
+                        {
+                            form1.publisher = "<Διατήρηση τιμής>";
+                        }
+                        if (SameLyricist(songs))
+                        {
+                            form1.lyricist = songs[0].Tag.Lyricist;
+                        }
+                        else
+                        {
+                            form1.lyricist = "<Διατήρηση τιμής>";
+                        }
                     }
                 }
             }
         }
-
+        /// <summary>
+        ///    Checks if the subtitle of the selected songs are the same.
+        /// </summary>
+        private bool SameSubtitle(List<TagLib.File> songs)
+        {
+            var same_subtitle = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Subtitle != songs[i].Tag.Subtitle)
+                {
+                    same_subtitle = false;
+                }
+            }
+            return same_subtitle;
+        }
+        /// <summary>
+        ///    Checks if the publisher of the selected songs are the same.
+        /// </summary>
+        private bool SamePublisher(List<TagLib.File> songs)
+        {
+            var same_publisher = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Publisher != songs[i].Tag.Publisher)
+                {
+                    same_publisher = false;
+                }
+            }
+            return same_publisher;
+        }
+        /// <summary>
+        ///    Checks if the lyricist of the selected songs are the same.
+        /// </summary>
+        private bool SameLyricist(List<TagLib.File> songs)
+        {
+            var same_lyricist = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Lyricist != songs[i].Tag.Lyricist)
+                {
+                    same_lyricist = false;
+                }
+            }
+            return same_lyricist;
+        }
+        /// <summary>
+        ///    Checks if the grouping of the selected songs are the same.
+        /// </summary>
+        private bool SameGrouping(List<TagLib.File> songs)
+        {
+            var same_grouping = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Grouping != songs[i].Tag.Grouping)
+                {
+                    same_grouping = false;
+                }
+            }
+            return same_grouping;
+        }
+        /// <summary>
+        ///    Checks if the copyright of the selected songs are the same.
+        /// </summary>
+        private bool SameCopyrights(List<TagLib.File> songs)
+        {
+            var same_copyrights = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Copyright != songs[i].Tag.Copyright)
+                {
+                    same_copyrights = false;
+                }
+            }
+            return same_copyrights;
+        }
+        /// <summary>
+        ///    Checks if the description of the selected songs are the same.
+        /// </summary>
+        private bool SameDescription(List<TagLib.File> songs)
+        {
+            var same_description = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Description != songs[i].Tag.Description)
+                {
+                    same_description = false;
+                }
+            }
+            return same_description;
+        }
+        /// <summary>
+        ///    Checks if the artist urls of the selected songs are the same.
+        /// </summary>
+        private bool SameArtistURL(List<TagLib.File> songs)
+        {
+            var same_url = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.ArtistURL != songs[i].Tag.ArtistURL)
+                {
+                    same_url = false;
+                }
+            }
+            return same_url;
+        }
+        /// <summary>
+        ///    Checks if the conductors of the selected songs are the same.
+        /// </summary>
+        private bool SameConductor(List<TagLib.File> songs)
+        {
+            var same_conductor = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Conductor != songs[i].Tag.Conductor)
+                {
+                    same_conductor = false;
+                }
+            }
+            return same_conductor;
+        }
+        /// <summary>
+        ///    Checks if the composers of the selected songs are the same.
+        /// </summary>
+        private bool SameComposers(List<TagLib.File> songs)
+        {
+            var same_composers = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.Composers.Length != songs[i].Tag.Composers.Length)
+                {
+                    same_composers = false;
+                }
+                else
+                {
+                    for (int k = 0; k < songs[i - 1].Tag.Composers.Length; k++)
+                    {
+                        if (songs[i - 1].Tag.Composers[k].Trim() != songs[i].Tag.Composers[k].Trim())
+                        {
+                            same_composers = false;
+                        }
+                    }
+                }
+            }
+            return same_composers;
+        }
+        /// <summary>
+        ///    Checks if the album artists of the selected songs are the same.
+        /// </summary>
+        private bool SameAlbumArtist(List<TagLib.File> songs)
+        {
+            var same_album_artist = true;
+            for (int i = 1; i < songs.Count; i++)
+            {
+                if (songs[i - 1].Tag.AlbumArtists.Length != songs[i].Tag.AlbumArtists.Length)
+                {
+                    same_album_artist = false;
+                }
+                else
+                {
+                    for (int k = 0; k < songs[i - 1].Tag.AlbumArtists.Length; k++)
+                    {
+                        if (songs[i - 1].Tag.AlbumArtists[k].Trim() != songs[i].Tag.AlbumArtists[k].Trim())
+                        {
+                            same_album_artist = false;
+                        }
+                    }
+                }
+            }
+            return same_album_artist;
+        }
         /// <summary>
         ///    Checks if the comments of the selected songs are the same.
         /// </summary>

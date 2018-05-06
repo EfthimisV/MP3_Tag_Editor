@@ -34,7 +34,6 @@
             this.dropdownpanel = new System.Windows.Forms.Panel();
             this.albumart = new System.Windows.Forms.PictureBox();
             this.commenttextbox = new System.Windows.Forms.TextBox();
-            this.genretextbox = new System.Windows.Forms.TextBox();
             this.tracktextbox = new System.Windows.Forms.TextBox();
             this.yeartextbox = new System.Windows.Forms.TextBox();
             this.albumtextbox = new System.Windows.Forms.TextBox();
@@ -80,23 +79,24 @@
             this.hamburgerItem2 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
-            this.customButton2 = new MP3_Tag_Editor.CustomButton();
             this.discardbutton = new MP3_Tag_Editor.CustomButton();
             this.loadfrompcbutton = new MP3_Tag_Editor.CustomButton();
             this.searchdiscogsbutton = new MP3_Tag_Editor.CustomButton();
             this.changeartbutton = new MP3_Tag_Editor.CustomButton();
             this.savechangesbutton = new MP3_Tag_Editor.CustomButton();
+            this.customButton2 = new MP3_Tag_Editor.CustomButton();
+            this.genretextbox = new System.Windows.Forms.TextBox();
             this.generalinfo.SuspendLayout();
             this.dropdownpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.albumart)).BeginInit();
             this.complexedit.SuspendLayout();
             this.hamburgerMenu1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadfrompcbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchdiscogsbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.changeartbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.savechangesbutton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
             this.SuspendLayout();
             // 
             // CurrentCategoryInfo
@@ -124,13 +124,13 @@
             // 
             // generalinfo
             // 
+            this.generalinfo.Controls.Add(this.genretextbox);
             this.generalinfo.Controls.Add(this.discardbutton);
             this.generalinfo.Controls.Add(this.dropdownpanel);
             this.generalinfo.Controls.Add(this.changeartbutton);
             this.generalinfo.Controls.Add(this.savechangesbutton);
             this.generalinfo.Controls.Add(this.albumart);
             this.generalinfo.Controls.Add(this.commenttextbox);
-            this.generalinfo.Controls.Add(this.genretextbox);
             this.generalinfo.Controls.Add(this.tracktextbox);
             this.generalinfo.Controls.Add(this.yeartextbox);
             this.generalinfo.Controls.Add(this.albumtextbox);
@@ -179,16 +179,6 @@
             this.commenttextbox.Name = "commenttextbox";
             this.commenttextbox.Size = new System.Drawing.Size(243, 21);
             this.commenttextbox.TabIndex = 33;
-            // 
-            // genretextbox
-            // 
-            this.genretextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
-            this.genretextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.genretextbox.ForeColor = System.Drawing.SystemColors.Info;
-            this.genretextbox.Location = new System.Drawing.Point(150, 232);
-            this.genretextbox.Name = "genretextbox";
-            this.genretextbox.Size = new System.Drawing.Size(106, 21);
-            this.genretextbox.TabIndex = 32;
             // 
             // tracktextbox
             // 
@@ -703,18 +693,6 @@
             this.statusBar1.Size = new System.Drawing.Size(929, 25);
             this.statusBar1.TabIndex = 0;
             // 
-            // customButton2
-            // 
-            this.customButton2.BackColor = System.Drawing.Color.Transparent;
-            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton2.CustomButtonText = "Αποθήκευση αλλαγών";
-            this.customButton2.Location = new System.Drawing.Point(405, 382);
-            this.customButton2.Name = "customButton2";
-            this.customButton2.Size = new System.Drawing.Size(137, 20);
-            this.customButton2.TabIndex = 54;
-            this.customButton2.TabStop = false;
-            this.customButton2.Click += new System.EventHandler(this.customButton2_Click);
-            // 
             // discardbutton
             // 
             this.discardbutton.BackColor = System.Drawing.Color.Transparent;
@@ -775,6 +753,28 @@
             this.savechangesbutton.TabStop = false;
             this.savechangesbutton.Click += new System.EventHandler(this.customButton1_Click);
             // 
+            // customButton2
+            // 
+            this.customButton2.BackColor = System.Drawing.Color.Transparent;
+            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton2.CustomButtonText = "Αποθήκευση αλλαγών";
+            this.customButton2.Location = new System.Drawing.Point(405, 382);
+            this.customButton2.Name = "customButton2";
+            this.customButton2.Size = new System.Drawing.Size(137, 20);
+            this.customButton2.TabIndex = 54;
+            this.customButton2.TabStop = false;
+            this.customButton2.Click += new System.EventHandler(this.customButton2_Click);
+            // 
+            // genretextbox
+            // 
+            this.genretextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
+            this.genretextbox.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.genretextbox.ForeColor = System.Drawing.SystemColors.Info;
+            this.genretextbox.Location = new System.Drawing.Point(150, 232);
+            this.genretextbox.Name = "genretextbox";
+            this.genretextbox.Size = new System.Drawing.Size(106, 21);
+            this.genretextbox.TabIndex = 40;
+            // 
             // EditingWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -799,12 +799,12 @@
             this.complexedit.ResumeLayout(false);
             this.complexedit.PerformLayout();
             this.hamburgerMenu1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadfrompcbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchdiscogsbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.changeartbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.savechangesbutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -829,7 +829,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox titletextbox;
-        private System.Windows.Forms.TextBox genretextbox;
         private System.Windows.Forms.TextBox tracktextbox;
         private System.Windows.Forms.TextBox yeartextbox;
         private System.Windows.Forms.TextBox albumtextbox;
@@ -870,5 +869,6 @@
         private CustomButton loadfrompcbutton;
         private CustomButton searchdiscogsbutton;
         private CustomButton discardbutton;
+        private System.Windows.Forms.TextBox genretextbox;
     }
 }

@@ -176,19 +176,19 @@ namespace MP3_Tag_Editor
                         }
                         if (SameAlbumArtist(songs))
                         {
-                            string albumartists = null;
-                            for (int i = 0; i < songs[0].Tag.AlbumArtists.Length; i++)
-                            {
-                                if (i != songs[0].Tag.AlbumArtists.Length - 1)
+                                string albumartists = null;
+                                for (int i = 0; i < songs[0].Tag.AlbumArtists.Length; i++)
                                 {
-                                    albumartists = albumartists + songs[0].Tag.AlbumArtists[i] + ",";
+                                    if (i != songs[0].Tag.AlbumArtists.Length - 1)
+                                    {
+                                        albumartists = albumartists + songs[0].Tag.AlbumArtists[i] + ",";
+                                    }
+                                    else
+                                    {
+                                        albumartists = albumartists + songs[0].Tag.AlbumArtists[i];
+                                    }
                                 }
-                                else
-                                {
-                                    albumartists = albumartists + songs[0].Tag.AlbumArtists[i];
-                                }
-                            }
-                            form1.genretext = albumartists;
+                                form1.albumartist = albumartists;
                         }
                         else
                         {
@@ -196,23 +196,23 @@ namespace MP3_Tag_Editor
                         }
                         if (SameComposers(songs))
                         {
-                            string composers = null;
-                            for (int i = 0; i < songs[0].Tag.Composers.Length; i++)
-                            {
-                                if (i != songs[0].Tag.Composers.Length - 1)
+                                string composers = null;
+                                for (int i = 0; i < songs[0].Tag.Composers.Length; i++)
                                 {
-                                    composers = composers + songs[0].Tag.Composers[i] + ",";
+                                    if (i != songs[0].Tag.Composers.Length - 1)
+                                    {
+                                        composers = composers + songs[0].Tag.Composers[i] + ",";
+                                    }
+                                    else
+                                    {
+                                        composers = composers + songs[0].Tag.Composers[i];
+                                    }
                                 }
-                                else
-                                {
-                                    composers = composers + songs[0].Tag.Composers[i];
-                                }
-                            }
-                            form1.genretext = composers;
+                                form1.composers = composers;
                         }
                         else
                         {
-                            form1.genretext = "<Διατήρηση τιμής>";
+                            form1.composers = "<Διατήρηση τιμής>";
                         }
                         if (SameConductor(songs))
                         {
@@ -224,7 +224,7 @@ namespace MP3_Tag_Editor
                         }
                         if (SameArtistURL(songs))
                         {
-                            form1.artisturl = songs[0].Tag.ArtistURL;
+                           form1.artisturl = songs[0].Tag.ArtistURL;
                         }
                         else
                         {
@@ -331,7 +331,19 @@ namespace MP3_Tag_Editor
                         }
                         if (SameAlbumArtist(songs))
                         {
-                            form1.albumartist = songs[0].Tag.AlbumArtists[0];
+                            string albumartists = null;
+                            for (int i = 0; i < songs[0].Tag.AlbumArtists.Length; i++)
+                            {
+                                if (i != songs[0].Tag.AlbumArtists.Length - 1)
+                                {
+                                    albumartists = albumartists + songs[0].Tag.AlbumArtists[i] + ",";
+                                }
+                                else
+                                {
+                                    albumartists = albumartists + songs[0].Tag.AlbumArtists[i];
+                                }
+                            }
+                            form1.albumartist = albumartists;
                         }
                         else
                         {
@@ -351,11 +363,11 @@ namespace MP3_Tag_Editor
                                     composers = composers + songs[0].Tag.Composers[i];
                                 }
                             }
-                            form1.genretext = composers;
+                            form1.composers = composers;
                         }
                         else
                         {
-                            form1.genretext = "<Διατήρηση τιμής>";
+                            form1.composers = "<Διατήρηση τιμής>";
                         }
                         if (SameConductor(songs))
                         {

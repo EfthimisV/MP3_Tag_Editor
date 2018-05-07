@@ -1,4 +1,4 @@
-# MP3_Tag_Editor
+# MP3 Tag Editor
 An all new MP3 Tag Editor in development!
 
 ## Features

@@ -1,3 +1,6 @@
 language: csharp
 solution: MP3 Tag Editor.sln
-project: MP3 Tag Editor.csproj
+before_install:
+  - sudo apt-get install nunit-console
+before_script:
+  - nuget restore MP3 Tag Editor.sln

@@ -1,7 +1,5 @@
 language: csharp
 script:
-  - msuild /p:Configuration=Debug MP3 Tag Editor.csproj
-before_install:
-  - sudo apt-get install nunit-console
+  - msuild /p:Configuration=Debug MP3 Tag Editor.sln
 before_script:
   - nuget restore MP3 Tag Editor.sln

@@ -1,5 +1,6 @@
 language: csharp
-solution: MP3 Tag Editor.sln
+script:
+  - xbuild /p:Configuration=Debug MP3 Tag Editor.sln
 before_install:
   - sudo apt-get install nunit-console
 before_script:

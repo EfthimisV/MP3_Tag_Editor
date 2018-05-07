@@ -85,7 +85,7 @@ namespace MP3_Tag_Editor
             {
                 albumart.Click += (sender1, e1) =>
                 {
-                    EditingWindowInstance.downloaderalbumartpath = albumart.ImageLocation;
+                    EditingWindowInstance.DownloaderAlbumArtPath = albumart.ImageLocation;
                     EditingWindowInstance.ActiveControl = EditingWindowInstance.Controls[0];
                     Close();
                 };

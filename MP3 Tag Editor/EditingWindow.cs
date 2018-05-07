@@ -36,7 +36,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the titletextbox.
         /// </summary>
-        public string titletext
+        public string TitleText
         {
             get
             {
@@ -50,7 +50,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the artisttextbox.
         /// </summary>
-        public string artisttext
+        public string ArtistText
         {
             get
             {
@@ -64,7 +64,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the albumtextbox.
         /// </summary>
-        public string albumtext
+        public string AlbumText
         {
             get
             {
@@ -78,7 +78,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the yeartextbox.
         /// </summary>
-        public string yeartext
+        public string YearText
         {
             get
             {
@@ -92,7 +92,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the tracktextbox.
         /// </summary>
-        public string tracktext
+        public string TrackText
         {
             get
             {
@@ -106,7 +106,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the genretextbox.
         /// </summary>
-        public string genretext
+        public string GenreText
         {
             get
             {
@@ -120,7 +120,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the commenttextbox.
         /// </summary>
-        public string commentext
+        public string CommentText
         {
             get
             {
@@ -134,7 +134,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the cover art displayed on the coverartpicturebox.
         /// </summary>
-        public Image albumpicture
+        public Image AlbumPicture
         {
             get
             {
@@ -162,7 +162,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the albumartisttextbox.
         /// </summary>
-        public string albumartist
+        public string AlbumArtist
         {
             get
             {
@@ -176,7 +176,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the beatsperminutetextbox.
         /// </summary>
-        public string beatsperminute
+        public string BeatsPerMinute
         {
             get
             {
@@ -190,7 +190,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the composerstextbox.
         /// </summary>
-        public string composers
+        public string Composers
         {
             get
             {
@@ -204,7 +204,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the conductorstextbox.
         /// </summary>
-        public string conductors
+        public string Conductors
         {
             get
             {
@@ -218,7 +218,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the artisturltextbox.
         /// </summary>
-        public string artisturl
+        public string ArtistUrl
         {
             get
             {
@@ -232,7 +232,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the copyrightstextbox.
         /// </summary>
-        public string copyrights
+        public string Copyrights
         {
             get
             {
@@ -246,7 +246,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the descriptiontextbox.
         /// </summary>
-        public string description
+        public string Description
         {
             get
             {
@@ -260,7 +260,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the discnumbertextbox.
         /// </summary>
-        public string discnumber
+        public string Discnumber
         {
             get
             {
@@ -274,7 +274,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the groupingtextbox.
         /// </summary>
-        public string grouping
+        public string Grouping
         {
             get
             {
@@ -288,7 +288,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the titletextbox.
         /// </summary>
-        public string subtitle
+        public string Subtitle
         {
             get
             {
@@ -302,7 +302,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the publishertextbox.
         /// </summary>
-        public string publisher
+        public string Publisher
         {
             get
             {
@@ -316,7 +316,7 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the text displayed on the lyricisttextbox.
         /// </summary>
-        public string lyricist
+        public string Lyricist
         {
             get
             {
@@ -330,15 +330,15 @@ namespace MP3_Tag_Editor
         /// <summary>
         ///    Gets and sets the path of the song selected in the music library.
         /// </summary>
-        public string filepath { get; set; }
+        public string Filepath { get; set; }
         /// <summary>
         ///    Gets and sets the path of the image selected from the OpenFileDialog.
         /// </summary>
-        public string albumartpath { get; set; }
+        public string AlbumArtPath { get; set; }
         /// <summary>
         ///    Gets and sets the path of the cover art downloaded from Discogs.
         /// </summary>
-        public string downloaderalbumartpath
+        public string DownloaderAlbumArtPath
         {
             get
             {
@@ -382,9 +382,11 @@ namespace MP3_Tag_Editor
 
         private void customButton1_Click(object sender, EventArgs e)
         {
-            if (_FilePaths == null || _FilePaths.Length == 0)
+            Form1 fc = (Form1) Application.OpenForms["Form1"]; //Ανιχνεύω την παρουσία του Form1
+            if (_FilePaths == null || _FilePaths.Length == 0) //Αν έχει φορτωθεί μόνο ένα τραγούδι
             {
-                TagLib.File Song = TagLib.File.Create(filepath);
+                TagLib.File Song = TagLib.File.Create(Filepath);//Δημιουργία αντικειμένου TagLib.File από την διαδρομή αρχείου του τραγουδιού
+                //Ανάθεση των ετικετών του τραγουδιού μέσω των πεδίων εισόδου του παραθύρου 
                 Song.Tag.Title = titletextbox.Text;
                 Song.Tag.Album = albumtextbox.Text;
                 Song.Tag.Year = Convert.ToUInt32(yeartextbox.Text);
@@ -392,28 +394,31 @@ namespace MP3_Tag_Editor
                 Song.Tag.Comment = commenttextbox.Text;
                 Song.Tag.Genres = MultipleValuesProcessor(genretextbox.Text.Split(',').ToArray());
                 Song.Tag.Performers = MultipleValuesProcessor(artisttextbox.Text.Split(',').ToArray());
-                if (albumartpath != null)
+                //Αν έχει επιλεχθεί τοπικά εικόνα για το άλμπουμ, τότε την αναθέτω στο τραγούδι
+                if (AlbumArtPath != null)
                 {
                     TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
                     pic.TextEncoding = TagLib.StringType.Latin1;
                     pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
                     pic.Type = TagLib.PictureType.FrontCover;
-                    pic.Data = TagLib.ByteVector.FromPath(albumartpath);
+                    pic.Data = TagLib.ByteVector.FromPath(AlbumArtPath);
                     Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
                 }
-                if (downloaderalbumartpath != null)
+                //Αν έχει ληφθεί online η εικόνα, τότε την αναθέτω στο τραγούδι
+                if (DownloaderAlbumArtPath != null)
                 {
                     TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
                     pic.TextEncoding = TagLib.StringType.Latin1;
                     pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
                     pic.Type = TagLib.PictureType.FrontCover;
-                    pic.Data = TagLib.ByteVector.FromPath(downloaderalbumartpath);
+                    pic.Data = TagLib.ByteVector.FromPath(DownloaderAlbumArtPath);
                     Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
                 }
                 Song.Save();
             }
             else
             {
+                //Αν έχουν επιλεχθεί πολλά τραγούδια, τότε ακολουθώ την ίδια διαδικασία που ακολουθώ για ένα τραγούδι, για κάθε τραγούδι
                 for (int i =0; i< _FilePaths.Length; i++)
                 {
                     TagLib.File song = TagLib.File.Create(_FilePaths[i]);
@@ -445,6 +450,24 @@ namespace MP3_Tag_Editor
                     {
                         song.Tag.Comment = commenttextbox.Text;
                     }
+                    if (AlbumArtPath != null)
+                    {
+                        TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                        pic.TextEncoding = TagLib.StringType.Latin1;
+                        pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                        pic.Type = TagLib.PictureType.FrontCover;
+                        pic.Data = TagLib.ByteVector.FromPath(AlbumArtPath);
+                        song.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                    }
+                    if (DownloaderAlbumArtPath != null)
+                    {
+                        TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
+                        pic.TextEncoding = TagLib.StringType.Latin1;
+                        pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
+                        pic.Type = TagLib.PictureType.FrontCover;
+                        pic.Data = TagLib.ByteVector.FromPath(DownloaderAlbumArtPath);
+                        song.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                    }
                     song.Save();
                 }
             }
@@ -470,7 +493,7 @@ namespace MP3_Tag_Editor
         {
             if (_FilePaths == null || _FilePaths.Length == 0)
             {
-                TagLib.File Song = TagLib.File.Create(filepath);
+                TagLib.File Song = TagLib.File.Create(Filepath);
                 Song.Tag.Lyrics = lyricstextbox.Text;
                 Song.Tag.AlbumArtists = MultipleValuesProcessor(albumartisttextbox.Text.Split(',').ToArray());
                 Song.Tag.BeatsPerMinute = Convert.ToUInt32(beatsperminutetextbox.Text);
@@ -510,7 +533,7 @@ namespace MP3_Tag_Editor
             if (result == DialogResult.OK)
             {
                 albumart.Image = new Bitmap(albumart1.FileName);
-                albumartpath = Path.GetFullPath(albumart1.FileName);
+                AlbumArtPath = Path.GetFullPath(albumart1.FileName);
             }
         }
 
@@ -542,7 +565,7 @@ namespace MP3_Tag_Editor
 
         private void discardbutton_Click(object sender, EventArgs e)
         {
-            using (TagLib.File song = TagLib.File.Create(filepath))
+            using (TagLib.File song = TagLib.File.Create(Filepath))
             {
                 if (song.Tag.Pictures.Length >= 1)
                 {

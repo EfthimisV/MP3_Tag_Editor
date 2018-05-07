@@ -14,6 +14,56 @@ namespace MP3_Tag_Editor
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        ///    Adds a row to the recentdatagriview.
+        /// </summary>
+        public void AddRows(string filename, string title, string trackno, string artist, string album, string genre, string year)
+        {
+            recentdatagridview.Rows.Add(filename, title, trackno, artist, album, genre, year);
+        }
+        /// <summary>
+        ///    Replaces a recentdatagriview row with a specific index.
+        /// </summary>
+        public void ReplaceRow(int rowno, string filename, string title, string trackno, string artist, string album, string genre, string year)
+        {
+            recentdatagridview.Rows[rowno].Cells[0].Value = filename;
+            recentdatagridview.Rows[rowno].Cells[1].Value = title;
+            recentdatagridview.Rows[rowno].Cells[2].Value = trackno;
+            recentdatagridview.Rows[rowno].Cells[3].Value = artist;
+            recentdatagridview.Rows[rowno].Cells[4].Value = album;
+            recentdatagridview.Rows[rowno].Cells[5].Value = genre;
+            recentdatagridview.Rows[rowno].Cells[6].Value = year;
+        }
+        /// <summary>
+        ///    Sets the recentdatagridview visible property.
+        /// </summary>
+        public bool RecentDataGridViewVisible
+        {
+            get
+            {
+                return recentdatagridview.Visible;
+            }
+            set
+            {
+                recentdatagridview.Visible = value;
+            }
+        }
+        /// <summary>
+        ///    Sets the label3 visible property.
+        /// </summary>
+        public bool Label3Visible
+        {
+            get
+            {
+                return label3.Visible;
+            }
+            set
+            {
+                label3.Visible = value;
+            }
+        }
+        public int MaxNumberOfRows = 3; //Μέγιστος αριθμός γραμμών στη λίστα με τα πρόσφατα τραγούδια
+        public int CurrentNumberOfRows = 0; //Τρέχων αριθμός γραμμών που έχουν προστεθεί στη λίστα με τα πρόσφατα τραγούδια
         public Form1()
         {
             InitializeComponent();
@@ -21,8 +71,8 @@ namespace MP3_Tag_Editor
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ActiveControl = hamburgerMenu1;
-            foreach(Control control in Controls)
+            ActiveControl = hamburgerMenu1; //Θέτω το hamburgerMenu1 ActiveControl property του Form1 
+            foreach(Control control in Controls)//Προσθέτω στους event handlers κάθε control όταν γίνεται κλικ να χάνουν το focus τους θέτοντάς το με null
             {
                 control.Click += (sender1, e1) =>
                 {
@@ -43,7 +93,7 @@ namespace MP3_Tag_Editor
             separator.Location = new Point(324, 161);
             infopanel.Size = new Size(670, 119);
             mylibrary.Visible = true;
-           
+            recentpanel.Visible = false;
         }
 
         private void hamburgerItem2_Click(object sender, EventArgs e)
@@ -53,6 +103,7 @@ namespace MP3_Tag_Editor
             separator.Location = new Point(324, 134);
             infopanel.Size = new Size(670, 92);
             mylibrary.Visible = false;
+            recentpanel.Visible = true;
         }
 
         private void hamburgerItem3_Click(object sender, EventArgs e)
@@ -62,6 +113,7 @@ namespace MP3_Tag_Editor
             separator.Location = new Point(324, 134);
             infopanel.Size = new Size(670, 92);
             mylibrary.Visible = false;
+            recentpanel.Visible = false;
         }
         protected List<string> libraries = new List<string>();
         
@@ -76,11 +128,11 @@ namespace MP3_Tag_Editor
                 {
                     var Song = TagLib.File.Create(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString());// Δημιουργία taglib.file με βάση την διαδρομή που βρίσκεται στην πρώτη στήλη
                     //Εισαγωγή τιμών στο αντικείμενο editingwindow
-                    form1.titletext = Song.Tag.Title;
-                    form1.artisttext = Song.Tag.Performers[0];
-                    form1.albumtext = Song.Tag.Album;
-                    form1.yeartext = Song.Tag.Year.ToString();
-                    form1.tracktext = Song.Tag.Track.ToString();
+                    form1.TitleText = Song.Tag.Title;
+                    form1.ArtistText = Song.Tag.Performers[0];
+                    form1.AlbumText = Song.Tag.Album;
+                    form1.YearText = Song.Tag.Year.ToString();
+                    form1.TrackText = Song.Tag.Track.ToString();
                     string genretexts = null;
                     for (int i = 0; i < Song.Tag.Genres.Length; i++)
                     {
@@ -93,33 +145,33 @@ namespace MP3_Tag_Editor
                             genretexts = genretexts + Song.Tag.Genres[i];
                         }
                     }
-                    form1.genretext = genretexts;
-                    form1.commentext = Song.Tag.Comment;
-                    form1.filepath = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
+                    form1.GenreText = genretexts;
+                    form1.CommentText = Song.Tag.Comment;
+                    form1.Filepath = dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value.ToString();
                     if (Song.Tag.Pictures.Length >= 1)
                     {
                         var bin = Song.Tag.Pictures[0].Data.Data;
-                        form1.albumpicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
+                        form1.AlbumPicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
                     }
                     form1.LyricsText = Song.Tag.Lyrics;
                     if (Song.Tag.AlbumArtists.Length != 0)
                     {
-                        form1.albumartist = Song.Tag.AlbumArtists[0];
+                        form1.AlbumArtist = Song.Tag.AlbumArtists[0];
                     }
-                    form1.beatsperminute = Song.Tag.BeatsPerMinute.ToString();
+                    form1.BeatsPerMinute = Song.Tag.BeatsPerMinute.ToString();
                     if (Song.Tag.Composers.Length != 0)
                     {
-                        form1.composers = Song.Tag.Composers[0];
+                        form1.Composers = Song.Tag.Composers[0];
                     }
-                    form1.conductors = Song.Tag.Conductor;
-                    form1.artisturl = Song.Tag.ArtistURL;
-                    form1.copyrights = Song.Tag.Copyright;
-                    form1.description = Song.Tag.Description;
-                    form1.discnumber = Song.Tag.Disc.ToString();
-                    form1.grouping = Song.Tag.Grouping;
-                    form1.subtitle = Song.Tag.Subtitle;
-                    form1.publisher = Song.Tag.Publisher;
-                    form1.lyricist = Song.Tag.Lyricist;
+                    form1.Conductors = Song.Tag.Conductor;
+                    form1.ArtistUrl = Song.Tag.ArtistURL;
+                    form1.Copyrights = Song.Tag.Copyright;
+                    form1.Description = Song.Tag.Description;
+                    form1.Discnumber = Song.Tag.Disc.ToString();
+                    form1.Grouping = Song.Tag.Grouping;
+                    form1.Subtitle = Song.Tag.Subtitle;
+                    form1.Publisher = Song.Tag.Publisher;
+                    form1.Lyricist = Song.Tag.Lyricist;
                 }
                 else
                 {
@@ -130,12 +182,12 @@ namespace MP3_Tag_Editor
                     }
                     string[] SongPaths = FilePaths.ToArray(); //Δημιουργία string array για την αποθήκευση των διαδρομών
                     form1.FilePaths = SongPaths; //Θέτω την ιδιότητα filepaths του EditingWindow με το SongPaths 
-                    form1.titletext = "<Διατήρηση τιμής>";
-                    form1.tracktext = "<Διατήρηση τιμής>";
+                    form1.TitleText = "<Διατήρηση τιμής>";
+                    form1.TrackText = "<Διατήρηση τιμής>";
                     form1.LyricsText = "<Διατήρηση τιμής>";
-                    form1.beatsperminute = "<Διατήρηση τιμής>";
-                    form1.discnumber = "<Διατήρηση τιμής>";
-                    form1.commentext = "<Διατήρηση τιμής>";
+                    form1.BeatsPerMinute = "<Διατήρηση τιμής>";
+                    form1.Discnumber = "<Διατήρηση τιμής>";
+                    form1.CommentText = "<Διατήρηση τιμής>";
                     List<TagLib.File> songs = new List<TagLib.File>(); //Δημιουργία λίστας για την αποθήκευση των τραγουδιών που έχουν επιλεχθεί με τα tags τους 
                     foreach (string path in SongPaths)
                     {
@@ -151,9 +203,9 @@ namespace MP3_Tag_Editor
                     }
                     if (same_album)
                     {
-                        form1.artisttext = songs[0].Tag.Performers[0];
-                        form1.albumtext = songs[0].Tag.Album;
-                        form1.yeartext = songs[0].Tag.Year.ToString();
+                        form1.ArtistText = songs[0].Tag.Performers[0];
+                        form1.AlbumText = songs[0].Tag.Album;
+                        form1.YearText = songs[0].Tag.Year.ToString();
                         if (SameGenre(songs))
                         {
                             string genretexts = null;
@@ -168,11 +220,11 @@ namespace MP3_Tag_Editor
                                     genretexts = genretexts + songs[0].Tag.Genres[i];
                                 }
                             }
-                            form1.genretext = genretexts;
+                            form1.GenreText = genretexts;
                         }
                         else
                         {
-                            form1.genretext = "<Διατήρηση τιμής>";
+                            form1.GenreText = "<Διατήρηση τιμής>";
                         }
                         if (SameAlbumArtist(songs))
                         {
@@ -188,11 +240,11 @@ namespace MP3_Tag_Editor
                                         albumartists = albumartists + songs[0].Tag.AlbumArtists[i];
                                     }
                                 }
-                                form1.albumartist = albumartists;
+                                form1.AlbumArtist = albumartists;
                         }
                         else
                         {
-                            form1.albumartist = "<Διατήρηση τιμής>";
+                            form1.AlbumArtist = "<Διατήρηση τιμής>";
                         }
                         if (SameComposers(songs))
                         {
@@ -208,87 +260,87 @@ namespace MP3_Tag_Editor
                                         composers = composers + songs[0].Tag.Composers[i];
                                     }
                                 }
-                                form1.composers = composers;
+                                form1.Composers = composers;
                         }
                         else
                         {
-                            form1.composers = "<Διατήρηση τιμής>";
+                            form1.Composers = "<Διατήρηση τιμής>";
                         }
                         if (SameConductor(songs))
                         {
-                            form1.conductors = songs[0].Tag.Conductor;
+                            form1.Conductors = songs[0].Tag.Conductor;
                         }
                         else
                         {
-                            form1.conductors = "<Διατήρηση τιμής>";
+                            form1.Conductors = "<Διατήρηση τιμής>";
                         }
                         if (SameArtistURL(songs))
                         {
-                           form1.artisturl = songs[0].Tag.ArtistURL;
+                           form1.ArtistUrl = songs[0].Tag.ArtistURL;
                         }
                         else
                         {
-                            form1.artisturl = "<Διατήρηση τιμής>";
+                            form1.ArtistUrl = "<Διατήρηση τιμής>";
                         }
                         if (SameCopyrights(songs))
                         {
-                            form1.copyrights = songs[0].Tag.Copyright;
+                            form1.Copyrights = songs[0].Tag.Copyright;
                         }
                         else
                         {
-                            form1.copyrights = "<Διατήρηση τιμής>";
+                            form1.Copyrights = "<Διατήρηση τιμής>";
                         }
                         if (SameDescription(songs))
                         {
-                            form1.description = songs[0].Tag.Description;
+                            form1.Description = songs[0].Tag.Description;
                         }
                         else
                         {
-                            form1.description = "<Διατήρηση τιμής>";
+                            form1.Description = "<Διατήρηση τιμής>";
                         }
                         if (SameGrouping(songs))
                         {
-                            form1.grouping = songs[0].Tag.Grouping;
+                            form1.Grouping = songs[0].Tag.Grouping;
                         }
                         else
                         {
-                            form1.grouping = "<Διατήρηση τιμής>";
+                            form1.Grouping = "<Διατήρηση τιμής>";
                         }
                         if (SameSubtitle(songs))
                         {
-                            form1.subtitle = songs[0].Tag.Subtitle;
+                            form1.Subtitle = songs[0].Tag.Subtitle;
                         }
                         else
                         {
-                            form1.subtitle = "<Διατήρηση τιμής>";
+                            form1.Subtitle = "<Διατήρηση τιμής>";
                         }
                         if (SamePublisher(songs))
                         {
-                            form1.publisher = songs[0].Tag.Publisher;
+                            form1.Publisher = songs[0].Tag.Publisher;
                         }
                         else
                         {
-                            form1.publisher = "<Διατήρηση τιμής>";
+                            form1.Publisher = "<Διατήρηση τιμής>";
                         }
                         if (SameLyricist(songs))
                         {
-                            form1.lyricist = songs[0].Tag.Lyricist;
+                            form1.Lyricist = songs[0].Tag.Lyricist;
                         }
                         else
                         {
-                            form1.lyricist = "<Διατήρηση τιμής>";
+                            form1.Lyricist = "<Διατήρηση τιμής>";
                         }
                         if (songs[0].Tag.Pictures.Length >= 1)
                         {
                             var bin = songs[0].Tag.Pictures[0].Data.Data;
-                            form1.albumpicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
+                            form1.AlbumPicture = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
                         }
                     }
                     else
                     {
-                        form1.albumtext = "<Διατήρηση τιμής>";
-                        form1.yeartext = (SameYear(songs)) ? songs[0].Tag.Year.ToString() : "<Διατήρηση τιμής>";
-                        form1.commentext = (SameComment(songs)) ? songs[0].Tag.Comment : "΄<Διατήρηση τιμής>";
+                        form1.AlbumText = "<Διατήρηση τιμής>";
+                        form1.YearText = (SameYear(songs)) ? songs[0].Tag.Year.ToString() : "<Διατήρηση τιμής>";
+                        form1.CommentText = (SameComment(songs)) ? songs[0].Tag.Comment : "΄<Διατήρηση τιμής>";
                         if (SameGenre(songs))
                         {
                             string genretexts = null;
@@ -303,11 +355,11 @@ namespace MP3_Tag_Editor
                                     genretexts = genretexts + songs[0].Tag.Genres[i];
                                 }
                             }
-                            form1.genretext = genretexts;
+                            form1.GenreText = genretexts;
                         }
                         else
                         {
-                            form1.genretext = "<Διατήρηση τιμής>";
+                            form1.GenreText = "<Διατήρηση τιμής>";
                         }
                         if (SameArtist(songs))
                         {
@@ -323,11 +375,11 @@ namespace MP3_Tag_Editor
                                     artisttexts = artisttexts + songs[0].Tag.Performers[i];
                                 }
                             }
-                            form1.artisttext = artisttexts;
+                            form1.ArtistText = artisttexts;
                         }
                         else
                         {
-                            form1.artisttext = "<Διατήρηση τιμής";
+                            form1.ArtistText = "<Διατήρηση τιμής";
                         }
                         if (SameAlbumArtist(songs))
                         {
@@ -343,11 +395,11 @@ namespace MP3_Tag_Editor
                                     albumartists = albumartists + songs[0].Tag.AlbumArtists[i];
                                 }
                             }
-                            form1.albumartist = albumartists;
+                            form1.AlbumArtist = albumartists;
                         }
                         else
                         {
-                            form1.albumartist = "<Διατήρηση τιμής>";
+                            form1.AlbumArtist = "<Διατήρηση τιμής>";
                         }
                         if (SameComposers(songs))
                         {
@@ -363,75 +415,75 @@ namespace MP3_Tag_Editor
                                     composers = composers + songs[0].Tag.Composers[i];
                                 }
                             }
-                            form1.composers = composers;
+                            form1.Composers = composers;
                         }
                         else
                         {
-                            form1.composers = "<Διατήρηση τιμής>";
+                            form1.Composers = "<Διατήρηση τιμής>";
                         }
                         if (SameConductor(songs))
                         {
-                            form1.conductors = songs[0].Tag.Conductor;
+                            form1.Conductors = songs[0].Tag.Conductor;
                         }
                         else
                         {
-                            form1.conductors = "<Διατήρηση τιμής>";
+                            form1.Conductors = "<Διατήρηση τιμής>";
                         }
                         if (SameArtistURL(songs))
                         {
-                            form1.artisturl = songs[0].Tag.ArtistURL;
+                            form1.ArtistUrl = songs[0].Tag.ArtistURL;
                         }
                         else
                         {
-                            form1.artisturl = "<Διατήρηση τιμής>";
+                            form1.ArtistUrl = "<Διατήρηση τιμής>";
                         }
                         if (SameCopyrights(songs))
                         {
-                            form1.copyrights = songs[0].Tag.Copyright;
+                            form1.Copyrights = songs[0].Tag.Copyright;
                         }
                         else
                         {
-                            form1.copyrights = "<Διατήρηση τιμής>";
+                            form1.Copyrights = "<Διατήρηση τιμής>";
                         }
                         if (SameDescription(songs))
                         {
-                            form1.description = songs[0].Tag.Description;
+                            form1.Description = songs[0].Tag.Description;
                         }
                         else
                         {
-                            form1.description = "<Διατήρηση τιμής>";
+                            form1.Description = "<Διατήρηση τιμής>";
                         }
                         if (SameGrouping(songs))
                         {
-                            form1.grouping = songs[0].Tag.Grouping;
+                            form1.Grouping = songs[0].Tag.Grouping;
                         }
                         else
                         {
-                            form1.grouping = "<Διατήρηση τιμής>";
+                            form1.Grouping = "<Διατήρηση τιμής>";
                         }
                         if (SameSubtitle(songs))
                         {
-                            form1.subtitle = songs[0].Tag.Subtitle;
+                            form1.Subtitle = songs[0].Tag.Subtitle;
                         }
                         else
                         {
-                            form1.subtitle = "<Διατήρηση τιμής>";
+                            form1.Subtitle = "<Διατήρηση τιμής>";
                         }
                         if (SamePublisher(songs))
                         {
-                            form1.publisher = songs[0].Tag.Publisher;
+                            form1.Publisher = songs[0].Tag.Publisher;
                         }
                         else
                         {
-                            form1.publisher = "<Διατήρηση τιμής>";
+                            form1.Publisher = "<Διατήρηση τιμής>";
                         }
                         if (SameLyricist(songs))
                         {
-                            form1.lyricist = songs[0].Tag.Lyricist;
+                            form1.Lyricist = songs[0].Tag.Lyricist;
                         }
                         else
                         {
-                            form1.lyricist = "<Διατήρηση τιμής>";
+                            form1.Lyricist = "<Διατήρηση τιμής>";
                         }
                     }
                 }
@@ -743,6 +795,11 @@ namespace MP3_Tag_Editor
                 }
                 additems(libraries[position]);
             }
+        }
+
+        private void customButton3_Click(object sender, EventArgs e)
+        {
+            recentdatagridview.Rows.Clear();
         }
     }
 }

@@ -1,2 +1,3 @@
 language: csharp
 solution: MP3 Tag Editor.sln
+project: MP3 Tag Editor.csproj

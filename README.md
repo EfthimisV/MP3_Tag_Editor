@@ -1,4 +1,4 @@
-# MP3 Tag Editor
+# MP3 Tag Editor [![Build Status](https://travis-ci.org/EfthimisV/MP3_Tag_Editor.svg?branch=master)](https://travis-ci.org/EfthimisV/MP3_Tag_Editor)
 An all new MP3 Tag Editor in development!
 
 ## Features

@@ -1,2 +1,4 @@
 language: csharp
 solution: MP3 Tag Editor.sln
+install:
+  - sudo apt-get install -y taglib-Version 2.1.0

@@ -1,5 +1,4 @@
 language: csharp
-script:
-  - msuild /p:Configuration=Debug MP3 Tag Editor.sln
+solution: MP3 Tag Editor.sln
 before_script:
   - nuget restore MP3 Tag Editor.sln

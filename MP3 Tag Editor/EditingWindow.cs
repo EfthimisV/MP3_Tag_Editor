@@ -382,7 +382,7 @@ namespace MP3_Tag_Editor
 
         private void customButton1_Click(object sender, EventArgs e)
         {
-            Form1 fc = (Form1) Application.OpenForms["Form1"]; //Ανιχνεύω την παρουσία του Form1
+            Form1 Form1Instance = (Form1) Application.OpenForms["Form1"]; //Ανιχνεύω την παρουσία του Form1
             if (_FilePaths == null || _FilePaths.Length == 0) //Αν έχει φορτωθεί μόνο ένα τραγούδι
             {
                 TagLib.File Song = TagLib.File.Create(Filepath);//Δημιουργία αντικειμένου TagLib.File από την διαδρομή αρχείου του τραγουδιού
@@ -408,13 +408,29 @@ namespace MP3_Tag_Editor
                 if (DownloaderAlbumArtPath != null)
                 {
                     TagLib.Id3v2.AttachedPictureFrame pic = new TagLib.Id3v2.AttachedPictureFrame();
-                    pic.TextEncoding = TagLib.StringType.Latin1;
+                    pic.TextEncoding = StringType.Latin1;
                     pic.MimeType = System.Net.Mime.MediaTypeNames.Image.Jpeg;
-                    pic.Type = TagLib.PictureType.FrontCover;
-                    pic.Data = TagLib.ByteVector.FromPath(DownloaderAlbumArtPath);
-                    Song.Tag.Pictures = new TagLib.IPicture[1] { pic };
+                    pic.Type = PictureType.FrontCover;
+                    pic.Data = ByteVector.FromPath(DownloaderAlbumArtPath);
+                    Song.Tag.Pictures = new IPicture[1] { pic };
                 }
                 Song.Save();
+                Form1Instance.Label3Visible = false;
+                Form1Instance.RecentDataGridViewVisible = true;
+                if (Form1Instance.CurrentNumberOfRows < Form1Instance.MaxNumberOfRows)
+                {
+                    Form1Instance.AddRows(Filepath, Song.Tag.Title, Song.Tag.Track.ToString(), Song.Tag.Performers[0], Song.Tag.Album, Song.Tag.Genres[0], Song.Tag.Year.ToString());
+                    Form1Instance.CurrentNumberOfRows++;
+                }
+                else
+                {
+                    Form1Instance.ReplaceRow(Form1Instance.RowToBeReplaced, Filepath, Song.Tag.Title, Song.Tag.Track.ToString(), Song.Tag.Performers[0], Song.Tag.Album, Song.Tag.Genres[0], Song.Tag.Year.ToString());
+                    Form1Instance.RowToBeReplaced++;
+                    if (Form1Instance.RowToBeReplaced == 3)
+                    {
+                        Form1Instance.RowToBeReplaced = 0;
+                    }
+                }
             }
             else
             {

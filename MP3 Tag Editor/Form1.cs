@@ -64,6 +64,8 @@ namespace MP3_Tag_Editor
         }
         public int MaxNumberOfRows = 3; //Μέγιστος αριθμός γραμμών στη λίστα με τα πρόσφατα τραγούδια
         public int CurrentNumberOfRows = 0; //Τρέχων αριθμός γραμμών που έχουν προστεθεί στη λίστα με τα πρόσφατα τραγούδια
+        public int RowToBeReplaced { get; set; } = 0;
+        
         public Form1()
         {
             InitializeComponent();
@@ -800,6 +802,8 @@ namespace MP3_Tag_Editor
         private void customButton3_Click(object sender, EventArgs e)
         {
             recentdatagridview.Rows.Clear();
+            RowToBeReplaced = 0;
+            CurrentNumberOfRows = 0;
         }
     }
 }

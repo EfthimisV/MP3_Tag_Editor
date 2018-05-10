@@ -360,6 +360,9 @@ namespace MP3_Tag_Editor
                 _FilePaths = value;
             }
         }
+        /// <summary>
+        ///    Creates the appropriate array for the song tags that support multiple values.
+        /// </summary>
         private string[] MultipleValuesProcessor(string[] values)
         {
             for (int i = 0; i < values.Length; i++)
@@ -368,6 +371,28 @@ namespace MP3_Tag_Editor
                 values[i] += ' ';
             }
             return values;
+        }
+        /// <summary>
+        ///    Adds the song to the recentdatagridview.
+        /// </summary>
+        private void AddRecentSong(Form1 Form1Instance, TagLib.File Song, string Filepath)
+        {
+            Form1Instance.Label3Visible = false;
+            Form1Instance.RecentDataGridViewVisible = true;
+            if (Form1Instance.CurrentNumberOfRows < Form1Instance.MaxNumberOfRows)
+            {
+                Form1Instance.AddRows(Filepath, Song.Tag.Title, Song.Tag.Track.ToString(), Song.Tag.Performers[0], Song.Tag.Album, Song.Tag.Genres[0], Song.Tag.Year.ToString());
+                Form1Instance.CurrentNumberOfRows++;
+            }
+            else
+            {
+                Form1Instance.ReplaceRow(Form1Instance.RowToBeReplaced, Filepath, Song.Tag.Title, Song.Tag.Track.ToString(), Song.Tag.Performers[0], Song.Tag.Album, Song.Tag.Genres[0], Song.Tag.Year.ToString());
+                Form1Instance.RowToBeReplaced++;
+                if (Form1Instance.RowToBeReplaced == 20)
+                {
+                    Form1Instance.RowToBeReplaced = 0;
+                }
+            }
         }
         private void EditingWindow_Load(object sender, EventArgs e)
         {
@@ -415,22 +440,7 @@ namespace MP3_Tag_Editor
                     Song.Tag.Pictures = new IPicture[1] { pic };
                 }
                 Song.Save();
-                Form1Instance.Label3Visible = false;
-                Form1Instance.RecentDataGridViewVisible = true;
-                if (Form1Instance.CurrentNumberOfRows < Form1Instance.MaxNumberOfRows)
-                {
-                    Form1Instance.AddRows(Filepath, Song.Tag.Title, Song.Tag.Track.ToString(), Song.Tag.Performers[0], Song.Tag.Album, Song.Tag.Genres[0], Song.Tag.Year.ToString());
-                    Form1Instance.CurrentNumberOfRows++;
-                }
-                else
-                {
-                    Form1Instance.ReplaceRow(Form1Instance.RowToBeReplaced, Filepath, Song.Tag.Title, Song.Tag.Track.ToString(), Song.Tag.Performers[0], Song.Tag.Album, Song.Tag.Genres[0], Song.Tag.Year.ToString());
-                    Form1Instance.RowToBeReplaced++;
-                    if (Form1Instance.RowToBeReplaced == 3)
-                    {
-                        Form1Instance.RowToBeReplaced = 0;
-                    }
-                }
+                AddRecentSong(Form1Instance, Song, Filepath);
             }
             else
             {
@@ -485,6 +495,7 @@ namespace MP3_Tag_Editor
                         song.Tag.Pictures = new TagLib.IPicture[1] { pic };
                     }
                     song.Save();
+                    AddRecentSong(Form1Instance, song, _FilePaths[i]);
                 }
             }
         }

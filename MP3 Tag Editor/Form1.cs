@@ -62,8 +62,17 @@ namespace MP3_Tag_Editor
                 label3.Visible = value;
             }
         }
-        public int MaxNumberOfRows = 3; //Μέγιστος αριθμός γραμμών στη λίστα με τα πρόσφατα τραγούδια
+        /// <summary>
+        ///    The maximum number of rows in the recentdatagridview.
+        /// </summary>
+        public int MaxNumberOfRows = 20; //Μέγιστος αριθμός γραμμών στη λίστα με τα πρόσφατα τραγούδια
+        /// <summary>
+        ///    The current number of rows in the recentdatagridview.
+        /// </summary>
         public int CurrentNumberOfRows = 0; //Τρέχων αριθμός γραμμών που έχουν προστεθεί στη λίστα με τα πρόσφατα τραγούδια
+        /// <summary>
+        ///    The number of rows that has to be replaced in the recentdatagridview.
+        /// </summary>
         public int RowToBeReplaced { get; set; } = 0;
         
         public Form1()

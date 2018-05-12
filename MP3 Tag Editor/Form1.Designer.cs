@@ -37,7 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mylibrary = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.customButton1 = new MP3_Tag_Editor.CustomButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.FileNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +47,6 @@
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.separator = new System.Windows.Forms.PictureBox();
             this.infopanel = new System.Windows.Forms.Panel();
             this.CurrentCategoryInfo = new System.Windows.Forms.Label();
             this.CurrentCategory = new System.Windows.Forms.Label();
@@ -61,27 +59,42 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recentpanel = new System.Windows.Forms.Panel();
-            this.customButton3 = new MP3_Tag_Editor.CustomButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.customButton2 = new MP3_Tag_Editor.CustomButton();
+            this.separator = new System.Windows.Forms.PictureBox();
             this.hamburgerMenu1 = new MP3_Tag_Editor.HamburgerMenu();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.songinfo = new System.Windows.Forms.Panel();
+            this.tagsversion = new System.Windows.Forms.Label();
+            this.songduration = new System.Windows.Forms.Label();
+            this.yearlabel = new System.Windows.Forms.Label();
+            this.genre = new System.Windows.Forms.Label();
+            this.artistname = new System.Windows.Forms.Label();
+            this.albumtitle = new System.Windows.Forms.Label();
+            this.songtitle = new System.Windows.Forms.Label();
+            this.albumart = new System.Windows.Forms.PictureBox();
             this.searchButton1 = new MP3_Tag_Editor.SearchButton();
             this.searchBar1 = new MP3_Tag_Editor.SearchBar();
             this.hamburgerItem3 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem2 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
+            this.customButton1 = new MP3_Tag_Editor.CustomButton();
+            this.customButton3 = new MP3_Tag_Editor.CustomButton();
+            this.customButton2 = new MP3_Tag_Editor.CustomButton();
             this.mylibrary.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             this.infopanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recentdatagridview)).BeginInit();
             this.recentpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
+            this.hamburgerMenu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.songinfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.albumart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
-            this.hamburgerMenu1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // mylibrary
@@ -106,18 +119,6 @@
             this.label2.Size = new System.Drawing.Size(490, 21);
             this.label2.TabIndex = 6;
             this.label2.Text = "Προσθέστε βιβλιοθήκες για την εμφάνιση των τραγουδιών σας!";
-            // 
-            // customButton1
-            // 
-            this.customButton1.BackColor = System.Drawing.Color.Transparent;
-            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton1.CustomButtonText = "Επεξεργασία επιλεγμένων";
-            this.customButton1.Location = new System.Drawing.Point(345, 11);
-            this.customButton1.Name = "customButton1";
-            this.customButton1.Size = new System.Drawing.Size(152, 20);
-            this.customButton1.TabIndex = 3;
-            this.customButton1.TabStop = false;
-            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
             // 
             // dataGridView1
             // 
@@ -167,6 +168,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(643, 408);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.Visible = false;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // FileNameColumn
             // 
@@ -246,15 +248,6 @@
             this.label1.Size = new System.Drawing.Size(119, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Τρέχων κατάλογος:";
-            // 
-            // separator
-            // 
-            this.separator.BackColor = System.Drawing.SystemColors.Control;
-            this.separator.Location = new System.Drawing.Point(324, 161);
-            this.separator.Name = "separator";
-            this.separator.Size = new System.Drawing.Size(670, 1);
-            this.separator.TabIndex = 4;
-            this.separator.TabStop = false;
             // 
             // infopanel
             // 
@@ -403,18 +396,6 @@
             this.recentpanel.Size = new System.Drawing.Size(670, 475);
             this.recentpanel.TabIndex = 7;
             // 
-            // customButton3
-            // 
-            this.customButton3.BackColor = System.Drawing.Color.Transparent;
-            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton3.CustomButtonText = "Καθαρισμός λίστας";
-            this.customButton3.Location = new System.Drawing.Point(14, 7);
-            this.customButton3.Name = "customButton3";
-            this.customButton3.Size = new System.Drawing.Size(120, 20);
-            this.customButton3.TabIndex = 8;
-            this.customButton3.TabStop = false;
-            this.customButton3.Click += new System.EventHandler(this.customButton3_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -426,20 +407,20 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Δεν έχετε επεξεργαστεί κανένα τραγούδι πρόσφατα";
             // 
-            // customButton2
+            // separator
             // 
-            this.customButton2.BackColor = System.Drawing.Color.Transparent;
-            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton2.CustomButtonText = "Επεξεργασία επιλεγμένων";
-            this.customButton2.Location = new System.Drawing.Point(142, 7);
-            this.customButton2.Name = "customButton2";
-            this.customButton2.Size = new System.Drawing.Size(152, 20);
-            this.customButton2.TabIndex = 4;
-            this.customButton2.TabStop = false;
+            this.separator.BackColor = System.Drawing.SystemColors.Control;
+            this.separator.Location = new System.Drawing.Point(324, 161);
+            this.separator.Name = "separator";
+            this.separator.Size = new System.Drawing.Size(670, 1);
+            this.separator.TabIndex = 4;
+            this.separator.TabStop = false;
             // 
             // hamburgerMenu1
             // 
             this.hamburgerMenu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(19)))), ((int)(((byte)(40)))));
+            this.hamburgerMenu1.Controls.Add(this.pictureBox1);
+            this.hamburgerMenu1.Controls.Add(this.songinfo);
             this.hamburgerMenu1.Controls.Add(this.searchButton1);
             this.hamburgerMenu1.Controls.Add(this.searchBar1);
             this.hamburgerMenu1.Controls.Add(this.hamburgerItem3);
@@ -449,6 +430,118 @@
             this.hamburgerMenu1.Name = "hamburgerMenu1";
             this.hamburgerMenu1.Size = new System.Drawing.Size(283, 654);
             this.hamburgerMenu1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 226);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(283, 1);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
+            // songinfo
+            // 
+            this.songinfo.Controls.Add(this.tagsversion);
+            this.songinfo.Controls.Add(this.songduration);
+            this.songinfo.Controls.Add(this.yearlabel);
+            this.songinfo.Controls.Add(this.genre);
+            this.songinfo.Controls.Add(this.artistname);
+            this.songinfo.Controls.Add(this.albumtitle);
+            this.songinfo.Controls.Add(this.songtitle);
+            this.songinfo.Controls.Add(this.albumart);
+            this.songinfo.Location = new System.Drawing.Point(11, 283);
+            this.songinfo.Name = "songinfo";
+            this.songinfo.Size = new System.Drawing.Size(248, 303);
+            this.songinfo.TabIndex = 6;
+            this.songinfo.Visible = false;
+            // 
+            // tagsversion
+            // 
+            this.tagsversion.AutoSize = true;
+            this.tagsversion.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.tagsversion.ForeColor = System.Drawing.SystemColors.Control;
+            this.tagsversion.Location = new System.Drawing.Point(27, 274);
+            this.tagsversion.Name = "tagsversion";
+            this.tagsversion.Size = new System.Drawing.Size(77, 17);
+            this.tagsversion.TabIndex = 14;
+            this.tagsversion.Text = "tagsversion";
+            // 
+            // songduration
+            // 
+            this.songduration.AutoSize = true;
+            this.songduration.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.songduration.ForeColor = System.Drawing.SystemColors.Control;
+            this.songduration.Location = new System.Drawing.Point(27, 254);
+            this.songduration.Name = "songduration";
+            this.songduration.Size = new System.Drawing.Size(86, 17);
+            this.songduration.TabIndex = 13;
+            this.songduration.Text = "songduration";
+            // 
+            // yearlabel
+            // 
+            this.yearlabel.AutoSize = true;
+            this.yearlabel.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.yearlabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.yearlabel.Location = new System.Drawing.Point(27, 234);
+            this.yearlabel.Name = "yearlabel";
+            this.yearlabel.Size = new System.Drawing.Size(34, 17);
+            this.yearlabel.TabIndex = 12;
+            this.yearlabel.Text = "year";
+            // 
+            // genre
+            // 
+            this.genre.AutoSize = true;
+            this.genre.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.genre.ForeColor = System.Drawing.SystemColors.Control;
+            this.genre.Location = new System.Drawing.Point(27, 214);
+            this.genre.Name = "genre";
+            this.genre.Size = new System.Drawing.Size(43, 17);
+            this.genre.TabIndex = 11;
+            this.genre.Text = "genre";
+            // 
+            // artistname
+            // 
+            this.artistname.AutoSize = true;
+            this.artistname.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.artistname.ForeColor = System.Drawing.SystemColors.Control;
+            this.artistname.Location = new System.Drawing.Point(27, 194);
+            this.artistname.Name = "artistname";
+            this.artistname.Size = new System.Drawing.Size(72, 17);
+            this.artistname.TabIndex = 10;
+            this.artistname.Text = "artistname";
+            // 
+            // albumtitle
+            // 
+            this.albumtitle.AutoSize = true;
+            this.albumtitle.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.albumtitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.albumtitle.Location = new System.Drawing.Point(27, 174);
+            this.albumtitle.Name = "albumtitle";
+            this.albumtitle.Size = new System.Drawing.Size(69, 17);
+            this.albumtitle.TabIndex = 9;
+            this.albumtitle.Text = "albumtitle";
+            // 
+            // songtitle
+            // 
+            this.songtitle.AutoSize = true;
+            this.songtitle.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.songtitle.ForeColor = System.Drawing.SystemColors.Control;
+            this.songtitle.Location = new System.Drawing.Point(27, 154);
+            this.songtitle.Name = "songtitle";
+            this.songtitle.Size = new System.Drawing.Size(60, 17);
+            this.songtitle.TabIndex = 8;
+            this.songtitle.Text = "songtitle";
+            // 
+            // albumart
+            // 
+            this.albumart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.albumart.Location = new System.Drawing.Point(48, 8);
+            this.albumart.Name = "albumart";
+            this.albumart.Size = new System.Drawing.Size(130, 130);
+            this.albumart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.albumart.TabIndex = 7;
+            this.albumart.TabStop = false;
             // 
             // searchButton1
             // 
@@ -525,6 +618,41 @@
             this.statusBar1.Size = new System.Drawing.Size(1024, 25);
             this.statusBar1.TabIndex = 0;
             // 
+            // customButton1
+            // 
+            this.customButton1.BackColor = System.Drawing.Color.Transparent;
+            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton1.CustomButtonText = "Επεξεργασία επιλεγμένων";
+            this.customButton1.Location = new System.Drawing.Point(345, 11);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(152, 20);
+            this.customButton1.TabIndex = 3;
+            this.customButton1.TabStop = false;
+            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
+            // 
+            // customButton3
+            // 
+            this.customButton3.BackColor = System.Drawing.Color.Transparent;
+            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton3.CustomButtonText = "Καθαρισμός λίστας";
+            this.customButton3.Location = new System.Drawing.Point(14, 7);
+            this.customButton3.Name = "customButton3";
+            this.customButton3.Size = new System.Drawing.Size(120, 20);
+            this.customButton3.TabIndex = 8;
+            this.customButton3.TabStop = false;
+            this.customButton3.Click += new System.EventHandler(this.customButton3_Click);
+            // 
+            // customButton2
+            // 
+            this.customButton2.BackColor = System.Drawing.Color.Transparent;
+            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton2.CustomButtonText = "Επεξεργασία επιλεγμένων";
+            this.customButton2.Location = new System.Drawing.Point(142, 7);
+            this.customButton2.Name = "customButton2";
+            this.customButton2.Size = new System.Drawing.Size(152, 20);
+            this.customButton2.TabIndex = 4;
+            this.customButton2.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -535,8 +663,8 @@
             this.Controls.Add(this.separator);
             this.Controls.Add(this.hamburgerMenu1);
             this.Controls.Add(this.statusBar1);
-            this.Controls.Add(this.recentpanel);
             this.Controls.Add(this.mylibrary);
+            this.Controls.Add(this.recentpanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -545,18 +673,22 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.mylibrary.ResumeLayout(false);
             this.mylibrary.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             this.infopanel.ResumeLayout(false);
             this.infopanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recentdatagridview)).EndInit();
             this.recentpanel.ResumeLayout(false);
             this.recentpanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
+            this.hamburgerMenu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.songinfo.ResumeLayout(false);
+            this.songinfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.albumart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
-            this.hamburgerMenu1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -599,6 +731,16 @@
         private CustomButton customButton2;
         private System.Windows.Forms.Label label3;
         private CustomButton customButton3;
+        private System.Windows.Forms.Panel songinfo;
+        private System.Windows.Forms.Label songduration;
+        private System.Windows.Forms.Label yearlabel;
+        private System.Windows.Forms.Label genre;
+        private System.Windows.Forms.Label artistname;
+        private System.Windows.Forms.Label albumtitle;
+        private System.Windows.Forms.Label songtitle;
+        private System.Windows.Forms.PictureBox albumart;
+        private System.Windows.Forms.Label tagsversion;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

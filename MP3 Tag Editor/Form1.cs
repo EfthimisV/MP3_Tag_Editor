@@ -105,6 +105,7 @@ namespace MP3_Tag_Editor
             infopanel.Size = new Size(670, 119);
             mylibrary.Visible = true;
             recentpanel.Visible = false;
+            songinfo.Visible = (dataGridView1.SelectedRows.Count != 0);
         }
 
         private void hamburgerItem2_Click(object sender, EventArgs e)
@@ -115,6 +116,7 @@ namespace MP3_Tag_Editor
             infopanel.Size = new Size(670, 92);
             mylibrary.Visible = false;
             recentpanel.Visible = true;
+            songinfo.Visible = (recentdatagridview.SelectedRows.Count != 0);
         }
 
         private void hamburgerItem3_Click(object sender, EventArgs e)
@@ -125,6 +127,7 @@ namespace MP3_Tag_Editor
             infopanel.Size = new Size(670, 92);
             mylibrary.Visible = false;
             recentpanel.Visible = false;
+            songinfo.Visible = false;
         }
         protected List<string> libraries = new List<string>();
         
@@ -813,6 +816,27 @@ namespace MP3_Tag_Editor
             recentdatagridview.Rows.Clear();
             RowToBeReplaced = 0;
             CurrentNumberOfRows = 0;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                TagLib.File Song = TagLib.File.Create(dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                if (Song.Tag.Pictures.Length >= 1)
+                {
+                    var bin = Song.Tag.Pictures[0].Data.Data;
+                    albumart.Image = Image.FromStream(new MemoryStream(bin)).GetThumbnailImage(1000, 1000, null, IntPtr.Zero);
+                }
+                songtitle.Text = "Τίτλος: " + Song.Tag.Title;
+                albumtitle.Text = "Άλμπουμ: " + Song.Tag.Album;
+                artistname.Text = "Καλλιτέχνης: " + Song.Tag.Performers[0];
+                yearlabel.Text = "Έτος: " + Song.Tag.Year.ToString();
+                songduration.Text = "Διάρκεια: " + Song.Properties.Duration.ToString().Substring(0, Song.Properties.Duration.ToString().LastIndexOf("."));
+                genre.Text = "Είδος: " + Song.Tag.Genres[0];
+                tagsversion.Text = "Ετικέτες: " + Song.TagTypes.ToString();
+                songinfo.Visible = true;
+            }
         }
     }
 }

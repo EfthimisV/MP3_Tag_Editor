@@ -255,5 +255,17 @@
   <ItemGroup>
     <None Include="Resources\OptionsIcon1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayButtonStandard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayButtonDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayButtonOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayButtonStandard1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

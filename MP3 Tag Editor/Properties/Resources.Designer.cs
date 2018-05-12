@@ -313,6 +313,46 @@ namespace MP3_Tag_Editor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PlayButtonDown {
+            get {
+                object obj = ResourceManager.GetObject("PlayButtonDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayButtonOn {
+            get {
+                object obj = ResourceManager.GetObject("PlayButtonOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayButtonStandard {
+            get {
+                object obj = ResourceManager.GetObject("PlayButtonStandard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayButtonStandard1 {
+            get {
+                object obj = ResourceManager.GetObject("PlayButtonStandard1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap playlist_add_grey_192x192 {
             get {
                 object obj = ResourceManager.GetObject("playlist_add_grey_192x192", resourceCulture);

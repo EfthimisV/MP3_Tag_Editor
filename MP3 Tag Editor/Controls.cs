@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
+using System.Windows.Forms.Design;
+using System.Drawing.Drawing2D;
 
 namespace MP3_Tag_Editor
 {
-   
+    /// <summary>
+    /// A hamburger button for using in a HamburgerMenu.
+    /// </summary>
     public class HamburgerButton : PictureBox
     { 
         public ToolTip toolTip = new ToolTip();
@@ -78,6 +82,9 @@ namespace MP3_Tag_Editor
             Parent.Size = Parent.Size == new Size(283, 654) ? Parent.Size = new Size(40, 654): Parent.Size = new Size(283, 654);
         }
     }
+    /// <summary>
+    /// A HamburgerMenu in order to create the functionality that comes with hamburger menus.
+    /// </summary>
     public class HamburgerMenu : Panel
     {
         public HamburgerButton hamburgerButton = new HamburgerButton();
@@ -90,6 +97,9 @@ namespace MP3_Tag_Editor
             Controls.Add(hamburgerButton);
         }
     }
+    /// <summary>
+    /// HamburgerMenu items that allow selections.
+    /// </summary>
     public class HamburgerItem : Panel
     {
         public ToolTip toolTip = new ToolTip();
@@ -242,6 +252,9 @@ namespace MP3_Tag_Editor
             CurrentItem.BackColor = Color.White;
         }
     }
+    /// <summary>
+    /// Button that closes the current instance of the form.
+    /// </summary>
     public class ExitButton : PictureBox
     {
         /// <summary> Δημιουργία του κομπιού για το κλείσιμο του παραθύρου 
@@ -287,6 +300,9 @@ namespace MP3_Tag_Editor
             InstanceForm.Close();
         }
     }
+    /// <summary>
+    /// Button that minimizes the current instance of the form.
+    /// </summary>
     public class MinimizeButton : PictureBox
     {
         public ToolTip toolTip = new ToolTip();
@@ -337,6 +353,9 @@ namespace MP3_Tag_Editor
             InstanceForm.WindowState = FormWindowState.Minimized;
         }
     }
+    /// <summary>
+    /// A custom status bar for forms.
+    /// </summary>
     public class StatusBar : Panel
     {
         private int mousex, mousey;
@@ -659,6 +678,60 @@ namespace MP3_Tag_Editor
         {
             base.OnMouseUp(e);
             ButtonText.BackColor = Color.FromArgb(30, 66, 123);
+        }
+    }
+    public class RoundedButton : PictureBox
+    {
+        [Description("The image shown when the control is entered by the mouse."), Category("Appearance")]
+        public Image ImageOn { get; set; }
+        [Description("The image shown when the control is being clicked by the mouse."), Category("Appearance")]
+        public Image ImageDown { get; set; }
+        [Description("The standard image of the button."), Category("Appearance")]
+        public Image ImageStandard { get; set; }
+
+        public RoundedButton()
+        {
+            SizeMode = PictureBoxSizeMode.StretchImage;
+            Size = new Size(50, 50);
+        }
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
+            using (GraphicsPath gp = new GraphicsPath())
+            {
+                gp.AddEllipse(0, 0, Width - 1, Height - 1);
+                Region = new Region(gp);
+                pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                pe.Graphics.DrawEllipse(new Pen(new SolidBrush(BackColor), 1), 0, 0, Width - 1, Height - 1);
+            }
+        }
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            Image = ImageOn;
+        }
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            Image = ImageDown;
+        }
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            Image = ImageOn;
+        }
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            Image = ImageStandard;
+        }
+    }
+    public class MiniMusicPlayer : Panel
+    {
+        public MiniMusicPlayer()
+        {
+            Size = new Size(248, 55);
+            BackColor = Color.FromArgb(1, 8, 20);
         }
     }
 }

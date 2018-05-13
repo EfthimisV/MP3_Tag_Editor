@@ -9,11 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TagLib;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 
 namespace MP3_Tag_Editor
 {
     public partial class Form1 : Form
     {
+        private WaveOutEvent outputDevice;
+        private AudioFileReader audioFile;
         /// <summary>
         ///    Adds a row to the recentdatagriview.
         /// </summary>
@@ -836,7 +840,48 @@ namespace MP3_Tag_Editor
                 genre.Text = "Είδος: " + Song.Tag.Genres[0];
                 tagsversion.Text = "Ετικέτες: " + Song.TagTypes.ToString();
                 songinfo.Visible = true;
+                if (outputDevice != null)
+                {
+                    outputDevice.Stop();
+                }
+                if (!roundedButton1.IsPlayImage)
+                {
+                    roundedButton1.Image = roundedButton1.ImagePlayStandard;
+                    roundedButton1.IsPlayImage = true;
+                }
             }
         }
+
+        private void roundedButton1_Click(object sender, EventArgs e)
+        {
+            if (outputDevice == null)
+            {
+                outputDevice = new WaveOutEvent();
+                outputDevice.PlaybackStopped += OnPlaybackStopped;
+            }
+            if (audioFile == null)
+            {
+                audioFile = new AudioFileReader(dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                outputDevice.Init(audioFile);
+            }
+            if (roundedButton1.IsPlayImage)
+            {
+                outputDevice.Play();
+            }
+            else
+            {
+                outputDevice.Pause();
+            }
+        }
+
+        private void OnPlaybackStopped(object sender, StoppedEventArgs args)
+        {
+            outputDevice.Dispose();
+            outputDevice = null;
+            audioFile.Dispose();
+            audioFile = null;
+        }
+
+       
     }
 }

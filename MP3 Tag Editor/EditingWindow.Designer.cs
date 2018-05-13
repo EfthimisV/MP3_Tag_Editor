@@ -31,8 +31,17 @@
             this.CurrentCategoryInfo = new System.Windows.Forms.Label();
             this.CurrentCategory = new System.Windows.Forms.Label();
             this.generalinfo = new System.Windows.Forms.Panel();
+            this.searchsonginfo = new System.Windows.Forms.Panel();
+            this.customButton3 = new MP3_Tag_Editor.CustomButton();
+            this.customButton4 = new MP3_Tag_Editor.CustomButton();
+            this.customButton1 = new MP3_Tag_Editor.CustomButton();
             this.genretextbox = new System.Windows.Forms.TextBox();
+            this.discardbutton = new MP3_Tag_Editor.CustomButton();
             this.dropdownpanel = new System.Windows.Forms.Panel();
+            this.loadfrompcbutton = new MP3_Tag_Editor.CustomButton();
+            this.searchdiscogsbutton = new MP3_Tag_Editor.CustomButton();
+            this.changeartbutton = new MP3_Tag_Editor.CustomButton();
+            this.savechangesbutton = new MP3_Tag_Editor.CustomButton();
             this.albumart = new System.Windows.Forms.PictureBox();
             this.commenttextbox = new System.Windows.Forms.TextBox();
             this.tracktextbox = new System.Windows.Forms.TextBox();
@@ -49,6 +58,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.complexedit = new System.Windows.Forms.Panel();
+            this.customButton2 = new MP3_Tag_Editor.CustomButton();
             this.artisturltextbox = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.lyricisttextbox = new System.Windows.Forms.TextBox();
@@ -80,23 +90,21 @@
             this.hamburgerItem2 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
-            this.discardbutton = new MP3_Tag_Editor.CustomButton();
-            this.loadfrompcbutton = new MP3_Tag_Editor.CustomButton();
-            this.searchdiscogsbutton = new MP3_Tag_Editor.CustomButton();
-            this.changeartbutton = new MP3_Tag_Editor.CustomButton();
-            this.savechangesbutton = new MP3_Tag_Editor.CustomButton();
-            this.customButton2 = new MP3_Tag_Editor.CustomButton();
             this.generalinfo.SuspendLayout();
-            this.dropdownpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.albumart)).BeginInit();
-            this.complexedit.SuspendLayout();
-            this.hamburgerMenu1.SuspendLayout();
+            this.searchsonginfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).BeginInit();
+            this.dropdownpanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadfrompcbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchdiscogsbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.changeartbutton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.savechangesbutton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumart)).BeginInit();
+            this.complexedit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
+            this.hamburgerMenu1.SuspendLayout();
             this.SuspendLayout();
             // 
             // CurrentCategoryInfo
@@ -124,6 +132,8 @@
             // 
             // generalinfo
             // 
+            this.generalinfo.Controls.Add(this.searchsonginfo);
+            this.generalinfo.Controls.Add(this.customButton1);
             this.generalinfo.Controls.Add(this.genretextbox);
             this.generalinfo.Controls.Add(this.discardbutton);
             this.generalinfo.Controls.Add(this.dropdownpanel);
@@ -149,6 +159,51 @@
             this.generalinfo.Size = new System.Drawing.Size(613, 419);
             this.generalinfo.TabIndex = 18;
             // 
+            // searchsonginfo
+            // 
+            this.searchsonginfo.Controls.Add(this.customButton3);
+            this.searchsonginfo.Controls.Add(this.customButton4);
+            this.searchsonginfo.Location = new System.Drawing.Point(156, 357);
+            this.searchsonginfo.Name = "searchsonginfo";
+            this.searchsonginfo.Size = new System.Drawing.Size(163, 44);
+            this.searchsonginfo.TabIndex = 42;
+            this.searchsonginfo.Visible = false;
+            this.searchsonginfo.Leave += new System.EventHandler(this.searchsonginfo_Leave);
+            // 
+            // customButton3
+            // 
+            this.customButton3.BackColor = System.Drawing.Color.Transparent;
+            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton3.CustomButtonText = "Αναζήτηση στο MusicBrainz";
+            this.customButton3.Location = new System.Drawing.Point(0, 22);
+            this.customButton3.Name = "customButton3";
+            this.customButton3.Size = new System.Drawing.Size(161, 20);
+            this.customButton3.TabIndex = 40;
+            this.customButton3.TabStop = false;
+            // 
+            // customButton4
+            // 
+            this.customButton4.BackColor = System.Drawing.Color.Transparent;
+            this.customButton4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton4.CustomButtonText = "Αναζήτηση στο Discogs";
+            this.customButton4.Location = new System.Drawing.Point(0, 1);
+            this.customButton4.Name = "customButton4";
+            this.customButton4.Size = new System.Drawing.Size(161, 20);
+            this.customButton4.TabIndex = 39;
+            this.customButton4.TabStop = false;
+            // 
+            // customButton1
+            // 
+            this.customButton1.BackColor = System.Drawing.Color.Transparent;
+            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton1.CustomButtonText = "Λήψη πληροφοριών";
+            this.customButton1.Location = new System.Drawing.Point(156, 337);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(121, 20);
+            this.customButton1.TabIndex = 41;
+            this.customButton1.TabStop = false;
+            this.customButton1.Click += new System.EventHandler(this.customButton1_Click_1);
+            // 
             // genretextbox
             // 
             this.genretextbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(8)))), ((int)(((byte)(20)))));
@@ -158,6 +213,18 @@
             this.genretextbox.Name = "genretextbox";
             this.genretextbox.Size = new System.Drawing.Size(106, 21);
             this.genretextbox.TabIndex = 40;
+            // 
+            // discardbutton
+            // 
+            this.discardbutton.BackColor = System.Drawing.Color.Transparent;
+            this.discardbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.discardbutton.CustomButtonText = "Απόρριψη";
+            this.discardbutton.Location = new System.Drawing.Point(510, 259);
+            this.discardbutton.Name = "discardbutton";
+            this.discardbutton.Size = new System.Drawing.Size(66, 20);
+            this.discardbutton.TabIndex = 39;
+            this.discardbutton.TabStop = false;
+            this.discardbutton.Click += new System.EventHandler(this.discardbutton_Click);
             // 
             // dropdownpanel
             // 
@@ -169,6 +236,54 @@
             this.dropdownpanel.TabIndex = 38;
             this.dropdownpanel.Visible = false;
             this.dropdownpanel.Leave += new System.EventHandler(this.dropdownpanel_Leave);
+            // 
+            // loadfrompcbutton
+            // 
+            this.loadfrompcbutton.BackColor = System.Drawing.Color.Transparent;
+            this.loadfrompcbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.loadfrompcbutton.CustomButtonText = "Από τον υπολογιστή μου";
+            this.loadfrompcbutton.Location = new System.Drawing.Point(0, 22);
+            this.loadfrompcbutton.Name = "loadfrompcbutton";
+            this.loadfrompcbutton.Size = new System.Drawing.Size(159, 20);
+            this.loadfrompcbutton.TabIndex = 40;
+            this.loadfrompcbutton.TabStop = false;
+            this.loadfrompcbutton.Click += new System.EventHandler(this.customButton5_Click);
+            // 
+            // searchdiscogsbutton
+            // 
+            this.searchdiscogsbutton.BackColor = System.Drawing.Color.Transparent;
+            this.searchdiscogsbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchdiscogsbutton.CustomButtonText = "Αναζήτηση στο Discogs";
+            this.searchdiscogsbutton.Location = new System.Drawing.Point(0, 1);
+            this.searchdiscogsbutton.Name = "searchdiscogsbutton";
+            this.searchdiscogsbutton.Size = new System.Drawing.Size(159, 20);
+            this.searchdiscogsbutton.TabIndex = 39;
+            this.searchdiscogsbutton.TabStop = false;
+            this.searchdiscogsbutton.Click += new System.EventHandler(this.customButton4_Click);
+            // 
+            // changeartbutton
+            // 
+            this.changeartbutton.BackColor = System.Drawing.Color.Transparent;
+            this.changeartbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.changeartbutton.CustomButtonText = "Αλλαγή εικόνας";
+            this.changeartbutton.Location = new System.Drawing.Point(361, 259);
+            this.changeartbutton.Name = "changeartbutton";
+            this.changeartbutton.Size = new System.Drawing.Size(100, 20);
+            this.changeartbutton.TabIndex = 37;
+            this.changeartbutton.TabStop = false;
+            this.changeartbutton.Click += new System.EventHandler(this.customButton3_Click);
+            // 
+            // savechangesbutton
+            // 
+            this.savechangesbutton.BackColor = System.Drawing.Color.Transparent;
+            this.savechangesbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.savechangesbutton.CustomButtonText = "Αποθήκευση αλλαγών";
+            this.savechangesbutton.Location = new System.Drawing.Point(13, 337);
+            this.savechangesbutton.Name = "savechangesbutton";
+            this.savechangesbutton.Size = new System.Drawing.Size(137, 20);
+            this.savechangesbutton.TabIndex = 36;
+            this.savechangesbutton.TabStop = false;
+            this.savechangesbutton.Click += new System.EventHandler(this.customButton1_Click);
             // 
             // albumart
             // 
@@ -362,6 +477,18 @@
             this.complexedit.Name = "complexedit";
             this.complexedit.Size = new System.Drawing.Size(613, 419);
             this.complexedit.TabIndex = 37;
+            // 
+            // customButton2
+            // 
+            this.customButton2.BackColor = System.Drawing.Color.Transparent;
+            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton2.CustomButtonText = "Αποθήκευση αλλαγών";
+            this.customButton2.Location = new System.Drawing.Point(405, 382);
+            this.customButton2.Name = "customButton2";
+            this.customButton2.Size = new System.Drawing.Size(137, 20);
+            this.customButton2.TabIndex = 54;
+            this.customButton2.TabStop = false;
+            this.customButton2.Click += new System.EventHandler(this.customButton2_Click);
             // 
             // artisturltextbox
             // 
@@ -703,78 +830,6 @@
             this.statusBar1.Size = new System.Drawing.Size(929, 25);
             this.statusBar1.TabIndex = 0;
             // 
-            // discardbutton
-            // 
-            this.discardbutton.BackColor = System.Drawing.Color.Transparent;
-            this.discardbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.discardbutton.CustomButtonText = "Απόρριψη";
-            this.discardbutton.Location = new System.Drawing.Point(510, 259);
-            this.discardbutton.Name = "discardbutton";
-            this.discardbutton.Size = new System.Drawing.Size(66, 20);
-            this.discardbutton.TabIndex = 39;
-            this.discardbutton.TabStop = false;
-            this.discardbutton.Click += new System.EventHandler(this.discardbutton_Click);
-            // 
-            // loadfrompcbutton
-            // 
-            this.loadfrompcbutton.BackColor = System.Drawing.Color.Transparent;
-            this.loadfrompcbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.loadfrompcbutton.CustomButtonText = "Από τον υπολογιστή μου";
-            this.loadfrompcbutton.Location = new System.Drawing.Point(0, 22);
-            this.loadfrompcbutton.Name = "loadfrompcbutton";
-            this.loadfrompcbutton.Size = new System.Drawing.Size(159, 20);
-            this.loadfrompcbutton.TabIndex = 40;
-            this.loadfrompcbutton.TabStop = false;
-            this.loadfrompcbutton.Click += new System.EventHandler(this.customButton5_Click);
-            // 
-            // searchdiscogsbutton
-            // 
-            this.searchdiscogsbutton.BackColor = System.Drawing.Color.Transparent;
-            this.searchdiscogsbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.searchdiscogsbutton.CustomButtonText = "Αναζήτηση στο Discogs";
-            this.searchdiscogsbutton.Location = new System.Drawing.Point(0, 1);
-            this.searchdiscogsbutton.Name = "searchdiscogsbutton";
-            this.searchdiscogsbutton.Size = new System.Drawing.Size(159, 20);
-            this.searchdiscogsbutton.TabIndex = 39;
-            this.searchdiscogsbutton.TabStop = false;
-            this.searchdiscogsbutton.Click += new System.EventHandler(this.customButton4_Click);
-            // 
-            // changeartbutton
-            // 
-            this.changeartbutton.BackColor = System.Drawing.Color.Transparent;
-            this.changeartbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.changeartbutton.CustomButtonText = "Αλλαγή εικόνας";
-            this.changeartbutton.Location = new System.Drawing.Point(361, 259);
-            this.changeartbutton.Name = "changeartbutton";
-            this.changeartbutton.Size = new System.Drawing.Size(100, 20);
-            this.changeartbutton.TabIndex = 37;
-            this.changeartbutton.TabStop = false;
-            this.changeartbutton.Click += new System.EventHandler(this.customButton3_Click);
-            // 
-            // savechangesbutton
-            // 
-            this.savechangesbutton.BackColor = System.Drawing.Color.Transparent;
-            this.savechangesbutton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.savechangesbutton.CustomButtonText = "Αποθήκευση αλλαγών";
-            this.savechangesbutton.Location = new System.Drawing.Point(13, 337);
-            this.savechangesbutton.Name = "savechangesbutton";
-            this.savechangesbutton.Size = new System.Drawing.Size(137, 20);
-            this.savechangesbutton.TabIndex = 36;
-            this.savechangesbutton.TabStop = false;
-            this.savechangesbutton.Click += new System.EventHandler(this.customButton1_Click);
-            // 
-            // customButton2
-            // 
-            this.customButton2.BackColor = System.Drawing.Color.Transparent;
-            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton2.CustomButtonText = "Αποθήκευση αλλαγών";
-            this.customButton2.Location = new System.Drawing.Point(405, 382);
-            this.customButton2.Name = "customButton2";
-            this.customButton2.Size = new System.Drawing.Size(137, 20);
-            this.customButton2.TabIndex = 54;
-            this.customButton2.TabStop = false;
-            this.customButton2.Click += new System.EventHandler(this.customButton2_Click);
-            // 
             // EditingWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -794,17 +849,21 @@
             this.Load += new System.EventHandler(this.EditingWindow_Load);
             this.generalinfo.ResumeLayout(false);
             this.generalinfo.PerformLayout();
-            this.dropdownpanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.albumart)).EndInit();
-            this.complexedit.ResumeLayout(false);
-            this.complexedit.PerformLayout();
-            this.hamburgerMenu1.ResumeLayout(false);
+            this.searchsonginfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).EndInit();
+            this.dropdownpanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loadfrompcbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchdiscogsbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.changeartbutton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.savechangesbutton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumart)).EndInit();
+            this.complexedit.ResumeLayout(false);
+            this.complexedit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
+            this.hamburgerMenu1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -870,5 +929,9 @@
         private CustomButton searchdiscogsbutton;
         private CustomButton discardbutton;
         private System.Windows.Forms.TextBox genretextbox;
+        private CustomButton customButton1;
+        private System.Windows.Forms.Panel searchsonginfo;
+        private CustomButton customButton3;
+        private CustomButton customButton4;
     }
 }

@@ -35,6 +35,9 @@
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.8.4\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -129,6 +132,12 @@
     <Compile Include="JSONHelperClasses.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchResults.Designer.cs">
+      <DependentUpon>SearchResults.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DiscogsSearchResults.resx">
       <DependentUpon>DiscogsSearchResults.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +157,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SearchResults.resx">
+      <DependentUpon>SearchResults.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -266,6 +278,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PlayButtonStandard1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseButtonDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseButtonOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseButtonStandard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseButtonDown1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseButtonOn1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PauseButtonStandard1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

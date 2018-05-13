@@ -601,5 +601,15 @@ namespace MP3_Tag_Editor
                 }
             }
         }
+
+        private void customButton1_Click_1(object sender, EventArgs e)
+        {
+            searchsonginfo.Visible = !searchsonginfo.Visible;
+        }
+
+        private void searchsonginfo_Leave(object sender, EventArgs e)
+        {
+            searchsonginfo.Visible = false;
+        }
     }
 }

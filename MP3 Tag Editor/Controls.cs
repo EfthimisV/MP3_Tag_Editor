@@ -8,6 +8,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Windows.Forms.Design;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace MP3_Tag_Editor
 {
@@ -654,6 +655,7 @@ namespace MP3_Tag_Editor
             set
             {
                 ButtonText.Text = value;
+                Size = new Size(ButtonText.Size.Width + 5, Size.Height);
             }
         }
         protected override void OnMouseEnter(EventArgs e)
@@ -683,17 +685,31 @@ namespace MP3_Tag_Editor
     public class RoundedButton : PictureBox
     {
         [Description("The image shown when the control is entered by the mouse."), Category("Appearance")]
-        public Image ImageOn { get; set; }
+        public Image ImagePlayOn { get; set; }
+
         [Description("The image shown when the control is being clicked by the mouse."), Category("Appearance")]
-        public Image ImageDown { get; set; }
+        public Image ImagePlayDown { get; set; }
+
         [Description("The standard image of the button."), Category("Appearance")]
-        public Image ImageStandard { get; set; }
+        public Image ImagePlayStandard { get; set; }
+
+        [Description("The image shown when the control is entered by the mouse."), Category("Appearance")]
+        public Image ImagePauseOn { get; set; }
+
+        [Description("The image shown when the control is being clicked by the mouse."), Category("Appearance")]
+        public Image ImagePauseDown { get; set; }
+
+        [Description("The standard image of the button."), Category("Appearance")]
+        public Image ImagePauseStandard { get; set; }
+
+        public bool IsPlayImage = true;
 
         public RoundedButton()
         {
             SizeMode = PictureBoxSizeMode.StretchImage;
             Size = new Size(50, 50);
         }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
@@ -705,25 +721,71 @@ namespace MP3_Tag_Editor
                 pe.Graphics.DrawEllipse(new Pen(new SolidBrush(BackColor), 1), 0, 0, Width - 1, Height - 1);
             }
         }
+
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
-            Image = ImageOn;
+            if (IsPlayImage)
+            {
+                Image = ImagePlayOn;
+            }
+            else
+            {
+                Image = ImagePauseOn;
+            }
         }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            Image = ImageDown;
+            if (IsPlayImage)
+            {
+                Image = ImagePlayDown;
+            }
+            else
+            {
+                Image = ImagePauseDown;
+            }
         }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            Image = ImageOn;
+            if (IsPlayImage)
+            {
+                Image = ImagePlayOn;
+            }
+            else
+            {
+                Image = ImagePauseOn;
+            }
         }
+
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
-            Image = ImageStandard;
+            if (IsPlayImage)
+            {
+                Image = ImagePlayStandard;
+            }
+            else
+            {
+                Image = ImagePauseStandard;
+            }
+        }
+
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+            if (IsPlayImage)
+            {
+                Image = ImagePauseStandard;
+            }
+            else
+            {
+                Image = ImagePlayStandard;
+            }
+            IsPlayImage = !IsPlayImage;
         }
     }
     public class MiniMusicPlayer : Panel

@@ -37,7 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.mylibrary = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.customButton1 = new MP3_Tag_Editor.CustomButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.FileNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TitleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,12 +59,13 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recentpanel = new System.Windows.Forms.Panel();
-            this.customButton3 = new MP3_Tag_Editor.CustomButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.customButton2 = new MP3_Tag_Editor.CustomButton();
+            this.separator = new System.Windows.Forms.PictureBox();
             this.hamburgerMenu1 = new MP3_Tag_Editor.HamburgerMenu();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.songinfo = new System.Windows.Forms.Panel();
+            this.roundedButton2 = new MP3_Tag_Editor.RoundedButton();
+            this.roundedButton1 = new MP3_Tag_Editor.RoundedButton();
             this.tagsversion = new System.Windows.Forms.Label();
             this.songduration = new System.Windows.Forms.Label();
             this.yearlabel = new System.Windows.Forms.Label();
@@ -79,24 +79,26 @@
             this.hamburgerItem3 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem2 = new MP3_Tag_Editor.HamburgerItem();
             this.hamburgerItem1 = new MP3_Tag_Editor.HamburgerItem();
-            this.separator = new System.Windows.Forms.PictureBox();
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
-            this.roundedButton1 = new MP3_Tag_Editor.RoundedButton();
+            this.customButton1 = new MP3_Tag_Editor.CustomButton();
+            this.customButton3 = new MP3_Tag_Editor.CustomButton();
+            this.customButton2 = new MP3_Tag_Editor.CustomButton();
             this.mylibrary.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.infopanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recentdatagridview)).BeginInit();
             this.recentpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             this.hamburgerMenu1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.songinfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roundedButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundedButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundedButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).BeginInit();
             this.SuspendLayout();
             // 
             // mylibrary
@@ -121,18 +123,6 @@
             this.label2.Size = new System.Drawing.Size(490, 21);
             this.label2.TabIndex = 6;
             this.label2.Text = "Προσθέστε βιβλιοθήκες για την εμφάνιση των τραγουδιών σας!";
-            // 
-            // customButton1
-            // 
-            this.customButton1.BackColor = System.Drawing.Color.Transparent;
-            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton1.CustomButtonText = "Επεξεργασία επιλεγμένων";
-            this.customButton1.Location = new System.Drawing.Point(345, 11);
-            this.customButton1.Name = "customButton1";
-            this.customButton1.Size = new System.Drawing.Size(152, 20);
-            this.customButton1.TabIndex = 3;
-            this.customButton1.TabStop = false;
-            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
             // 
             // dataGridView1
             // 
@@ -410,18 +400,6 @@
             this.recentpanel.Size = new System.Drawing.Size(670, 475);
             this.recentpanel.TabIndex = 7;
             // 
-            // customButton3
-            // 
-            this.customButton3.BackColor = System.Drawing.Color.Transparent;
-            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton3.CustomButtonText = "Καθαρισμός λίστας";
-            this.customButton3.Location = new System.Drawing.Point(14, 7);
-            this.customButton3.Name = "customButton3";
-            this.customButton3.Size = new System.Drawing.Size(120, 20);
-            this.customButton3.TabIndex = 8;
-            this.customButton3.TabStop = false;
-            this.customButton3.Click += new System.EventHandler(this.customButton3_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -433,16 +411,14 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Δεν έχετε επεξεργαστεί κανένα τραγούδι πρόσφατα";
             // 
-            // customButton2
+            // separator
             // 
-            this.customButton2.BackColor = System.Drawing.Color.Transparent;
-            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton2.CustomButtonText = "Επεξεργασία επιλεγμένων";
-            this.customButton2.Location = new System.Drawing.Point(142, 7);
-            this.customButton2.Name = "customButton2";
-            this.customButton2.Size = new System.Drawing.Size(152, 20);
-            this.customButton2.TabIndex = 4;
-            this.customButton2.TabStop = false;
+            this.separator.BackColor = System.Drawing.SystemColors.Control;
+            this.separator.Location = new System.Drawing.Point(324, 161);
+            this.separator.Name = "separator";
+            this.separator.Size = new System.Drawing.Size(670, 1);
+            this.separator.TabIndex = 4;
+            this.separator.TabStop = false;
             // 
             // hamburgerMenu1
             // 
@@ -470,6 +446,7 @@
             // 
             // songinfo
             // 
+            this.songinfo.Controls.Add(this.roundedButton2);
             this.songinfo.Controls.Add(this.roundedButton1);
             this.songinfo.Controls.Add(this.tagsversion);
             this.songinfo.Controls.Add(this.songduration);
@@ -484,6 +461,42 @@
             this.songinfo.Size = new System.Drawing.Size(248, 368);
             this.songinfo.TabIndex = 6;
             this.songinfo.Visible = false;
+            // 
+            // roundedButton2
+            // 
+            this.roundedButton2.Image = global::MP3_Tag_Editor.Properties.Resources.StopButtonStandard;
+            this.roundedButton2.ImagePauseDown = null;
+            this.roundedButton2.ImagePauseOn = null;
+            this.roundedButton2.ImagePauseStandard = null;
+            this.roundedButton2.ImagePlayDown = global::MP3_Tag_Editor.Properties.Resources.StopButtonDown;
+            this.roundedButton2.ImagePlayOn = global::MP3_Tag_Editor.Properties.Resources.StopButtonOn;
+            this.roundedButton2.ImagePlayStandard = global::MP3_Tag_Editor.Properties.Resources.StopButtonStandard;
+            this.roundedButton2.IsPlayButton = false;
+            this.roundedButton2.Location = new System.Drawing.Point(117, 330);
+            this.roundedButton2.Name = "roundedButton2";
+            this.roundedButton2.Size = new System.Drawing.Size(30, 30);
+            this.roundedButton2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundedButton2.TabIndex = 15;
+            this.roundedButton2.TabStop = false;
+            this.roundedButton2.Click += new System.EventHandler(this.roundedButton2_Click);
+            // 
+            // roundedButton1
+            // 
+            this.roundedButton1.Image = global::MP3_Tag_Editor.Properties.Resources.PlayButtonStandard;
+            this.roundedButton1.ImagePauseDown = global::MP3_Tag_Editor.Properties.Resources.PauseButtonDown1;
+            this.roundedButton1.ImagePauseOn = global::MP3_Tag_Editor.Properties.Resources.PauseButtonOn1;
+            this.roundedButton1.ImagePauseStandard = global::MP3_Tag_Editor.Properties.Resources.PauseButtonStandard1;
+            this.roundedButton1.ImagePlayDown = global::MP3_Tag_Editor.Properties.Resources.PlayButtonDown;
+            this.roundedButton1.ImagePlayOn = global::MP3_Tag_Editor.Properties.Resources.PlayButtonOn;
+            this.roundedButton1.ImagePlayStandard = global::MP3_Tag_Editor.Properties.Resources.PlayButtonStandard1;
+            this.roundedButton1.IsPlayButton = true;
+            this.roundedButton1.Location = new System.Drawing.Point(57, 310);
+            this.roundedButton1.Name = "roundedButton1";
+            this.roundedButton1.Size = new System.Drawing.Size(50, 50);
+            this.roundedButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.roundedButton1.TabIndex = 9;
+            this.roundedButton1.TabStop = false;
+            this.roundedButton1.Click += new System.EventHandler(this.roundedButton1_Click);
             // 
             // tagsversion
             // 
@@ -634,15 +647,6 @@
             this.hamburgerItem1.TabIndex = 1;
             this.hamburgerItem1.Click += new System.EventHandler(this.hamburgerItem1_Click);
             // 
-            // separator
-            // 
-            this.separator.BackColor = System.Drawing.SystemColors.Control;
-            this.separator.Location = new System.Drawing.Point(324, 161);
-            this.separator.Name = "separator";
-            this.separator.Size = new System.Drawing.Size(670, 1);
-            this.separator.TabIndex = 4;
-            this.separator.TabStop = false;
-            // 
             // statusBar1
             // 
             this.statusBar1._ApplicationName = "MP3 Tag Editor";
@@ -656,22 +660,40 @@
             this.statusBar1.Size = new System.Drawing.Size(1024, 25);
             this.statusBar1.TabIndex = 0;
             // 
-            // roundedButton1
+            // customButton1
             // 
-            this.roundedButton1.Image = global::MP3_Tag_Editor.Properties.Resources.PlayButtonStandard;
-            this.roundedButton1.ImagePauseDown = global::MP3_Tag_Editor.Properties.Resources.PauseButtonDown1;
-            this.roundedButton1.ImagePauseOn = global::MP3_Tag_Editor.Properties.Resources.PauseButtonOn1;
-            this.roundedButton1.ImagePauseStandard = global::MP3_Tag_Editor.Properties.Resources.PauseButtonStandard1;
-            this.roundedButton1.ImagePlayDown = global::MP3_Tag_Editor.Properties.Resources.PlayButtonDown;
-            this.roundedButton1.ImagePlayOn = global::MP3_Tag_Editor.Properties.Resources.PlayButtonOn;
-            this.roundedButton1.ImagePlayStandard = global::MP3_Tag_Editor.Properties.Resources.PlayButtonStandard1;
-            this.roundedButton1.Location = new System.Drawing.Point(88, 310);
-            this.roundedButton1.Name = "roundedButton1";
-            this.roundedButton1.Size = new System.Drawing.Size(50, 50);
-            this.roundedButton1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.roundedButton1.TabIndex = 9;
-            this.roundedButton1.TabStop = false;
-            this.roundedButton1.Click += new System.EventHandler(this.roundedButton1_Click);
+            this.customButton1.BackColor = System.Drawing.Color.Transparent;
+            this.customButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton1.CustomButtonText = "Επεξεργασία επιλεγμένων";
+            this.customButton1.Location = new System.Drawing.Point(345, 11);
+            this.customButton1.Name = "customButton1";
+            this.customButton1.Size = new System.Drawing.Size(152, 20);
+            this.customButton1.TabIndex = 3;
+            this.customButton1.TabStop = false;
+            this.customButton1.Click += new System.EventHandler(this.customButton1_Click);
+            // 
+            // customButton3
+            // 
+            this.customButton3.BackColor = System.Drawing.Color.Transparent;
+            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton3.CustomButtonText = "Καθαρισμός λίστας";
+            this.customButton3.Location = new System.Drawing.Point(14, 7);
+            this.customButton3.Name = "customButton3";
+            this.customButton3.Size = new System.Drawing.Size(120, 20);
+            this.customButton3.TabIndex = 8;
+            this.customButton3.TabStop = false;
+            this.customButton3.Click += new System.EventHandler(this.customButton3_Click);
+            // 
+            // customButton2
+            // 
+            this.customButton2.BackColor = System.Drawing.Color.Transparent;
+            this.customButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.customButton2.CustomButtonText = "Επεξεργασία επιλεγμένων";
+            this.customButton2.Location = new System.Drawing.Point(142, 7);
+            this.customButton2.Name = "customButton2";
+            this.customButton2.Size = new System.Drawing.Size(152, 20);
+            this.customButton2.TabIndex = 4;
+            this.customButton2.TabStop = false;
             // 
             // Form1
             // 
@@ -693,23 +715,24 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.mylibrary.ResumeLayout(false);
             this.mylibrary.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.infopanel.ResumeLayout(false);
             this.infopanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recentdatagridview)).EndInit();
             this.recentpanel.ResumeLayout(false);
             this.recentpanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             this.hamburgerMenu1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.songinfo.ResumeLayout(false);
             this.songinfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.roundedButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundedButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.roundedButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customButton2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -763,6 +786,7 @@
         private System.Windows.Forms.Label tagsversion;
         private System.Windows.Forms.PictureBox pictureBox1;
         private RoundedButton roundedButton1;
+        private RoundedButton roundedButton2;
     }
 }
 

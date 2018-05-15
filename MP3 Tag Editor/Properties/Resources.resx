@@ -127,8 +127,14 @@
   <data name="MinimizeButtonPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MinimizeButtonPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StopButtonOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StopButtonOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="OptionsIcon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OptionsIcon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InfoIcon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InfoIcon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CloseButtonOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CloseButtonOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,8 +142,8 @@
   <data name="313974-200" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\313974-200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HamburgerButtonPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HamburgerButtonPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PauseButtonOn1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PauseButtonOn1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MinimizeButtonStandard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MinimizeButtonStandard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,8 +184,17 @@
   <data name="EditIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EditIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PauseButtonStandard1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PauseButtonStandard1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="playlist_add_grey_192x1922" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playlist_add_grey_192x1922.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HamburgerButtonPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HamburgerButtonPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PauseButtonDown1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PauseButtonDown1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PlayButtonStandard1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlayButtonStandard1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,14 +208,14 @@
   <data name="playlist_add_grey_192x1921" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playlist_add_grey_192x1921.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HamburgerButtonOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HamburgerButtonOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="StopButtonStandard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StopButtonStandard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PauseButtonOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PauseButtonOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="InfoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InfoIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HamburgerButtonStandard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HamburgerButtonStandard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,8 +226,8 @@
   <data name="CloseButtonPress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CloseButtonPress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PauseButtonOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PauseButtonOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InfoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InfoIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ItemRecent2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ItemRecent2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,8 +235,8 @@
   <data name="PauseButtonDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PauseButtonDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InfoIcon2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\InfoIcon2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HamburgerButtonOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HamburgerButtonOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Folder-Music-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Folder-Music-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,13 +247,7 @@
   <data name="ItemRecent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ItemRecent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PauseButtonDown1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PauseButtonDown1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PauseButtonOn1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PauseButtonOn1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PauseButtonStandard1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PauseButtonStandard1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="StopButtonDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StopButtonDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

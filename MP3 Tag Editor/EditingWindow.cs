@@ -611,5 +611,15 @@ namespace MP3_Tag_Editor
         {
             searchsonginfo.Visible = false;
         }
+
+        private void customButton4_Click_1(object sender, EventArgs e)
+        {
+            var DiscogsSongInfo = new DiscogsSongInfo();
+            WebClient JSONDownloader = new WebClient();
+            JSONDownloader.Headers.Add("User-Agent: MP3_Tag_Editor/0.5 +http://github.com/EfthimisV/MP3_Tag_Editor");
+            var JSON = JSONDownloader.DownloadString(SetQueryLink("SaVhpakXCQDKXQPjpWuH", "apFJViSZMNibBlIIlMixPvRsJBcshqkZ", artisttextbox.Text + " " + albumtextbox.Text));
+            DiscogsResponse DiscogsResponse = JsonConvert.DeserializeObject<DiscogsResponse>(JSON);
+            var ResultsLength = DiscogsResponse.results.Length;
+        }
     }
 }

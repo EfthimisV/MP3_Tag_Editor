@@ -32,7 +32,6 @@
             this.CurrentCategory = new System.Windows.Forms.Label();
             this.generalinfo = new System.Windows.Forms.Panel();
             this.searchsonginfo = new System.Windows.Forms.Panel();
-            this.customButton3 = new MP3_Tag_Editor.CustomButton();
             this.customButton4 = new MP3_Tag_Editor.CustomButton();
             this.customButton1 = new MP3_Tag_Editor.CustomButton();
             this.genretextbox = new System.Windows.Forms.TextBox();
@@ -92,7 +91,6 @@
             this.statusBar1 = new MP3_Tag_Editor.StatusBar();
             this.generalinfo.SuspendLayout();
             this.searchsonginfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).BeginInit();
@@ -161,25 +159,13 @@
             // 
             // searchsonginfo
             // 
-            this.searchsonginfo.Controls.Add(this.customButton3);
             this.searchsonginfo.Controls.Add(this.customButton4);
             this.searchsonginfo.Location = new System.Drawing.Point(156, 357);
             this.searchsonginfo.Name = "searchsonginfo";
-            this.searchsonginfo.Size = new System.Drawing.Size(163, 44);
+            this.searchsonginfo.Size = new System.Drawing.Size(163, 23);
             this.searchsonginfo.TabIndex = 42;
             this.searchsonginfo.Visible = false;
             this.searchsonginfo.Leave += new System.EventHandler(this.searchsonginfo_Leave);
-            // 
-            // customButton3
-            // 
-            this.customButton3.BackColor = System.Drawing.Color.Transparent;
-            this.customButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customButton3.CustomButtonText = "Αναζήτηση στο MusicBrainz";
-            this.customButton3.Location = new System.Drawing.Point(0, 22);
-            this.customButton3.Name = "customButton3";
-            this.customButton3.Size = new System.Drawing.Size(161, 20);
-            this.customButton3.TabIndex = 40;
-            this.customButton3.TabStop = false;
             // 
             // customButton4
             // 
@@ -191,6 +177,7 @@
             this.customButton4.Size = new System.Drawing.Size(161, 20);
             this.customButton4.TabIndex = 39;
             this.customButton4.TabStop = false;
+            this.customButton4.Click += new System.EventHandler(this.customButton4_Click_1);
             // 
             // customButton1
             // 
@@ -850,7 +837,6 @@
             this.generalinfo.ResumeLayout(false);
             this.generalinfo.PerformLayout();
             this.searchsonginfo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.customButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.discardbutton)).EndInit();
@@ -931,7 +917,6 @@
         private System.Windows.Forms.TextBox genretextbox;
         private CustomButton customButton1;
         private System.Windows.Forms.Panel searchsonginfo;
-        private CustomButton customButton3;
         private CustomButton customButton4;
     }
 }

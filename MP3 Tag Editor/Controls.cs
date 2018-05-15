@@ -464,6 +464,9 @@ namespace MP3_Tag_Editor
             drag = false;
         }
     }
+    /// <summary>
+    /// A search bar control.
+    /// </summary>
     public class SearchBar : Panel
     {
         public TextBox SearchBox = new TextBox();
@@ -571,6 +574,9 @@ namespace MP3_Tag_Editor
             }
         }
     }
+    /// <summary>
+    /// Search button for the SearchBar control.
+    /// </summary>
     public class SearchButton : PictureBox
     {
         public SearchButton()
@@ -703,6 +709,8 @@ namespace MP3_Tag_Editor
         public Image ImagePauseStandard { get; set; }
 
         public bool IsPlayImage = true;
+        [Description("Specifies if the button is a play button."), Category("Data")]
+        public bool IsPlayButton { get; set; } = false;
 
         public RoundedButton()
         {
@@ -725,75 +733,129 @@ namespace MP3_Tag_Editor
         protected override void OnMouseEnter(EventArgs e)
         {
             base.OnMouseEnter(e);
-            if (IsPlayImage)
+            if (IsPlayButton)
             {
-                Image = ImagePlayOn;
+                if (IsPlayImage)
+                {
+                    Image = ImagePlayOn;
+                }
+                else
+                {
+                    Image = ImagePauseOn;
+                }
             }
             else
             {
-                Image = ImagePauseOn;
+                Image = ImagePlayOn;
             }
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
-            if (IsPlayImage)
+            if (IsPlayButton)
             {
-                Image = ImagePlayDown;
+                if (IsPlayImage)
+                {
+                    Image = ImagePlayDown;
+                }
+                else
+                {
+                    Image = ImagePauseDown;
+                }
             }
             else
             {
-                Image = ImagePauseDown;
+                Image = ImagePlayDown;
             }
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            if (IsPlayImage)
+            if (IsPlayButton)
             {
-                Image = ImagePlayOn;
+                if (IsPlayImage)
+                {
+                    Image = ImagePlayOn;
+                }
+                else
+                {
+                    Image = ImagePauseOn;
+                }
             }
             else
             {
-                Image = ImagePauseOn;
+                Image = ImagePlayOn;
             }
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
             base.OnMouseLeave(e);
-            if (IsPlayImage)
+            if (IsPlayButton)
             {
-                Image = ImagePlayStandard;
+                if (IsPlayImage)
+                {
+                    Image = ImagePlayStandard;
+                }
+                else
+                {
+                    Image = ImagePauseStandard;
+                }
             }
             else
             {
-                Image = ImagePauseStandard;
+                Image = ImagePlayStandard;
             }
         }
 
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
-            if (IsPlayImage)
+            if (IsPlayButton)
             {
-                Image = ImagePauseStandard;
+                if (IsPlayImage)
+                {
+                    Image = ImagePauseStandard;
+                }
+                else
+                {
+                    Image = ImagePlayStandard;
+                }
+                IsPlayImage = !IsPlayImage;
             }
-            else
-            {
-                Image = ImagePlayStandard;
-            }
-            IsPlayImage = !IsPlayImage;
         }
     }
-    public class MiniMusicPlayer : Panel
+    public class SongInfoCard : Panel
     {
-        public MiniMusicPlayer()
+        public Label YearLabel = new Label()
         {
-            Size = new Size(248, 55);
-            BackColor = Color.FromArgb(1, 8, 20);
+            AutoSize = true,
+            Font = new Font("Century Gothic", 9),
+            ForeColor = Color.White,
+            Location = new Point(18, 34)
+        };
+        public Label GenreLabel = new Label()
+        {
+            AutoSize = true,
+            Font = new Font("Century Gothic", 9),
+            ForeColor = Color.White,
+            Location = new Point(18, 11)
+        };
+        public Label PublisherLabel = new Label()
+        {
+            AutoSize = true,
+            Font = new Font("Century Gothic", 9),
+            ForeColor = Color.White,
+            Location = new Point(18, 57),
+        };
+        public SongInfoCard()
+        {
+            Size = new Size(257, 91);
+            Controls.Add(YearLabel);
+            Controls.Add(GenreLabel);
+            Controls.Add(PublisherLabel);
         }
     }
 }

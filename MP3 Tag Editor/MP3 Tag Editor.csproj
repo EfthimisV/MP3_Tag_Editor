@@ -117,6 +117,12 @@
     <Compile Include="DiscogsSearchResults.Designer.cs">
       <DependentUpon>DiscogsSearchResults.cs</DependentUpon>
     </Compile>
+    <Compile Include="DiscogsSongInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DiscogsSongInfo.Designer.cs">
+      <DependentUpon>DiscogsSongInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditingWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </Compile>
     <EmbeddedResource Include="DiscogsSearchResults.resx">
       <DependentUpon>DiscogsSearchResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DiscogsSongInfo.resx">
+      <DependentUpon>DiscogsSongInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditingWindow.resx">
       <DependentUpon>EditingWindow.cs</DependentUpon>
@@ -296,6 +305,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PauseButtonStandard1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StopButtonOn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StopButtonStandard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StopButtonDown.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
